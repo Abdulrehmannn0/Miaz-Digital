@@ -14,7 +14,7 @@
 
 @layer base {
   body {
-    @apply bg-[#FFFFFF] text-[#0F172A] font-sans antialiased selection:bg-blue-500 selection:text-white transition-colors duration-300;
+    @apply bg-[#FFFFFF] text-[#000000] font-sans antialiased selection:bg-blue-500 selection:text-white transition-colors duration-300;
   }
   
   body.dark {
@@ -83,3 +83,122 @@
 input[type="range"]::-webkit-slider-thumb {
   pointer-events: auto;
 }
+
+/* LIGHT MODE PURE WHITE AND ACCENT BLUE THEME OVERRIDES */
+html:not(.dark) body,
+html:not(.dark) section,
+html:not(.dark) .bg-slate-50,
+html:not(.dark) .bg-slate-100,
+html:not(.dark) .bg-slate-50\/50,
+html:not(.dark) .bg-slate-100\/50,
+html:not(.dark) .bg-slate-200,
+html:not(.dark) .bg-gray-50,
+html:not(.dark) .bg-gray-100,
+html:not(.dark) .bg-white\/40,
+html:not(.dark) .bg-white\/70,
+html:not(.dark) .bg-white\/80,
+html:not(.dark) .bg-white\/85,
+html:not(.dark) .bg-slate-950\/20,
+html:not(.dark) .bg-slate-950\/25,
+html:not(.dark) .bg-slate-950\/40,
+html:not(.dark) .bg-slate-50\/10,
+html:not(.dark) [class*="bg-slate-50"],
+html:not(.dark) [class*="bg-slate-100"],
+html:not(.dark) [class*="bg-slate-200"] {
+  background-color: #FFFFFF !important;
+}
+
+html:not(.dark) .bg-white,
+html:not(.dark) .bg-white\/70,
+html:not(.dark) .bg-white\/80,
+html:not(.dark) .bg-white\/85,
+html:not(.dark) .bento-card,
+html:not(.dark) .glass-card {
+  background-color: #FFFFFF !important;
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.03), 0 2px 8px -1px rgba(0, 0, 0, 0.02), 0 0 1px 1px rgba(0, 0, 0, 0.01) !important;
+}
+
+/* Primary blue accents and buttons */
+html:not(.dark) .bg-blue-600 {
+  background-color: #2563EB !important;
+  color: #FFFFFF !important;
+}
+html:not(.dark) .hover\:bg-blue-500:hover,
+html:not(.dark) .hover\:bg-blue-600:hover,
+html:not(.dark) .hover\:bg-indigo-600:hover {
+  background-color: #1D4ED8 !important;
+  color: #FFFFFF !important;
+}
+
+/* Primary text to Pure Black (#000000) */
+html:not(.dark) .text-slate-900,
+html:not(.dark) .text-gray-900,
+html:not(.dark) .text-slate-800,
+html:not(.dark) .text-gray-800,
+html:not(.dark) h1,
+html:not(.dark) h2,
+html:not(.dark) h3,
+html:not(.dark) h4 {
+  color: #000000 !important;
+}
+
+/* Secondary text to #374151 */
+html:not(.dark) .text-slate-600,
+html:not(.dark) .text-gray-600,
+html:not(.dark) .text-slate-500,
+html:not(.dark) .text-gray-500,
+html:not(.dark) p,
+html:not(.dark) span:not(.text-blue-600):not(.text-blue-500):not(.text-emerald-600):not(.text-emerald-500):not(.text-white):not([class*="text-white"]):not([class*="text-blue"]):not([class*="text-emerald"]) {
+  color: #374151 !important;
+}
+
+/* Borders to #E5E7EB */
+html:not(.dark) *,
+html:not(.dark) .border,
+html:not(.dark) .border-slate-100,
+html:not(.dark) .border-slate-200,
+html:not(.dark) .border-gray-100,
+html:not(.dark) .border-gray-200,
+html:not(.dark) .border-slate-200\/60,
+html:not(.dark) .border-slate-200\/40,
+html:not(.dark) .border-white\/50,
+html:not(.dark) .border-white\/40 {
+  border-color: #E5E7EB !important;
+}
+
+/* Reset buttons and select elements border and background to keep it premium */
+html:not(.dark) select,
+html:not(.dark) input,
+html:not(.dark) textarea {
+  background-color: #FFFFFF !important;
+  border-color: #E5E7EB !important;
+  color: #000000 !important;
+}
+
+/* Ensure footer background is exactly #0F172A */
+html:not(.dark) footer,
+html:not(.dark) footer section {
+  background-color: #0F172A !important;
+  border-color: #1E293B !important;
+}
+html:not(.dark) footer * {
+  color: #94A3B8 !important;
+}
+html:not(.dark) footer h1,
+html:not(.dark) footer h2,
+html:not(.dark) footer h3,
+html:not(.dark) footer h4,
+html:not(.dark) footer span,
+html:not(.dark) footer a {
+  color: #F8FAFC !important;
+}
+html:not(.dark) footer a:hover {
+  color: #3B82F6 !important;
+}
+html:not(.dark) footer .bg-slate-800 {
+  background-color: #1E293B !important;
+}
+html:not(.dark) footer .hover\:bg-slate-700:hover {
+  background-color: #334155 !important;
+}
+
