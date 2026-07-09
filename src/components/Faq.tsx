@@ -18,7 +18,7 @@ export default function Faq() {
   return (
     <section 
       id="faq" 
-      className="py-24 bg-white dark:bg-[#0B0F19] border-t border-slate-100 dark:border-slate-900"
+      className="py-24 bg-[#FFFFFF] dark:bg-[#070913] border-t border-slate-100/50 dark:border-slate-900"
     >
       <div className="max-w-4xl mx-auto px-6">
         

@@ -14,12 +14,12 @@
 
 @layer base {
   body {
-    @apply bg-[#FAFAFA] text-slate-900 font-sans antialiased selection:bg-blue-500 selection:text-white transition-colors duration-300;
+    @apply bg-[#FFFFFF] text-[#0F172A] font-sans antialiased selection:bg-blue-500 selection:text-white transition-colors duration-300;
   }
   
   body.dark {
-    @apply bg-[#0B0F19] text-slate-100;
-    --color-luxury-white: #0B0F19;
+    @apply bg-[#070913] text-slate-100;
+    --color-luxury-white: #070913;
   }
 }
 

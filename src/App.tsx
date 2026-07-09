@@ -19,11 +19,12 @@ import Faq from './components/Faq';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import AiChatbot from './components/AiChatbot';
+import InteractiveFX from './components/InteractiveFX';
 import { LanguageCode } from './types';
 
 export default function App() {
   const [currentLang, setCurrentLang] = useState<LanguageCode>('EN');
-  const [isDarkMode, setIsDarkMode] = useState<boolean>(true); // Start in premium dark mode by default
+  const [isDarkMode, setIsDarkMode] = useState<boolean>(false); // Start in premium pure white mode by default
   const [activeSection, setActiveSection] = useState<string>('hero');
 
   // Sync Dark Mode state with Document Root
@@ -69,8 +70,11 @@ export default function App() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#FAFAFA] dark:bg-[#070913] text-slate-900 dark:text-slate-100 selection:bg-blue-600/30 font-sans transition-colors duration-300">
+    <div className="min-h-screen bg-[#FFFFFF] dark:bg-[#070913] text-[#0F172A] dark:text-slate-100 selection:bg-blue-600/30 font-sans transition-colors duration-300 relative overflow-hidden">
       
+      {/* Subtle Spider Web canvas & Smooth Magnetic Custom Cursor */}
+      <InteractiveFX />
+
       {/* Sticky Translucent Header */}
       <Navbar 
         currentLang={currentLang}

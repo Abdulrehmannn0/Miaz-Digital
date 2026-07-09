@@ -61,7 +61,7 @@ export default function Services({ onBookCall }: ServicesProps) {
   return (
     <section 
       id="services" 
-      className="py-24 bg-slate-50/50 dark:bg-slate-950/20 border-t border-slate-100 dark:border-slate-900"
+      className="py-24 bg-[#FFFFFF] dark:bg-[#070913] border-t border-slate-100/50 dark:border-slate-900"
     >
       <div className="max-w-7xl mx-auto px-6">
         

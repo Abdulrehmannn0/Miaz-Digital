@@ -52,7 +52,7 @@ export default function About() {
   return (
     <section 
       id="about" 
-      className="py-24 bg-white dark:bg-[#0B0F19] border-t border-slate-100 dark:border-slate-900"
+      className="py-24 bg-[#FFFFFF] dark:bg-[#070913] border-t border-slate-100/50 dark:border-slate-900"
     >
       <div className="max-w-7xl mx-auto px-6">
         
@@ -93,7 +93,7 @@ export default function About() {
                 key={i}
                 className="p-6 rounded-[22px] bg-white/70 dark:bg-slate-900/50 backdrop-blur-xl border border-white/50 dark:border-white/10 shadow-sm flex flex-col text-left hover:shadow-md transition-shadow"
               >
-                <div className="p-3 bg-slate-50 dark:bg-slate-800 rounded-xl w-fit mb-5">
+                <div className="p-3 bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700/50 rounded-xl w-fit mb-5">
                   <val.icon className={`w-5 h-5 ${val.color}`} />
                 </div>
                 <h3 className="font-semibold text-sm text-slate-900 dark:text-white mb-2">{val.title}</h3>

@@ -85,7 +85,7 @@ export default function Hero({ currentLang, onCtaClick }: HeroProps) {
     <section 
       id="hero"
       ref={containerRef}
-      className="relative min-h-screen w-full flex flex-col justify-between pt-32 pb-12 overflow-hidden bg-white dark:bg-[#0B0F19]"
+      className="relative min-h-screen w-full flex flex-col justify-between pt-32 pb-12 overflow-hidden bg-[#FFFFFF] dark:bg-[#070913]"
     >
       {/* Decorative Interactive Floating Blur Gradients */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
