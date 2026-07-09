@@ -1,0 +1,6 @@
+{
+  "name": "NiazDigital",
+  "description": "Premium international digital agency website for NiazDigital, featuring custom design, marketing, and real-time AI automation tools.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

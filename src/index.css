@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Outfit", "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  --color-primary-slate: #0F172A;
+  --color-accent-blue: #2563EB;
+  --color-gradient-blue: #3B82F6;
+  --color-luxury-white: #FAFAFA;
+}
+
+@layer base {
+  body {
+    @apply bg-[#FAFAFA] text-slate-900 font-sans antialiased selection:bg-blue-500 selection:text-white transition-colors duration-300;
+  }
+  
+  body.dark {
+    @apply bg-[#0B0F19] text-slate-100;
+    --color-luxury-white: #0B0F19;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(37, 99, 235, 0.1);
+  border-radius: 99px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(37, 99, 235, 0.3);
+}
+
+/* Premium Keyframes & Utilities */
+@keyframes pulseGlow {
+  0%, 100% {
+    transform: scale(1) translate(0px, 0px);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.1) translate(15px, -15px);
+    opacity: 0.8;
+  }
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.dark .glass-card {
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.infinite-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 25s linear infinite;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Before / After Slider Styling */
+.comparison-slider {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Hide native range thumb shadows */
+input[type="range"]::-webkit-slider-thumb {
+  pointer-events: auto;
+}
