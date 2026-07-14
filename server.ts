@@ -38,23 +38,25 @@ function getGeminiClient(): GoogleGenAI {
   return aiClient;
 }
 
-// System instructions for the NiazDigital AI Chat Agent
+// System instructions for the TechGloze AI Chat Agent
 const SYSTEM_INSTRUCTION = `
-You are the elite AI Strategic Assistant for NiazDigital (founded by Niaz Ahmed), a premium international digital agency.
+You are the elite AI Strategic Assistant for TechGloze IT Solutions (founded by Abdul Rehman), a premium international digital agency.
 Your mission is to represent the agency with world-class prestige, authority, and responsiveness.
 Convert visitors into booking discovery calls or starting projects.
 
 Here is your core knowledge base:
-- Founder: Niaz Ahmed (Digital Architect, over a decade of international experience scaling startups and enterprise solutions).
+- Founder: Abdul Rehman (Web Developer, AI Automation Expert, Digital Strategist, age 19, based in Noida, India. Has 3+ years of experience, delivered 28+ projects, USA, UK, UAE, Israel. Biggest client is Ergonomic Shop in Israel).
+- Mission: Helping businesses grow through premium websites, AI automation, SaaS solutions and intelligent digital systems.
+- Vision: To build one of the world's leading AI-first digital agencies.
 - Services Offered:
-  * Design: UI/UX & Product Design (Figma systems), Brand Identity, Minimalist Logos, Packaging, Presentation Slide decks.
-  * Development: Custom Next.js/React/TypeScript apps, Mobile App Dev (React Native/Flutter), Shopify Plus, WordPress, E-commerce, landing pages.
-  * Marketing: Meta Ads (Facebook/Instagram campaigns, Reels, Video Editing), Google Ads (PMax), LinkedIn B2B, SEO (technical & local SEO).
-  * AI & Automation: CRM Syncs (HubSpot/Salesforce), Make.com, Zapier, n8n integration, Custom Chatbots.
-  * Data & Business: Advanced Excel macro scripting, Power BI, custom spreadsheets, lead generation.
-- Unique Value: Hand-crafted, sub-second page speeds, luxury Apple/Stripe-like visual aesthetics, offline-first architectures, real-time client dashboards, ROI-driven marketing campaigns (averaging 4.8x ROAS).
+  * Development: Premium Website Development, Website Redesign, Landing Pages, WordPress Development, Shopify Development, Custom Web Applications, SaaS Development, React/Next.js, Mobile App & Dashboard Development.
+  * AI & Automation: AI Automation, Business Automation, Workflow Automation (n8n, Make, Zapier), CRM Integration, Custom AI Chatbots.
+  * Marketing: SEO (Technical & Local SEO), Google Ads, Meta Ads scaling, Social Media Management.
+  * Design & Creative: Brand Identity, Graphic Design, Video Editing, Motion Graphics, UI UX Design.
+  * Data & Consulting: Excel Automation, Data Entry, Business Consulting.
+- Unique Value: Hand-crafted, sub-second page speeds, luxury Apple/Stripe-like visual aesthetics, offline-first architectures, real-time client dashboards, ROI-driven marketing campaigns (averaging 5.4x ROAS on Meta ads).
 - Interaction Style: Direct, confident, conversational, elegant, and highly helpful.
-- Calls-to-Action: Encourage visitors to use our Studio Labs tools on the page (Cost Calculator, ROI Calculator, AI Estimator) or click 'Book Discovery Call' (which triggers our Calendly scheduler).
+- Calls-to-Action: Encourage visitors to use our Studio Labs tools on the page (Cost Calculator, SEO Audit, AI Estimator) or click 'Book Discovery Call' (which triggers our Calendly scheduler with Abdul Rehman).
 
 If process.env.GEMINI_API_KEY is missing, you operate with simulated expertise.
 `;
@@ -73,14 +75,22 @@ app.post('/api/chat', async (req: Request, res: Response): Promise<void> => {
       // Premium Mock Response fallback
       const lastUserMessage = messages[messages.length - 1]?.content || "";
       const lower = lastUserMessage.toLowerCase();
-      let reply = "I would be absolutely thrilled to assist you with that! NiazDigital specializes in premium design, Next.js engineering, and custom automation. Let's schedule a brief 15-minute Discovery Call to map out your digital roadmap.";
+      let reply = "I would be absolutely thrilled to assist you with that! TechGloze specializes in premium websites, Next.js engineering, AI automation, and custom workflow development. Let's schedule a brief 15-minute Discovery Call to map out your digital roadmap.";
       
-      if (lower.includes("price") || lower.includes("cost") || lower.includes("budget")) {
-        reply = "Our custom solutions are tailored to your precise growth metrics. Standard high-end Next.js web applications generally start at $5,000. You can try our Website Cost Calculator or the AI Project Estimator on this page to receive an interactive breakdown!";
+      if (lower.includes("price") || lower.includes("cost") || lower.includes("budget") || lower.includes("how much")) {
+        reply = "Our custom systems are tailored to your precise growth metrics. Standard high-end Next.js web applications generally start at $5,000, and our custom n8n/CRM automations start at $2,500. You can try our Website Cost Calculator or the AI Project Estimator on this page to receive an interactive breakdown!";
       } else if (lower.includes("service") || lower.includes("do you offer") || lower.includes("what do you")) {
-        reply = "We offer a cohesive full-suite digital spectrum: Design (Figma UI/UX, brand identity), Development (Next.js, React, Mobile Apps), Marketing (Meta and Google Ads, viral Reels editing, technical SEO), and Enterprise AI Automation (n8n, CRM synchronizations, custom spreadsheets). Which area can we scale for you first?";
-      } else if (lower.includes("founder") || lower.includes("niaz") || lower.includes("team")) {
-        reply = "NiazDigital was founded by Niaz Ahmed, a master digital architect and advertising growth specialist with a decade of global experience. He works directly as the lead consultant on every project to maintain pristine quality, with no diluted junior teams.";
+        reply = "We offer a cohesive full-suite digital spectrum: Premium Website & Mobile App Development, AI & Workflow Automation, Google & Meta Ads Marketing, Technical SEO, Brand Identity, and Business/Excel Consulting. Which area can we scale for you first?";
+      } else if (lower.includes("founder") || lower.includes("abdul") || lower.includes("rehman") || lower.includes("who founded") || lower.includes("who is")) {
+        reply = "TechGloze was founded by Abdul Rehman, an elite web developer and AI automation expert with a proven track record. He's 19 years old, based in Noida, India, has 3+ years of experience, and has delivered 28+ projects globally, including major setups for USA, UK, UAE, and Israel clients like Ergonomic Shop.";
+      } else if (lower.includes("saas")) {
+        reply = "Yes, we specialize in SaaS development! We construct modern, secure, and scalable SaaS platforms using Next.js, React, Node.js, and serverless databases like Supabase or Firebase.";
+      } else if (lower.includes("automation")) {
+        reply = "We provide advanced AI and workflow automations using tools like n8n, Make, and Zapier to synchronize your CRM (GoHighLevel, HubSpot, Salesforce) with spreadsheets or other pipelines, saving you dozens of hours of manual labor every week.";
+      } else if (lower.includes("long") || lower.includes("how long") || lower.includes("take")) {
+        reply = "Most premium website development, dashboards, and custom CRM automations are completed within 4 to 8 weeks. We maintain a transparent milestones tracking dashboard so you can view live progress anytime.";
+      } else if (lower.includes("book") || lower.includes("meeting") || lower.includes("call") || lower.includes("calendly")) {
+        reply = "You can easily book a 15-minute Discovery Call with Abdul Rehman by clicking the 'Book Discovery Call' button under the contact section! Let's discuss how we can scale your business.";
       }
       
       res.json({ text: reply });
@@ -172,7 +182,7 @@ Please structure your response in beautiful markdown:
       model: "gemini-3.5-flash",
       contents: prompt,
       config: {
-        systemInstruction: "You are the Principal Software Architect and UX Strategist at NiazDigital. Write authoritative, persuasive, and beautifully formatted client-facing estimates.",
+        systemInstruction: "You are the Principal Software Architect and UX Strategist at TechGloze IT Solutions. Write authoritative, persuasive, and beautifully formatted client-facing estimates.",
         temperature: 0.5,
       }
     });
@@ -235,14 +245,14 @@ Structure the response in beautiful markdown:
 2. Major SEO Bottlenecks: Highlight issues like TTFB (Time To First Byte), Cumulative Layout Shift (CLS), Missing Schema Markup (JSON-LD), and Content Cannibalization.
 3. Content and Backlink Strategy: Specific growth recommendations for search rankings.
 4. Competitive Edge Actions: Simple checklist to implement to outperform competitors.
-5. Action Proposal: How NiazDigital's technical SEO implementation plan can fix these.
+5. Action Proposal: How TechGloze's technical SEO implementation plan can fix these.
 `;
 
     const response = await ai.models.generateContent({
       model: "gemini-3.5-flash",
       contents: prompt,
       config: {
-        systemInstruction: "You are the Chief SEO Strategist and Semantics Architect at NiazDigital. Your audits are accurate, educational, clear, and highly professional.",
+        systemInstruction: "You are the Chief SEO Strategist and Semantics Architect at TechGloze IT Solutions. Your audits are accurate, educational, clear, and highly professional.",
         temperature: 0.4,
       }
     });
@@ -274,7 +284,7 @@ async function startServer() {
   }
 
   app.listen(PORT, "0.0.0.0", () => {
-    console.log(`[NiazDigital Server] Server started, running on http://localhost:${PORT} in ${process.env.NODE_ENV || 'development'} mode.`);
+    console.log(`[TechGloze Server] Server started, running on http://localhost:${PORT} in ${process.env.NODE_ENV || 'development'} mode.`);
   });
 }
 

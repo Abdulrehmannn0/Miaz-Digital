@@ -386,7 +386,7 @@ export default function ToolsSuite() {
                     {estLoading ? (
                       <div className="text-center py-10 flex flex-col items-center gap-3">
                         <RefreshCw className="w-8 h-8 text-blue-500 animate-spin" />
-                        <span className="text-xs text-slate-400 font-semibold">Consulting NiazDigital AI Estimator database...</span>
+                        <span className="text-xs text-slate-400 font-semibold">Consulting TechGloze AI Estimator database...</span>
                       </div>
                     ) : estResult ? (
                       renderResponseMarkdown(estResult)
@@ -725,7 +725,7 @@ export default function ToolsSuite() {
                   <div className="col-span-2 p-4 bg-blue-50 dark:bg-blue-500/10 border border-blue-100/40 rounded-xl flex items-center gap-3">
                     <TrendingUp className="w-5 h-5 text-blue-600 dark:text-blue-400 shrink-0" />
                     <span className="text-3xs text-slate-500 leading-normal">
-                      *NiazDigital campaigns maintain an average ROAS of <strong>4.8x</strong>, scaling startups beyond $100K gross revenues. Set your spend and see expected outputs!
+                      *TechGloze campaigns maintain an average ROAS of <strong>5.4x</strong>, scaling startups beyond $100K gross revenues. Set your spend and see expected outputs!
                     </span>
                   </div>
 

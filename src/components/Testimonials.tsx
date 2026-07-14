@@ -37,7 +37,7 @@ export default function Testimonials() {
             Trusted by venture-backed startups and family enterprises.
           </h2>
           <p className="text-base text-slate-500 dark:text-slate-400 leading-relaxed">
-            Read authentic critiques from global CTOs and marketing directors who decommissioned slow, generic layouts for custom-engineered NextJS architectures built by NiazDigital.
+            Read authentic critiques from global CTOs and marketing directors who decommissioned slow, generic layouts for custom-engineered NextJS architectures built by TechGloze.
           </p>
         </div>
 

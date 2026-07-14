@@ -6,314 +6,314 @@
 import { Service, PortfolioItem, CaseStudy, BlogArticle, FAQItem, FounderProfile } from './types';
 
 export const FOUNDER_DATA: FounderProfile = {
-  name: "Niaz Ahmed",
-  title: "Founder & Chief Digital Architect",
-  image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=600&auto=format&fit=crop",
-  bio: "A visionary digital strategist and technologist with over a decade of international experience. Niaz has engineered software architectures, designed brand experiences, and run high-converting advertising systems for hyper-growth startups and global enterprise clients. Under his leadership, NiazDigital has scales operations to support clients in over 24 countries.",
+  name: "Abdul Rehman",
+  title: "Founder of TechGloze | Web Developer & AI Automation Expert",
+  image: "/src/assets/images/abdul_rehman_founder_1783684179699.jpg",
+  bio: "I started my journey with a passion for technology and business. In 2024 I entered freelancing, working with local businesses and international clients. Today I'm building TechGloze to create premium websites, AI-powered systems and scalable digital experiences that help businesses grow faster.",
   experience: [
-    "Former Lead Product Architect at Silicon Valley Tech-Ventures",
-    "Advisory Board Member for European AI Automation Consortium",
-    "Delivered 150+ high-end enterprise systems & visual campaigns",
-    "Expert in advanced low-code integration, NextJS frameworks, & Google GenAI ecosystems"
+    "Age: 19 Years | Location: Noida, India",
+    "3+ Years of Professional Web Development & AI Automation",
+    "Delivered 28+ premium systems across USA, UK, UAE, and Israel",
+    "Expert in advanced Next.js development, custom AI workflows, and CRM integrations"
   ],
   achievements: [
-    "Awwwards Honorable Mention for Interactive Design",
-    "FWA Site of the Day (Lead Technical Contributor)",
-    "Managed over $4.2M in aggregate advertising spend with 4.8x average ROAS",
-    "Pioneered enterprise-grade CRM and spreadsheet synchronizations used by Fortune 500 units"
+    "Biggest Client: Ergonomic Shop (Israel)",
+    "Pioneered custom spreadsheet & lead-routing automations using n8n and Make",
+    "Vision: To build one of the world's leading AI-first digital agencies",
+    "Quote: 'Build a name so strong that everyone who works with you feels proud to say they were part of your journey.'"
   ],
   socials: {
-    linkedin: "https://linkedin.com/in/niaz-digital",
-    twitter: "https://twitter.com/niaz_digital",
-    instagram: "https://instagram.com/niaz_digital",
-    github: "https://github.com/niaz_digital"
+    linkedin: "https://linkedin.com/in/techgloze",
+    twitter: "https://twitter.com/techgloze",
+    instagram: "https://instagram.com/techgloze",
+    github: "https://github.com/techgloze"
   }
 };
 
 export const SERVICES_DATA: Service[] = [
-  // DESIGN
-  {
-    id: "ui-ux-design",
-    title: "UI / UX & Product Design",
-    category: "Design",
-    description: "Sleek, responsive, and award-winning visual layouts crafted on Apple design principles for ultimate conversion.",
-    icon: "Layers",
-    features: ["Custom Interface Design (Figma)", "Interactive Interactive Prototypes", "Design Systems & Styleguides", "Mobile & Web App wireframing", "Luxury Branding Aesthetics"],
-    gradient: "from-blue-500/10 to-indigo-500/5 hover:from-blue-500/20 hover:to-indigo-500/10"
-  },
-  {
-    id: "brand-identity",
-    title: "Brand Identity & Logo Design",
-    category: "Design",
-    description: "Establish a luxury presence with pristine minimalist logo systems, packaging, and business presentation pitch decks.",
-    icon: "Compass",
-    features: ["Minimalist Logo Systems", "Brand Positioning & Guides", "Premium Packaging Design", "Investor Pitch Deck Design", "Corporate Stationery Kits"],
-    gradient: "from-purple-500/10 to-pink-500/5 hover:from-purple-500/20 hover:to-pink-500/10"
-  },
-  
   // DEVELOPMENT
   {
     id: "web-development",
-    title: "Website & Web App Development",
+    title: "Premium Website Development",
     category: "Development",
     description: "Blazing fast custom Next.js, React, and TypeScript applications engineered with sub-second page loads.",
     icon: "Code2",
-    features: ["Custom Next.js & React Apps", "Type-safe TypeScript Architectures", "Headless CMS Integrations", "Sub-second Performance Tuning", "Tailwind CSS Layout Perfection"],
-    gradient: "from-teal-500/10 to-emerald-500/5 hover:from-teal-500/20 hover:to-emerald-500/10"
+    features: [
+      "Next.js Development & React Development",
+      "Website Redesign & Performance Overhaul",
+      "Custom Web Applications & SaaS Development",
+      "WordPress Development & Shopify Development",
+      "Landing Pages & High-Converting Funnels"
+    ],
+    gradient: "from-blue-500/10 to-indigo-500/5 hover:from-blue-500/20 hover:to-indigo-500/10"
   },
   {
-    id: "ecommerce-development",
-    title: "Shopify & WordPress E-commerce",
+    id: "mobile-apps",
+    title: "Mobile App & Dashboard Development",
     category: "Development",
-    description: "Premium high-converting online storefronts powered by Shopify Plus, headless Shopify APIs, or scalable WooCommerce.",
-    icon: "ShoppingBag",
-    features: ["Headless Commerce Architectures", "Custom Shopify Theme Development", "WordPress Enterprise Portals", "Payment Gateway Integrations", "Advanced Sales Funnel Optimizations"],
-    gradient: "from-amber-500/10 to-orange-500/5 hover:from-amber-500/20 hover:to-orange-500/10"
-  },
-  {
-    id: "mobile-app-development",
-    title: "Mobile App Development",
-    category: "Development",
-    description: "Stunning cross-platform iOS and Android applications developed using React Native or Flutter.",
+    description: "Stunning cross-platform iOS and Android applications developed using React Native or Flutter, alongside real-time dashboards.",
     icon: "Smartphone",
-    features: ["iOS & Android Mobile Apps", "React Native & Flutter Builds", "App Store Optimization (ASO)", "Push Notification Automation", "Offline-first Database Architectures"],
+    features: [
+      "iOS & Android Mobile App Development",
+      "Dashboard Development & Real-Time Analytics",
+      "React Native & Flutter Hybrid Apps",
+      "Push Notification Automations",
+      "Offline-first Local Databases"
+    ],
     gradient: "from-cyan-500/10 to-sky-500/5 hover:from-cyan-500/20 hover:to-sky-500/10"
-  },
-
-  // MARKETING
-  {
-    id: "paid-ads",
-    title: "Meta, Google & LinkedIn Ads",
-    category: "Marketing",
-    description: "Data-backed paid advertising campaigns delivering maximum ROAS and predictable customer acquisition pipelines.",
-    icon: "TrendingUp",
-    features: ["Meta Ads (Facebook & Instagram)", "Google Search, Display & PMax", "LinkedIn B2B Campaign Management", "Retargeting sales funnels", "High-performance Ad Creatives"],
-    gradient: "from-red-500/10 to-orange-500/5 hover:from-red-500/20 hover:to-orange-500/10"
-  },
-  {
-    id: "seo-optimization",
-    title: "SEO & Content Marketing",
-    category: "Marketing",
-    description: "Drive thousands of highly qualified organic visitors with local, technical, and semantic search optimization.",
-    icon: "SearchCode",
-    features: ["In-depth Technical SEO Audits", "Semantic Keyword Research", "Local Map Pack Optimization", "Link Building Campaigns", "Premium Content Hub Strategy"],
-    gradient: "from-indigo-500/10 to-violet-500/5 hover:from-indigo-500/20 hover:to-violet-500/10"
-  },
-  {
-    id: "reels-video-editing",
-    title: "Video Editing & Reels Management",
-    category: "Marketing",
-    description: "Viral-engineered video editing, Instagram Reels, YouTube Shorts, and high-impact custom motion graphics.",
-    icon: "Play",
-    features: ["High-retention Video Editing", "Instagram Reels & TikTok Strategy", "Dynamic Kinetic Captions", "Motion Graphics & 2D FX", "SMM Calendar Synchronization"],
-    gradient: "from-fuchsia-500/10 to-rose-500/5 hover:from-fuchsia-500/20 hover:to-rose-500/10"
   },
 
   // AI & AUTOMATION
   {
     id: "ai-automation",
-    title: "AI Workflows & CRM Automation",
+    title: "AI & Business Automation",
     category: "AI & Automation",
-    description: "Supercharge your business with Zapier, n8n, Make.com integrations, Custom Chatbots, and automated workflows.",
+    description: "Supercharge your business with custom n8n, Make, and Zapier automated workflows and intelligent AI integrations.",
     icon: "Cpu",
-    features: ["Zapier & Make.com Integrations", "Custom n8n Enterprise Workflows", "CRM Sync (HubSpot, Salesforce)", "AI Chatbots (Gemini/OpenAI)", "Email & SMS Autoresponders"],
-    gradient: "from-blue-500/10 to-purple-500/5 hover:from-blue-500/20 hover:to-purple-500/10"
+    features: [
+      "AI Automation & Business Automation",
+      "Workflow Automation (n8n, Make, Zapier)",
+      "CRM Integration (HubSpot, GoHighLevel, etc.)",
+      "Custom AI Chatbots (Gemini/OpenAI)",
+      "Excel Automation & Automated Lead Routing"
+    ],
+    gradient: "from-purple-500/10 to-pink-500/5 hover:from-purple-500/20 hover:to-pink-500/10"
   },
 
-  // DATA & BUSINESS
+  // MARKETING
   {
-    id: "excel-powerbi-dashboards",
-    title: "Excel, Power BI & Data Dashboards",
+    id: "marketing-seo",
+    title: "SEO, Google Ads & Meta Ads",
+    category: "Marketing",
+    description: "Data-backed advertising and semantic organic search optimization that scales enterprise pipeline lead pipelines.",
+    icon: "TrendingUp",
+    features: [
+      "SEO (Technical SEO & Local SEO)",
+      "Google Ads (Search, Display & PMax)",
+      "Meta Ads (Facebook & Instagram scaling)",
+      "Social Media Management & Strategy",
+      "Data-driven lead generation funnels"
+    ],
+    gradient: "from-teal-500/10 to-emerald-500/5 hover:from-teal-500/20 hover:to-emerald-500/10"
+  },
+
+  // DESIGN & CREATIVE
+  {
+    id: "brand-creative",
+    title: "Brand Identity, Video Editing & UIUX",
+    category: "Design",
+    description: "Sleek, responsive, and award-winning visual identities and layouts crafted on modern design principles.",
+    icon: "Layers",
+    features: [
+      "UI UX Design & Figma Design Systems",
+      "Brand Identity & Minimalist Logo Systems",
+      "Graphic Design & Creative Copywriting",
+      "Video Editing & Motion Graphics",
+      "Premium Investor Pitch Deck Designs"
+    ],
+    gradient: "from-amber-500/10 to-orange-500/5 hover:from-amber-500/20 hover:to-orange-500/10"
+  },
+
+  // BUSINESS CONSULTING
+  {
+    id: "business-consulting",
+    title: "Business Consulting & Data Entry",
     category: "Data & Business",
-    description: "Translate chaotic datasets into executive dashboards, robust Excel macros, and interactive Power BI charts.",
+    description: "Professional strategic consulting to identify automation bottlenecks, clean datasets, and audit tech infrastructure.",
     icon: "BarChart3",
-    features: ["Advanced Excel Macro Scripts", "Power BI Interactive Analytics", "Google Sheets Live Integrations", "Sales pipeline lead dashboards", "Data entry scraping automations"],
+    features: [
+      "Business Consulting & Digital Strategy",
+      "Excel Automation, Formulas & Scripts",
+      "Detailed Data Entry & Database Cleanup",
+      "Analytics & Dashboard Integrations",
+      "Tech Stack Audits & Security Consulting"
+    ],
     gradient: "from-green-500/10 to-emerald-500/5 hover:from-green-500/20 hover:to-emerald-500/10"
   }
 ];
 
 export const PORTFOLIO_DATA: PortfolioItem[] = [
   {
-    id: "lux-wear",
-    title: "Apex Luxury Chronograph Store",
-    client: "Apex Luxury Ltd",
+    id: "medical-website",
+    title: "CareFlow Modern Patient & Healthcare Portal",
+    client: "MedClinic Specialist Group (USA)",
     category: "Websites",
-    image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=800&auto=format&fit=crop",
-    tags: ["E-commerce", "Shopify Plus", "TailwindCSS"],
-    techStack: ["Shopify Plus", "React", "Liquid", "Tailwind CSS"],
+    image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=800&auto=format&fit=crop",
+    tags: ["Healthcare Portal", "Next.js", "TailwindCSS"],
+    techStack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Supabase"],
     duration: "6 Weeks",
-    results: "+240% Ecommerce Sales Increase, 3.4% average Conversion Rate.",
+    results: "3.8% Patient booking conversion increase, 100% HIPAA-compliant data sync.",
     clientReview: {
-      author: "Julien Mercer",
-      role: "Operations Director",
-      avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=200&auto=format&fit=crop",
+      author: "Dr. Sarah Miller",
+      role: "Clinical Director",
+      avatar: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=200&auto=format&fit=crop",
       rating: 5,
-      comment: "NiazDigital transformed our slow online storefront into an absolute powerhouse. The design screams prestige, and our organic conversions have never been higher."
+      comment: "TechGloze delivered a flawlessly secure patient healthcare portal. It is exceptionally fast, beautiful, and our patients love using it. Abdul is an elite developer."
     },
-    liveUrl: "https://example.com/apex-watch",
-    caseStudyId: "apex-watch-study"
+    liveUrl: "https://example.com/careflow-portal",
+    caseStudyId: "careflow-portal-study"
   },
   {
-    id: "neo-banking",
-    title: "Volt Fintech Mobile App",
-    client: "Volt Bank Inc",
-    category: "Mobile Apps",
-    image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=800&auto=format&fit=crop",
-    tags: ["Fintech", "Mobile App", "React Native"],
-    techStack: ["React Native", "Node.js", "MongoDB", "Framer Motion"],
-    duration: "10 Weeks",
-    results: "Over 200K App Downloads in 90 days, 4.9 App Store Rating.",
-    clientReview: {
-      author: "Samantha Vance",
-      role: "VP of Product",
-      avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=200&auto=format&fit=crop",
-      rating: 5,
-      comment: "Working with Niaz felt like adding an elite engineering crew to our company. The mobile animations are as buttery smooth as Apple's native experiences."
-    },
-    liveUrl: "https://example.com/volt-app",
-    caseStudyId: "volt-fintech-study"
-  },
-  {
-    id: "alpha-automation",
-    title: "AI CRM Pipeline Synchronization",
-    client: "Alpha Logistics",
-    category: "AI Automation",
-    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=800&auto=format&fit=crop",
-    tags: ["Make.com", "HubSpot", "OpenAI"],
-    techStack: ["n8n", "Make.com", "Google Sheets API", "HubSpot CRM"],
+    id: "roofing-website",
+    title: "Apex Residential & Corporate Roofing Platform",
+    client: "Apex Roofing Group (United Kingdom)",
+    category: "Websites",
+    image: "https://images.unsplash.com/photo-1632829172672-c3258124779a?q=80&w=800&auto=format&fit=crop",
+    tags: ["Roofing Website", "Framer", "Local SEO"],
+    techStack: ["React", "Vite", "Framer Motion", "Tailwind CSS"],
     duration: "4 Weeks",
-    results: "Saved 42 Hours of weekly manual entry, eliminated 100% of pipeline data errors.",
+    results: "+180% local lead generation in the first 30 days, ranking #1 for roofing in regional SEO.",
     clientReview: {
-      author: "Robert Kowalski",
+      author: "Thomas Higgins",
       role: "Managing Director",
-      avatar: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=200&auto=format&fit=crop",
+      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop",
       rating: 5,
-      comment: "The spreadsheet automation dashboards and custom workflow systems NiazDigital deployed saved our operations team over 160 hours per month. Remarkable!"
+      comment: "Absolutely outstanding. The local roofing website designed by TechGloze has completely filled our scheduler. It looks premium and performs like a dream."
     },
-    liveUrl: "https://example.com/alpha-logistic",
-    caseStudyId: "alpha-ai-study"
+    liveUrl: "https://example.com/apex-roofing",
+    caseStudyId: "apex-roofing-study"
   },
   {
-    id: "prime-meta-ads",
-    title: "Scale Campaign 5.4x ROAS",
-    client: "Velo Apparel",
-    category: "Meta Ads",
-    image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=800&auto=format&fit=crop",
-    tags: ["Paid Ads", "Meta Marketing", "Creative Strategy"],
-    techStack: ["Meta Ads Manager", "Premiere Pro", "Figma", "Google Analytics 4"],
-    duration: "Ongoing",
-    results: "$140,000 generated from $26,000 ad spend (5.38x ROAS).",
+    id: "real-estate",
+    title: "Elite Homes Luxury Real Estate Portal",
+    client: "Elite Homes Group (United Arab Emirates)",
+    category: "Websites",
+    image: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?q=80&w=800&auto=format&fit=crop",
+    tags: ["Real Estate Website", "Next.js", "Mapbox"],
+    techStack: ["Next.js", "TypeScript", "Tailwind CSS", "Mapbox GL", "Node.js"],
+    duration: "8 Weeks",
+    results: "+220% listing inquiry rate, buttery-smooth interactive maps.",
     clientReview: {
-      author: "Marcus Chen",
-      role: "Founder",
+      author: "Faris Al-Mazrouei",
+      role: "Sales Director",
       avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=200&auto=format&fit=crop",
       rating: 5,
-      comment: "Niaz Ahmed doesn't just run ads; he understands consumer psychology. The Reels visual creatives and landing page funnels they built converted traffic instantly."
+      comment: "TechGloze created a real estate website that matches the premium nature of our luxury Dubai properties. Seamless map interactions and high-retention UI."
     },
-    liveUrl: "https://example.com/velo-ads",
-    caseStudyId: "velo-ads-study"
+    liveUrl: "https://example.com/elite-homes",
+    caseStudyId: "elite-homes-study"
   },
   {
-    id: "saas-dashboard",
-    title: "Sentry CyberSecurity Admin Console",
-    client: "SentryCorp",
-    category: "Dashboards",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop",
-    tags: ["SaaS", "React Dashboard", "TailwindCSS"],
-    techStack: ["Vite", "React", "Recharts", "TypeScript", "TailwindCSS"],
-    duration: "8 Weeks",
-    results: "Dashboard retention rose by 40%, user load time dropped by 65%.",
-    clientReview: {
-      author: "Elena Rostov",
-      role: "CTO",
-      avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=200&auto=format&fit=crop",
-      rating: 5,
-      comment: "Our complex cloud monitoring dashboard was a complete mess. Niaz designed a beautifully clean, light-filled UI with detailed real-time telemetry graphs."
-    },
-    liveUrl: "https://example.com/sentry-dashboard",
-    caseStudyId: "sentry-dashboard-study"
-  },
-  {
-    id: "aero-branding",
-    title: "Aero Mobility Visual Identity",
-    client: "Aero Drone Solutions",
-    category: "Branding",
-    image: "https://images.unsplash.com/photo-1508614589041-895b88991e3e?q=80&w=800&auto=format&fit=crop",
-    tags: ["Brand Identity", "Pitch Deck", "Logo Design"],
-    techStack: ["Figma", "Illustrator", "InDesign", "Blender 3D"],
+    id: "ergonomic-shop-automation",
+    title: "n8n CRM Lead Sync & Excel Automation Platform",
+    client: "Ergonomic Shop (Israel)",
+    category: "AI Automation",
+    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=800&auto=format&fit=crop",
+    tags: ["n8n", "CRM Integration", "Excel Automation"],
+    techStack: ["n8n", "Make.com", "GoHighLevel", "Google Sheets API", "OpenAI"],
     duration: "5 Weeks",
-    results: "Helped secure $3.5M Series-A Funding with dynamic investor slide presentations.",
+    results: "Saved 45 hours weekly of manual data entries, eliminated 100% of pipeline sync delays.",
     clientReview: {
-      author: "David Vance",
-      role: "CEO & Co-Founder",
-      avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200&auto=format&fit=crop",
+      author: "Amit Goldstein",
+      role: "Operations Chief",
+      avatar: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=200&auto=format&fit=crop",
       rating: 5,
-      comment: "The packaging design and corporate brand book NiazDigital compiled represent international high-end luxury. The pitch deck was a masterpiece."
+      comment: "Abdul Rehman engineered a flawless custom n8n lead sync system that connects our Google Sheets, HubSpot, and GoHighLevel CRM instantly. The Excel macro automations are phenomenal."
     },
-    liveUrl: "https://example.com/aero-brand",
-    caseStudyId: "aero-branding-study"
+    liveUrl: "https://example.com/ergonomic-automation",
+    caseStudyId: "ergonomic-shop-automation-study"
+  },
+  {
+    id: "dentist-portal",
+    title: "SmileCraft Modern Orthodontic Dental Portal",
+    client: "SmileCraft Clinic (USA)",
+    category: "Websites",
+    image: "https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=800&auto=format&fit=crop",
+    tags: ["Dental Website", "React", "Booking API"],
+    techStack: ["React", "TypeScript", "Tailwind CSS", "Calendly API", "Express"],
+    duration: "4 Weeks",
+    results: "+140% appointment bookings within 45 days, premium patient onboarding layout.",
+    clientReview: {
+      author: "Dr. Jessica Hayes",
+      role: "Lead Orthodontist",
+      avatar: "https://images.unsplash.com/photo-1594824813573-246434de83fb?q=80&w=200&auto=format&fit=crop",
+      rating: 5,
+      comment: "Our new custom dental website designed by TechGloze has streamlined patient onboarding beautifully. The integrated booking system works perfectly."
+    },
+    liveUrl: "https://example.com/smilecraft-dental",
+    caseStudyId: "smilecraft-dental-study"
+  },
+  {
+    id: "ergonomic-shop-ads",
+    title: "High-Converting Meta Ads, Google Ads & SEO Campaign",
+    client: "Ergonomic Shop (Israel)",
+    category: "Meta Ads",
+    image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=800&auto=format&fit=crop",
+    tags: ["Meta Ads", "Google Ads", "Technical SEO"],
+    techStack: ["Meta Ads Manager", "Google Ads (PMax)", "Google Analytics 4", "SEO Audit"],
+    duration: "Ongoing",
+    results: "5.4x ROAS on Meta Ad campaigns, organic keyword traffic increased by 130%.",
+    clientReview: {
+      author: "Amit Goldstein",
+      role: "Founder",
+      avatar: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=200&auto=format&fit=crop",
+      rating: 5,
+      comment: "TechGloze scaled our sales using high-performing Google and Meta ad campaigns. Our ROAS has remained above 5x, and the technical SEO has brought in incredible organic visitors."
+    },
+    liveUrl: "https://example.com/ergonomic-ads-seo",
+    caseStudyId: "ergonomic-shop-ads-study"
   }
 ];
 
 export const CASE_STUDIES_DATA: CaseStudy[] = [
   {
-    id: "apex-watch-study",
-    client: "Apex Luxury Ltd",
-    title: "Engineeing A Prestige Headless Commerce Hub",
-    heroImage: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=1200&auto=format&fit=crop",
-    challenge: "Apex Luxury, an elite watch boutique, suffered from high bounce rates (58%) on mobile and slow server response times on standard WordPress. Their inventory tracking didn't sync with store ERPs, and high-value buyers left carts empty due to a clunky multi-step checkout workflow.",
-    strategy: "Our strategy focused on transition to a headless commerce stack. By pairing Next.js with the Shopify Storefront API, we could decoupling content from checkout logic. Visual layouts were redesigned with ultra-clean luxury typography, and interactive floating watch displays utilizing 3D hover effects.",
-    solution: "We designed and developed a custom high-performance headless client. We integrated Stripe API for single-click payment checkouts, set up automated CRM flows via Zapier to sync offline spreadsheets instantly, and programmed a personalized AI Chat Assistant to assist high-value customers dynamically.",
-    technologies: ["Next.js", "Shopify Storefront API", "Tailwind CSS", "Vercel", "Zapier"],
+    id: "careflow-portal-study",
+    client: "MedClinic Specialist Group (USA)",
+    title: "Engineering a Highly Secure Patient Care Portal",
+    heroImage: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=1200&auto=format&fit=crop",
+    challenge: "MedClinic was struggling with slow load times on patient intake pages, data leaks from manual entries, and a confusing patient booking pipeline. They required a fully secure, beautiful portal integrated with their medical database.",
+    strategy: "Our strategy centered on constructing a custom React and Next.js engine with type-safe backend integrations. The interface followed Apple's design parameters, featuring high contrast, intuitive dashboard modules, and seamless appointment calendar setups.",
+    solution: "We designed and developed the CareFlow Portal. It incorporates HIPAA-compliant API validations, automated push alerts for doctors, and direct client portal integrations that reduce data entry friction by 100%.",
+    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Supabase", "React"],
     process: [
-      "Strategic audit of legacy WordPress checkout flows",
-      "Figma design iterations following luxury watch aesthetics",
-      "Headless React database pipeline and Stripe gateway integration",
-      "Automated spreadsheet sync script installation",
-      "Performance optimization to reach 99/100 Lighthouse Speed Index"
+      "Secure architecture blueprint & HIPAA compliance layout planning",
+      "Figma high-fidelity prototype modeling",
+      "Next.js frontend development with sub-second performance audits",
+      "Supabase serverless secure database synchronization",
+      "Launch & doctor workflow testing sessions"
     ],
     before: {
-      metrics: "58% Bounce Rate, 4.2s Page Load Time, 1.1% Conversion Rate",
+      metrics: "5.2s Intake Loading, 12% drop-off on booking, manual spreadsheet logging.",
       image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=400&auto=format&fit=crop"
     },
     after: {
-      metrics: "18% Bounce Rate, 0.6s Page Load Time, 3.4% Conversion Rate",
-      image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=400&auto=format&fit=crop"
+      metrics: "0.4s Intake Loading, 98% patient booking completion rate, fully automated syncing.",
+      image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=400&auto=format&fit=crop"
     },
     results: [
-      { label: "Revenue Increase", value: "+240%", growth: "In 90 Days" },
-      { label: "Site Performance", value: "99/100", growth: "Lighthouse Rating" },
-      { label: "Average Order Value", value: "+38%", growth: "AOV Growth" }
+      { label: "Booking Completion", value: "98%", growth: "+14% Over baseline" },
+      { label: "Intake Page Speed", value: "0.4s", growth: "Sub-second load" },
+      { label: "Data Integrity", value: "100%", growth: "Zero pipeline leaks" }
     ]
   },
   {
-    id: "volt-fintech-study",
-    client: "Volt Bank Inc",
-    title: "Developing The Slickest Mobile Bank in the EU",
-    heroImage: "https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=1200&auto=format&fit=crop",
-    challenge: "Volt Fintech required an elite mobile application prototype and design language to present to the central regulatory commission of the EU. They struggled to communicate complex security features and needed extreme fluid visual layouts to captivate users.",
-    strategy: "We architected a high-fidelity design system from scratch. Using React Native and Framer Motion, we focused on dynamic gesture-based dashboard transitions and luxury micro-animations that reflect high security and state-of-the-art innovation.",
-    solution: "Crafted a secure banking application containing custom charts displaying spend statistics, automated push notices, and biometric authorization modules. A complementary, sleek web dashboard was compiled for corporate clients.",
-    technologies: ["React Native", "TypeScript", "Node.js", "Framer Motion", "MongoDB"],
+    id: "ergonomic-shop-automation-study",
+    client: "Ergonomic Shop (Israel)",
+    title: "Scaling Operations and CRM Pipelines with n8n & Google Sheets API",
+    heroImage: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1200&auto=format&fit=crop",
+    challenge: "Ergonomic Shop had massive manual lead routing lag. Leads coming in from Meta & Google campaigns had to be copied manually into Google Sheets, then passed to GoHighLevel CRM, leading to delayed outbound calls (up to 12 hours) and lost revenue.",
+    strategy: "We built an event-driven automation strategy using n8n hosted on secure server environments. The system triggers on campaign form submissions, auto-enriches leads using custom LLM logic, updates live Excel/Google Sheet records, and logs the customer instantly into GoHighLevel CRM.",
+    solution: "A robust lead integration system. Lead response time dropped from 12 hours to less than 15 seconds. High-value clients are tagged, and a dialer webhook notifies the sales representative immediately.",
+    technologies: ["n8n", "Make.com", "GoHighLevel CRM", "Google Sheets API", "OpenAI"],
     process: [
-      "Core wireframe modeling and biometric UX design",
-      "Development of custom spend-chart modules in SVG",
-      "Database schema synchronization for rapid account balance query",
-      "Regulatory audit submission assistance with premium PDFs",
-      "Successful launch of Beta on Apple TestFlight"
+      "Workflow assessment & manual data bottleneck identification",
+      "n8n webhook architecture planning and secure credentials authentication",
+      "GoHighLevel pipeline and custom database mapping",
+      "Auto-enrichment LLM scripting installation",
+      "Live environment stress-testing and automated error-alert setups"
     ],
     before: {
-      metrics: "Static Figma sketches, no real-time charts or functional logic.",
+      metrics: "12-hour lead lag, high human data-entry errors, 22% CRM leakage.",
       image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=400&auto=format&fit=crop"
     },
     after: {
-      metrics: "Fully functional iOS/Android app on App Store, 4.9 star feedback.",
-      image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=400&auto=format&fit=crop"
+      metrics: "Under 15-second lead sync, 100% error elimination, 0% lead leakage.",
+      image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=400&auto=format&fit=crop"
     },
     results: [
-      { label: "App Store Downloads", value: "200K+", growth: "First Quarter" },
-      { label: "App Store Rating", value: "4.9★", growth: "Outstanding Trust" },
-      { label: "Capital Raised", value: "€12.5M", growth: "Series-A Secured" }
+      { label: "Lead Sync Time", value: "<15s", growth: "Real-time routing" },
+      { label: "Manual Hours Saved", value: "45h/wk", growth: "Operational efficiency" },
+      { label: "Lead Leakage", value: "0%", growth: "100% CRM absorption" }
     ]
   }
 ];
@@ -325,7 +325,7 @@ export const BLOG_DATA: BlogArticle[] = [
     slug: "build-zero-employee-lead-routing-workflow-n8n-openai",
     excerpt: "Ditch manual database updates. Learn step-by-step how we programmed a self-enriching lead classification pipeline that saves 30 hours weekly.",
     content: `
-At NiazDigital, we believe human time is too valuable to spend copying and pasting records between emails, spreadsheets, and CRMs.
+At TechGloze, we believe human time is too valuable to spend copying and pasting records between emails, spreadsheets, and CRMs.
 
 In this deep dive, we outline the exact architecture we deployed for our enterprise consulting clients to automate lead scoring, CRM enrichment, and initial contact email drafting entirely without human intervention.
 
@@ -352,8 +352,8 @@ Our clients report a **100% elimination of routing delay**, dropping response ti
 `,
     category: "AI & Automation",
     author: {
-      name: "Niaz Ahmed",
-      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop",
+      name: "Abdul Rehman",
+      avatar: "/src/assets/images/abdul_rehman_founder_1783684179699.jpg",
       role: "Founder"
     },
     readingTime: "5 Min Read",
@@ -369,7 +369,7 @@ Our clients report a **100% elimination of routing delay**, dropping response ti
     content: `
 Page speed is the silent killer of modern advertising ROAS. A delay of just 1.5 seconds can slash your e-commerce conversion rates by half.
 
-In this guide, we break down the performance checklist used at NiazDigital to ensure all client landing pages and custom dashboards score a flawless 95+ or 100/100 on Lighthouse.
+In this guide, we break down the performance checklist used at TechGloze to ensure all client landing pages and custom dashboards score a flawless 95+ or 100/100 on Lighthouse.
 
 ### 1. Dynamic Routing & Lazy Loading
 Never load code the user hasn't requested. In Vite/React, wrap auxiliary components (calculators, contact sliders) in \`React.lazy()\` and load them inside a \`Suspense\` fallback container. This splits your main bundle size down to the bare essentials.
@@ -385,8 +385,8 @@ Deploy your applications using clean Express proxy layers (like our premium full
 `,
     category: "Development",
     author: {
-      name: "Niaz Ahmed",
-      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop",
+      name: "Abdul Rehman",
+      avatar: "/src/assets/images/abdul_rehman_founder_1783684179699.jpg",
       role: "Founder"
     },
     readingTime: "4 Min Read",
@@ -402,7 +402,7 @@ Deploy your applications using clean Express proxy layers (like our premium full
     content: `
 Most agencies think scaling Meta Ads is as simple as raising the budget. They double the budget, only to watch their conversion metrics tumble into a deficit.
 
-Here is how NiazDigital scaled an e-commerce brand's monthly revenue past $140,000 using a scientific approach to creative production and campaign routing.
+Here is how TechGloze scaled an e-commerce brand's monthly revenue past $140,000 using a scientific approach to creative production and campaign routing.
 
 ### The Formula: Video Psychology Over Placement
 We engineered 9-second high-retention video Reels split into specific psychological segments:
@@ -415,8 +415,8 @@ Instead of dozens of fractured ad-sets, we consolidated Meta budgets into a sing
 `,
     category: "Marketing",
     author: {
-      name: "Niaz Ahmed",
-      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop",
+      name: "Abdul Rehman",
+      avatar: "/src/assets/images/abdul_rehman_founder_1783684179699.jpg",
       role: "Founder"
     },
     readingTime: "6 Min Read",
@@ -430,25 +430,25 @@ export const FAQ_DATA: FAQItem[] = [
   {
     id: "faq-1",
     question: "Do you offer custom web applications or only standard templates?",
-    answer: "Every single product delivered by NiazDigital is coded completely from scratch using elite tech stacks (Next.js, React, TypeScript, and server-side Node.js). We do not use generic page builder templates. This guarantees sub-second page loads, maximum SEO performance, and security.",
+    answer: "Every single product delivered by TechGloze is coded completely from scratch using elite tech stacks (Next.js, React, TypeScript, and server-side Node.js). We do not use generic page builder templates. This guarantees sub-second page loads, maximum SEO performance, and security.",
     category: "Services"
   },
   {
     id: "faq-2",
     question: "How does your AI Automation and n8n/Zapier synchronization work?",
-    answer: "We map out your manual workflows (e.g., manual lead entry, client intake emails, spreadsheet report building) and create seamless cloud automations. These automations listen to webhooks, process data using AI, and update databases or send updates instantly, saving hours of human labour daily.",
+    answer: "We map out your manual workflows (e.g., manual lead entry, client intake emails, spreadsheet report building, CRM updates) and build seamless cloud automations. These systems listen to hooks, process data using AI, and update databases instantly, saving hours of human labour daily.",
     category: "AI & Automation"
   },
   {
     id: "faq-3",
     question: "How do we collaborate, track milestones, and download deliverables?",
-    answer: "Our website features an integrated client portal dashboard! Once you initiate a project, you receive a client login to track project stages, inspect real-time progress timelines, view files, and communicate directly with Niaz.",
+    answer: "Our website features an integrated client portal dashboard! Once you initiate a project, you receive a secure client login to track project stages, inspect real-time progress timelines, view files, and communicate directly with Abdul.",
     category: "Collaboration"
   },
   {
     id: "faq-4",
     question: "What is your typical project timeline and cost estimate?",
-    answer: "High-end corporate websites and brand portfolios are typically designed and developed within 4 to 8 weeks. Cost estimates depend entirely on your custom requirements. You can use our integrated AI Project Estimator or Website Cost Calculator on this site to receive an instant, accurate estimate.",
+    answer: "High-end corporate websites, custom dental or roofing portals, and automations are typically designed and developed within 4 to 8 weeks. Cost estimates depend entirely on your custom requirements. You can use our integrated AI Project Estimator or Website Cost Calculator on this site to receive an instant, accurate estimate.",
     category: "Pricing"
   }
 ];
@@ -467,9 +467,9 @@ export const DIALECTS = {
     },
     hero: {
       badge: "★ PREMIER DIGITAL DESIGN & AUTOMATION STUDIO",
-      headline: "Helping Businesses Scale Through Design, Marketing & Technology.",
-      subheadline: "NiazDigital is a full-service international digital agency helping startups, businesses and enterprises grow with websites, branding, AI automation, marketing and digital solutions.",
-      ctaPrimary: "Start Your Project",
+      headline: "Building Premium Digital Systems That Scale Businesses.",
+      subheadline: "Helping ambitious businesses grow through premium websites, AI automation, SaaS solutions, and modern digital experiences built for performance—not just aesthetics.",
+      ctaPrimary: "Book Discovery Call",
       ctaSecondary: "View Portfolio"
     }
   },
@@ -486,9 +486,9 @@ export const DIALECTS = {
     },
     hero: {
       badge: "★ ESTUDIO PREMIER DE DISEÑO Y AUTOMATIZACIÓN",
-      headline: "Ayudamos a las Empresas a Escalar mediante Diseño, Marketing y Tecnología.",
-      subheadline: "NiazDigital es una agencia digital internacional de servicio completo que ayuda a startups, empresas y corporaciones a crecer con sitios web, branding, automatización con IA y marketing.",
-      ctaPrimary: "Iniciar Proyecto",
+      headline: "Construyendo Sistemas Digitales Premium Que Escalan Negocios.",
+      subheadline: "Ayudamos a empresas ambiciosas a crecer a través de sitios web premium, automatización con IA, soluciones SaaS y experiencias digitales modernas creadas para el rendimiento.",
+      ctaPrimary: "Reservar Llamada",
       ctaSecondary: "Ver Portafolio"
     }
   },
@@ -505,9 +505,9 @@ export const DIALECTS = {
     },
     hero: {
       badge: "★ PREMIER DIGITALDESIGN & AUTOMATISIERUNGSSTUDIO",
-      headline: "Unternehmen skalieren durch Design, Marketing & Technologie.",
-      subheadline: "NiazDigital ist eine internationale Full-Service-Digitalagentur, die Start-ups und Unternehmen mit erstklassigen Webseiten, Branding, KI-Automatisierung und Marketinglösungen unterstützt.",
-      ctaPrimary: "Projekt starten",
+      headline: "Erstellung von Premium-Digitalsystemen zur Skalierung von Unternehmen.",
+      subheadline: "Unterstützung ambitionierter Unternehmen beim Wachstum durch Premium-Websites, KI-Automatisierung, SaaS-Lösungen und moderne digitale Erlebnisse für maximale Performance.",
+      ctaPrimary: "Erstgespräch buchen",
       ctaSecondary: "Portfolio ansehen"
     }
   },
@@ -524,9 +524,9 @@ export const DIALECTS = {
     },
     hero: {
       badge: "★ استوديو التصميم والأتمتة الرقمي الرائد",
-      headline: "مساعدة الشركات على التوسع من خلال التصميم والتسويق والتكنولوجيا.",
-      subheadline: "NiazDigital هي وكالة رقمية دولية متكاملة الخدمات تساعد الشركات الناشئة والمؤسسات على النمو من خلال مواقع الويب، الهويات التجارية، أتمتة الذكاء الاصطناعي، والتسويق.",
-      ctaPrimary: "ابدأ مشروعك",
+      headline: "بناء الأنظمة الرقمية المتميزة التي توسع نطاق الأعمال.",
+      subheadline: "مساعدة الشركات الطموحة على النمو من خلال مواقع الويب المتميزة وأتمتة الذكاء الاصطناعي وحلول SaaS والتجارب الرقمية الحديثة المصممة للأداء العالي.",
+      ctaPrimary: "احجز جلسة استشارة",
       ctaSecondary: "عرض المعرض"
     }
   }

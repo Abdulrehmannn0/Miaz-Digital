@@ -29,16 +29,16 @@ export default function Footer() {
           
           {/* Column 1: Logo & Vision */}
           <div className="col-span-1 md:col-span-5 text-left flex flex-col gap-5">
-            <div className="flex items-center gap-2">
+            <div className="flex items-center">
               <img 
-                src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=250&auto=format&fit=crop" 
-                alt="NiazDigital Logo" 
-                className="w-10 h-10 object-cover rounded-xl border border-slate-700"
+                src="/src/assets/images/techgloze_logo_1783684162945.jpg" 
+                alt="TechGloze IT Solutions Logo" 
+                className="h-10 w-auto rounded-lg object-contain"
+                referrerPolicy="no-referrer"
               />
-              <span className="font-display font-black text-white text-base tracking-widest uppercase">NiazDigital</span>
             </div>
             <p className="text-xs leading-relaxed max-w-sm">
-              An elite digital agency constructing bespoke NextJS flagships, automating complex spreadsheet operations, and scaling brand revenue parameters predictably.
+              An elite digital agency constructing bespoke high-performance digital flagships, automating complex spreadsheet operations, and scaling brand revenue parameters predictably.
             </p>
             <div className="flex items-center gap-2.5 mt-2">
               {Object.entries(FOUNDER_DATA.socials).map(([platform, url]) => {
@@ -79,15 +79,15 @@ export default function Footer() {
           {/* Column 3: Contact & FAQ */}
           <div className="col-span-1 md:col-span-4 text-left flex flex-col gap-4">
             <div>
-              <span className="text-3xs font-black uppercase tracking-wider text-slate-200 block mb-3">Corporate Offices</span>
+              <span className="text-3xs font-black uppercase tracking-wider text-slate-200 block mb-3">Headquarters</span>
               <p className="text-3xs leading-relaxed">
-                Prestige Business Hub, Dubai Marina, UAE<br />
-                Financial District, London, UK
+                Noida, India<br />
+                Global Digital Remote Services
               </p>
             </div>
             <div>
               <span className="text-3xs font-black uppercase tracking-wider text-slate-200 block mb-1">Inbound Briefing Ticket</span>
-              <a href="mailto:info@niazdigital.com" className="text-xs font-bold text-white hover:underline">info@niazdigital.com</a>
+              <a href="mailto:contact@techgloze.com" className="text-xs font-bold text-white hover:underline">contact@techgloze.com</a>
             </div>
           </div>
 
@@ -96,9 +96,9 @@ export default function Footer() {
         {/* Copyright Panel Footer row */}
         <div className="flex flex-col sm:flex-row items-center justify-between pt-8 text-3xs font-bold uppercase tracking-wider text-slate-500 gap-4">
           <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2">
-            <span>&copy; {currentYear} NiazDigital Ltd. All Rights Reserved.</span>
+            <span>&copy; {currentYear} TechGloze IT Solutions. All Rights Reserved.</span>
             <span className="hidden sm:inline">|</span>
-            <span>Handcompiled in London & Dubai</span>
+            <span>Intelligent Digital Systems</span>
           </div>
 
           <button

@@ -111,15 +111,15 @@ export default function Navbar({
         {/* Responsive Logo */}
         <div 
           id="navbar-logo"
-          className="flex items-center gap-2 cursor-pointer group"
+          className="flex items-center cursor-pointer group"
           onClick={() => handleNavClick('hero')}
         >
-          <div className="relative w-9 h-9 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-500 flex items-center justify-center text-white shadow-md shadow-blue-500/25 group-hover:scale-105 transition-transform">
-            <Sparkles className="w-5 h-5" />
-          </div>
-          <span className="font-display font-extrabold text-xl tracking-tight text-slate-900 dark:text-white">
-            Niaz<span className="text-blue-600 dark:text-blue-400">Digital</span>
-          </span>
+          <img 
+            src="/src/assets/images/techgloze_logo_1783684162945.jpg" 
+            alt="TechGloze IT Solutions Logo" 
+            className="h-10 w-auto rounded-lg object-contain group-hover:scale-105 transition-transform"
+            referrerPolicy="no-referrer"
+          />
         </div>
 
         {/* Desktop Menu Navigation */}
@@ -255,7 +255,7 @@ export default function Navbar({
             <div className="max-w-7xl mx-auto px-6 grid grid-cols-12 gap-8">
               <div className="col-span-3 border-r border-slate-100 dark:border-slate-800 pr-6">
                 <span className="text-xs font-bold tracking-widest text-slate-400 uppercase block mb-3">
-                  NiazDigital Studio
+                  TechGloze Studio
                 </span>
                 <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-4">
                   Engineering high-end modular designs, zero-human automation routines, and hyper-targeted advertising setups.

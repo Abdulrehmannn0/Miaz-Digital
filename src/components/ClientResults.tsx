@@ -195,7 +195,7 @@ export default function ClientResults() {
                   <YAxis tickLine={false} style={{ fontSize: '10px', fontWeight: 'bold', fill: '#94A3B8' }} />
                   <Tooltip contentStyle={{ background: '#0F172A', borderRadius: '12px', border: 'none', color: '#FFF', fontSize: '11px' }} />
                   <Bar dataKey="legacy" fill="#94A3B8" name="Legacy WordPress Funnel (1.1%)" radius={[8, 8, 0, 0]} />
-                  <Bar dataKey="optimized" fill="#2563EB" name="NiazDigital Optimized Funnel (3.4%)" radius={[8, 8, 0, 0]} />
+                  <Bar dataKey="optimized" fill="#2563EB" name="TechGloze Optimized Funnel (3.4%)" radius={[8, 8, 0, 0]} />
                 </BarChart>
               )}
             </ResponsiveContainer>

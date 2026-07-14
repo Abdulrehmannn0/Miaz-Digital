@@ -81,7 +81,7 @@ export default function Portfolio() {
               Before & After Optimization
             </h3>
             <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
-              Drag the center bar slider to witness NiazDigital's performance overhaul. We take bloated, slow templates (Left) and reconstruct them into optimized static Next.js/React pipelines (Right) scoring a perfect 100/100.
+              Drag the center bar slider to witness TechGloze's performance overhaul. We take bloated, slow templates (Left) and reconstruct them into optimized static Next.js/React pipelines (Right) scoring a perfect 100/100.
             </p>
             <div className="flex flex-col gap-3">
               <div className="flex items-center gap-3 text-xs font-semibold text-slate-600 dark:text-slate-300">
@@ -122,7 +122,7 @@ export default function Portfolio() {
               >
                 <img 
                   src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=1200&auto=format&fit=crop" 
-                  alt="NiazDigital Rebuilt Nextjs Site" 
+                  alt="TechGloze Rebuilt Nextjs Site" 
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute top-4 right-4 bg-emerald-600/90 text-white font-mono text-2xs px-3 py-1 rounded-full font-bold uppercase tracking-wider backdrop-blur-sm shadow-md">

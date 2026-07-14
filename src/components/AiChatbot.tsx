@@ -26,7 +26,7 @@ interface ChatMessage {
 export default function AiChatbot() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [messages, setMessages] = useState<ChatMessage[]>([
-    { sender: 'model', text: "Hello! I am NiazDigital AI assistant. I can calculate cost estimates, detail our SEO strategies, explain Niaz Ahmed's track record, or walk you through our custom automation systems. What project goals are we pursuing?" }
+    { sender: 'model', text: "Hello! I am TechGloze AI assistant. I can calculate cost estimates, detail our SEO strategies, explain Abdul Rehman's track record, or walk you through our custom automation systems. What project goals are we pursuing?" }
   ]);
   const [inputVal, setInputVal] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
@@ -34,8 +34,8 @@ export default function AiChatbot() {
   const chatBottomRef = useRef<HTMLDivElement>(null);
 
   const quickReplies = [
-    "What is Niaz Ahmed's background?",
-    "Calculate headless Shopify cost",
+    "What is Abdul Rehman's background?",
+    "Calculate custom Web App cost",
     "How does your SEO optimization work?"
   ];
 
@@ -130,7 +130,7 @@ export default function AiChatbot() {
                   <Cpu className="w-5 h-5 animate-pulse" />
                 </div>
                 <div>
-                  <h3 className="font-display font-black text-xs uppercase tracking-wider">NiazDigital Expert AI</h3>
+                  <h3 className="font-display font-black text-xs uppercase tracking-wider">TechGloze Expert AI</h3>
                   <div className="flex items-center gap-1 text-[9px] text-emerald-400 font-bold tracking-widest mt-0.5">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping" />
                     <span>SECURE GEMINI DIRECT</span>

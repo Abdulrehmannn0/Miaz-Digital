@@ -109,7 +109,7 @@ export default function ClientDashboard() {
             Pristine project tracking. Absolute visibility at every step.
           </h2>
           <p className="text-base text-slate-500 dark:text-slate-400 leading-relaxed">
-            Welcome to your digital flagship console. NiazDigital client portal provides real-time milestone completions, direct secure asset downloads, and a full-suite self-help knowledge base.
+            Welcome to your digital flagship console. The TechGloze client portal provides real-time milestone completions, direct secure asset downloads, and a full-suite self-help knowledge base.
           </p>
         </div>
 

@@ -104,7 +104,7 @@ export default function Faq() {
             }}
             className="px-5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-bold text-3xs rounded-full shadow-md shadow-blue-500/20 cursor-pointer shrink-0"
           >
-            Ask Niaz Ahmed Direct
+            Ask Abdul Rehman Direct
           </button>
         </div>
 

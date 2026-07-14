@@ -65,7 +65,7 @@ export default function About() {
             Pioneering digital prestige. Our mission is to scale enterprises through technical artistry.
           </h2>
           <p className="text-base text-slate-500 dark:text-slate-400 leading-relaxed">
-            NiazDigital is not an ordinary production shop. We are a specialized elite agency merging high-end UI design aesthetics with robust, automated developer-operations. We believe that your website is your digital flagship and should convert organic traffic predictably.
+            TechGloze is not an ordinary production shop. We are a specialized elite agency merging high-end UI design aesthetics with robust, automated developer-operations. We believe that your website is your digital flagship and should convert organic traffic predictably.
           </p>
         </div>
 
@@ -190,6 +190,98 @@ export default function About() {
 
           </div>
 
+        </div>
+
+        {/* Elite Team Grid Section */}
+        <div className="mt-20 pt-16 border-t border-slate-100 dark:border-slate-800">
+          <div className="text-center max-w-3xl mx-auto mb-12">
+            <span className="text-[10px] font-bold uppercase tracking-widest text-blue-600 dark:text-blue-400 px-3 py-1 bg-blue-50 dark:bg-blue-900/10 rounded-full inline-block mb-3">
+              Elite Global Talent
+            </span>
+            <h3 className="font-display font-black text-2xl md:text-3xl tracking-tight text-slate-900 dark:text-white">
+              Meet Our Specialist Team
+            </h3>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-2">
+              A cohesive team of digital strategists, engineers, and creators working directly with Abdul Rehman to build intelligent digital systems.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
+            {[
+              {
+                name: "Abdul Rehman",
+                role: "Founder & AI Expert",
+                image: "/src/assets/images/abdul_rehman_founder_1783684179699.jpg",
+              },
+              {
+                name: "Sarah Jenkins",
+                role: "Senior Frontend Developer",
+                image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=250&auto=format&fit=crop",
+              },
+              {
+                name: "Michael Chen",
+                role: "Senior Backend Developer",
+                image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=250&auto=format&fit=crop",
+              },
+              {
+                name: "Amara Okafor",
+                role: "Lead UI UX Designer",
+                image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=250&auto=format&fit=crop",
+              },
+              {
+                name: "David Miller",
+                role: "SEO & Traffic Strategist",
+                image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=250&auto=format&fit=crop",
+              },
+              {
+                name: "Liam O'Connor",
+                role: "AI Workflow Engineer",
+                image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=250&auto=format&fit=crop",
+              },
+              {
+                name: "Sofia Rodriguez",
+                role: "Lead Graphic Designer",
+                image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=250&auto=format&fit=crop",
+              },
+              {
+                name: "Yuki Sato",
+                role: "Lead Video Editor",
+                image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=250&auto=format&fit=crop",
+              },
+              {
+                name: "Marcus Thompson",
+                role: "Technical Project Manager",
+                image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=250&auto=format&fit=crop",
+              },
+              {
+                name: "Elena Vance",
+                role: "Business Development",
+                image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=250&auto=format&fit=crop",
+              }
+            ].map((member, idx) => (
+              <motion.div
+                key={idx}
+                whileHover={{ y: -6 }}
+                transition={{ duration: 0.2 }}
+                className="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 p-4 rounded-2xl shadow-sm hover:shadow-md transition-all flex flex-col items-center text-center group"
+              >
+                <div className="w-20 h-20 rounded-full overflow-hidden border-2 border-slate-100 dark:border-slate-800 mb-3.5 group-hover:border-blue-500 transition-colors">
+                  <img 
+                    src={member.image} 
+                    alt={member.name} 
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" 
+                    referrerPolicy="no-referrer"
+                  />
+                </div>
+                <h4 className="font-display font-bold text-xs text-slate-900 dark:text-white">
+                  {member.name}
+                </h4>
+                <p className="text-4xs font-bold uppercase tracking-wider text-slate-400 mt-1">
+                  {member.role}
+                </p>
+              </motion.div>
+            ))}
+          </div>
         </div>
 
       </div>
