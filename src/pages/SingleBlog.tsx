@@ -73,14 +73,14 @@ export default function SingleBlog() {
 
       // Dynamic SEO tag injection
       updateMetaTags({
-        title: `${article.title} | TechGloze IT Solutions Journal`,
+        title: `${article.title} | Niaz Digital Journal`,
         description: article.excerpt,
         canonicalUrl: window.location.href,
         ogImage: article.image
       });
 
     } catch (err: any) {
-      setError(err?.message || "Failed to sync detailed post parameters from TechGloze WordPress database.");
+      setError(err?.message || "Failed to sync detailed post parameters from Niaz Digital WordPress database.");
     } finally {
       setLoading(false);
     }

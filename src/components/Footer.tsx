@@ -31,8 +31,8 @@ export default function Footer() {
           <div className="col-span-1 md:col-span-5 text-left flex flex-col gap-5">
             <div className="flex items-center">
               <img 
-                src="/src/assets/images/techgloze_logo_1783684162945.jpg" 
-                alt="TechGloze IT Solutions Logo" 
+                src="/src/assets/images/niaz_digital_logo_1784067879724.jpg" 
+                alt="Niaz Digital Logo" 
                 className="h-10 w-auto rounded-lg object-contain"
                 referrerPolicy="no-referrer"
               />
@@ -87,7 +87,7 @@ export default function Footer() {
             </div>
             <div>
               <span className="text-3xs font-black uppercase tracking-wider text-slate-200 block mb-1">Inbound Briefing Ticket</span>
-              <a href="mailto:contact@techgloze.com" className="text-xs font-bold text-white hover:underline">contact@techgloze.com</a>
+              <a href="mailto:azhar@niazdigital.com" className="text-xs font-bold text-white hover:underline">azhar@niazdigital.com</a>
             </div>
           </div>
 
@@ -96,7 +96,7 @@ export default function Footer() {
         {/* Copyright Panel Footer row */}
         <div className="flex flex-col sm:flex-row items-center justify-between pt-8 text-3xs font-bold uppercase tracking-wider text-slate-500 gap-4">
           <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2">
-            <span>&copy; {currentYear} TechGloze IT Solutions. All Rights Reserved.</span>
+            <span>&copy; {currentYear} Niaz Digital. All Rights Reserved.</span>
             <span className="hidden sm:inline">|</span>
             <span>Intelligent Digital Systems</span>
           </div>

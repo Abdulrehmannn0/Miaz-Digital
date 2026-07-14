@@ -55,9 +55,9 @@ export function mapWordPressPost(post: any): BlogArticle {
   // 3. Extract Author
   const authorObj = post._embedded?.['author']?.[0];
   const author = {
-    name: authorObj?.name || "Abdul Rehman",
-    avatar: authorObj?.avatar_urls?.['96'] || "/src/assets/images/abdul_rehman_founder_1783684179699.jpg",
-    role: "Founder, TechGloze IT Solutions"
+    name: authorObj?.name || "Azhar Uddin",
+    avatar: authorObj?.avatar_urls?.['96'] || "/src/assets/images/azhar_uddin_founder_1784067891161.jpg",
+    role: "Founder, Niaz Digital"
   };
 
   // 4. Extract Publish Date

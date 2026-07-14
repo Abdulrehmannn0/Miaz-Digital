@@ -23,7 +23,7 @@ export default function BlogListing() {
       const data = await fetchAllPosts();
       setPosts(data);
     } catch (err: any) {
-      setError(err?.message || "Failed to establish synchronization with TechGloze WordPress database.");
+      setError(err?.message || "Failed to establish synchronization with Niaz Digital WordPress database.");
     } finally {
       setLoading(false);
     }
@@ -37,10 +37,10 @@ export default function BlogListing() {
 
     // SEO Optimization
     updateMetaTags({
-      title: "TechGloze Journal | Premium IT Solutions & Intelligent Systems Insights",
-      description: "Read the latest engineering articles, Technical SEO insights, CRM automation blueprints, and full-stack React case studies directly from Abdul Rehman and the TechGloze specialist team.",
+      title: "Niaz Digital Journal | Premium Systems & Growth Insights",
+      description: "Read the latest digital growth articles, Technical SEO insights, CRM automation blueprints, and custom system case studies directly from Azhar Uddin and the Niaz Digital team.",
       canonicalUrl: window.location.href,
-      ogImage: "/src/assets/images/techgloze_logo_1783684162945.jpg"
+      ogImage: "/src/assets/images/niaz_digital_logo_1784067879724.jpg"
     });
   }, []);
 
@@ -65,7 +65,7 @@ export default function BlogListing() {
             Articles & Insights
           </span>
           <h1 className="text-4xl md:text-6.5xl font-display font-black text-slate-900 dark:text-white tracking-tight leading-none mb-6">
-            TechGloze Journal
+            Niaz Digital Journal
           </h1>
           <p className="text-base md:text-lg text-slate-500 dark:text-slate-400 leading-relaxed font-medium">
             Open-source digital knowledge from the engineering frontlines. High-efficiency React render speeds, psychological copywriting strategies, and automated data routing routines updated in real-time.

@@ -115,8 +115,8 @@ export default function Navbar({
           onClick={() => handleNavClick('hero')}
         >
           <img 
-            src="/src/assets/images/techgloze_logo_1783684162945.jpg" 
-            alt="TechGloze IT Solutions Logo" 
+            src="/src/assets/images/niaz_digital_logo_1784067879724.jpg" 
+            alt="Niaz Digital Logo" 
             className="h-10 w-auto rounded-lg object-contain group-hover:scale-105 transition-transform"
             referrerPolicy="no-referrer"
           />
@@ -255,7 +255,7 @@ export default function Navbar({
             <div className="max-w-7xl mx-auto px-6 grid grid-cols-12 gap-8">
               <div className="col-span-3 border-r border-slate-100 dark:border-slate-800 pr-6">
                 <span className="text-xs font-bold tracking-widest text-slate-400 uppercase block mb-3">
-                  TechGloze Studio
+                  Niaz Digital Studio
                 </span>
                 <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-4">
                   Engineering high-end modular designs, zero-human automation routines, and hyper-targeted advertising setups.

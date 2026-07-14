@@ -6,27 +6,51 @@
 import { Service, PortfolioItem, CaseStudy, BlogArticle, FAQItem, FounderProfile } from './types';
 
 export const FOUNDER_DATA: FounderProfile = {
-  name: "Abdul Rehman",
-  title: "Founder of TechGloze | Web Developer & AI Automation Expert",
-  image: "/src/assets/images/abdul_rehman_founder_1783684179699.jpg",
-  bio: "I started my journey with a passion for technology and business. In 2024 I entered freelancing, working with local businesses and international clients. Today I'm building TechGloze to create premium websites, AI-powered systems and scalable digital experiences that help businesses grow faster.",
+  name: "Azhar Uddin",
+  title: "Founder & Digital Growth Strategist",
+  image: "/src/assets/images/azhar_uddin_founder_1784067891161.jpg",
+  bio: "Azhar Uddin is the Founder of Niaz Digital, a digital growth agency helping startups, agencies, coaches, and local businesses build powerful digital systems. Since beginning his professional journey in 2016, he has focused on delivering websites, SEO, branding, AI automation, business systems, and virtual assistance that help businesses operate more efficiently and grow sustainably.",
+  tagline: "Building Digital Systems That Help Businesses Grow Smarter.",
+  mission: "To empower businesses with smart digital solutions, efficient systems, and strategic marketing that save time, improve productivity, and create sustainable growth.",
+  vision: "To build Niaz Digital into a globally trusted digital growth agency known for innovation, automation, and meaningful client partnerships.",
+  quote: "Great businesses aren't built by doing more—they're built by creating better systems.",
   experience: [
-    "Age: 19 Years | Location: Noida, India",
-    "3+ Years of Professional Web Development & AI Automation",
-    "Delivered 28+ premium systems across USA, UK, UAE, and Israel",
-    "Expert in advanced Next.js development, custom AI workflows, and CRM integrations"
+    "Professional Journey Started in 2016",
+    "9+ Years of Digital Industry Experience",
+    "Founder of Niaz Digital",
+    "Helping Businesses Build Scalable Digital Systems"
   ],
   achievements: [
-    "Biggest Client: Ergonomic Shop (Israel)",
-    "Pioneered custom spreadsheet & lead-routing automations using n8n and Make",
-    "Vision: To build one of the world's leading AI-first digital agencies",
-    "Quote: 'Build a name so strong that everyone who works with you feels proud to say they were part of your journey.'"
+    "Website Design & Development",
+    "Search Engine Optimization (SEO)",
+    "Social Media Management",
+    "AI Workflow Automation",
+    "Executive & Virtual Assistance",
+    "Branding & Visual Identity",
+    "Business Operations",
+    "Marketing Systems"
   ],
+  expertise: [
+    "Website Design & Development",
+    "Search Engine Optimization (SEO)",
+    "Social Media Management",
+    "AI Workflow Automation",
+    "Executive & Virtual Assistance",
+    "Branding & Visual Identity",
+    "Business Operations",
+    "Marketing Systems"
+  ],
+  techStack: [
+    "WordPress", "Shopify", "HTML", "CSS", "JavaScript", 
+    "Graphic Design", "Branding & Identity", "Canva", 
+    "Photoshop", "Figma", "ChatGPT", "Claude", "Gemini", 
+    "n8n", "Make", "Zapier", "GoHighLevel"
+  ],
+  email: "azhar@niazdigital.com",
+  phone: "+91 90124 03699",
   socials: {
-    linkedin: "https://linkedin.com/in/techgloze",
-    twitter: "https://twitter.com/techgloze",
-    instagram: "https://instagram.com/techgloze",
-    github: "https://github.com/techgloze"
+    linkedin: "https://www.linkedin.com/in/azhar-uddin-766522a7",
+    instagram: "https://www.instagram.com/niaz_digital"
   }
 };
 
@@ -353,7 +377,7 @@ Our clients report a **100% elimination of routing delay**, dropping response ti
     category: "AI & Automation",
     author: {
       name: "Abdul Rehman",
-      avatar: "/src/assets/images/abdul_rehman_founder_1783684179699.jpg",
+      avatar: "/src/assets/images/azhar_uddin_founder_1784067891161.jpg",
       role: "Founder"
     },
     readingTime: "5 Min Read",
@@ -386,7 +410,7 @@ Deploy your applications using clean Express proxy layers (like our premium full
     category: "Development",
     author: {
       name: "Abdul Rehman",
-      avatar: "/src/assets/images/abdul_rehman_founder_1783684179699.jpg",
+      avatar: "/src/assets/images/azhar_uddin_founder_1784067891161.jpg",
       role: "Founder"
     },
     readingTime: "4 Min Read",
@@ -416,7 +440,7 @@ Instead of dozens of fractured ad-sets, we consolidated Meta budgets into a sing
     category: "Marketing",
     author: {
       name: "Abdul Rehman",
-      avatar: "/src/assets/images/abdul_rehman_founder_1783684179699.jpg",
+      avatar: "/src/assets/images/azhar_uddin_founder_1784067891161.jpg",
       role: "Founder"
     },
     readingTime: "6 Min Read",

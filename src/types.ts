@@ -92,6 +92,14 @@ export interface FounderProfile {
   bio: string;
   experience: string[];
   achievements: string[];
+  tagline?: string;
+  mission?: string;
+  vision?: string;
+  quote?: string;
+  expertise?: string[];
+  techStack?: string[];
+  email?: string;
+  phone?: string;
   socials: {
     linkedin?: string;
     twitter?: string;
