@@ -29,6 +29,7 @@ import {
   Check,
   ChevronLeft,
   ChevronRight,
+  ChevronDown,
   Upload,
   FileText,
   X,
@@ -43,18 +44,260 @@ import {
   Settings,
   Shield,
   FileArchive,
-  Image as ImageIcon
+  Image as ImageIcon,
+  Copy
 } from 'lucide-react';
+import { ALL_COUNTRIES } from '../utils/countries';
 
 // Define structures for our state management
-interface MockFile {
+interface UploadedFile {
   id: string;
   name: string;
   size: string;
   type: string;
   progress: number;
   status: 'uploading' | 'complete';
+  thumbnailUrl?: string;
 }
+
+// Custom Markdown Parser Component for premium client proposals
+const MarkdownRenderer = ({ content }: { content: string }) => {
+  if (!content) return null;
+
+  const lines = content.split('\n');
+  let inList = false;
+  let listItems: string[] = [];
+  const renderedElements: React.ReactNode[] = [];
+
+  const processText = (text: string) => {
+    const parts = [];
+    let currentText = text;
+    let boldIndex = currentText.indexOf('**');
+    let keyIdx = 0;
+
+    while (boldIndex !== -1) {
+      if (boldIndex > 0) {
+        parts.push(<span key={`text-${keyIdx++}`}>{currentText.slice(0, boldIndex)}</span>);
+      }
+      const nextBoldIndex = currentText.indexOf('**', boldIndex + 2);
+      if (nextBoldIndex !== -1) {
+        parts.push(
+          <strong key={`bold-${keyIdx++}`} className="font-black text-slate-900 dark:text-white">
+            {currentText.slice(boldIndex + 2, nextBoldIndex)}
+          </strong>
+        );
+        currentText = currentText.slice(nextBoldIndex + 2);
+      } else {
+        parts.push(<span key={`text-err-${keyIdx++}`}>{currentText.slice(boldIndex)}</span>);
+        currentText = '';
+        break;
+      }
+      boldIndex = currentText.indexOf('**');
+    }
+    if (currentText) {
+      parts.push(<span key={`text-end-${keyIdx++}`}>{currentText}</span>);
+    }
+    return parts;
+  };
+
+  const flushList = (key: number) => {
+    if (listItems.length > 0) {
+      renderedElements.push(
+        <ul key={`ul-${key}`} className="list-disc pl-5 my-3.5 flex flex-col gap-2 text-xs text-slate-700 dark:text-slate-300">
+          {listItems.map((item, idx) => (
+            <li key={`li-${idx}`} className="leading-relaxed">
+              {processText(item)}
+            </li>
+          ))}
+        </ul>
+      );
+      listItems = [];
+      inList = false;
+    }
+  };
+
+  lines.forEach((line, index) => {
+    const trimmed = line.trim();
+
+    if (trimmed.startsWith('### ')) {
+      flushList(index);
+      renderedElements.push(
+        <h5 key={`h5-${index}`} className="font-display font-bold text-xs text-slate-800 dark:text-slate-200 mt-5 mb-2.5 flex items-center gap-2">
+          {processText(trimmed.slice(4))}
+        </h5>
+      );
+    } else if (trimmed.startsWith('## ')) {
+      flushList(index);
+      renderedElements.push(
+        <h4 key={`h4-${index}`} className="font-display font-extrabold text-sm text-slate-900 dark:text-white mt-6 mb-3 border-b border-slate-100 dark:border-slate-800 pb-1.5 uppercase tracking-wider">
+          {processText(trimmed.slice(3))}
+        </h4>
+      );
+    } else if (trimmed.startsWith('# ')) {
+      flushList(index);
+      renderedElements.push(
+        <h3 key={`h3-${index}`} className="font-display font-black text-base md:text-lg text-slate-900 dark:text-white mt-8 mb-4 border-b-2 border-blue-500 pb-2">
+          {processText(trimmed.slice(2))}
+        </h3>
+      );
+    } else if (trimmed.startsWith('- ') || trimmed.startsWith('* ')) {
+      inList = true;
+      listItems.push(trimmed.slice(2));
+    } else if (/^\d+\.\s/.test(trimmed)) {
+      flushList(index);
+      const match = trimmed.match(/^(\d+)\.\s(.*)/);
+      if (match) {
+        renderedElements.push(
+          <div key={`num-${index}`} className="flex gap-3 my-4 text-xs text-slate-700 dark:text-slate-300 items-start">
+            <span className="flex items-center justify-center w-5 h-5 rounded-md bg-blue-500/10 text-blue-600 dark:text-blue-400 font-mono font-bold text-[10px] shrink-0 mt-0.5">
+              {match[1]}
+            </span>
+            <div className="leading-relaxed flex-1">
+              {processText(match[2])}
+            </div>
+          </div>
+        );
+      }
+    } else if (trimmed === '---') {
+      flushList(index);
+      renderedElements.push(<hr key={`hr-${index}`} className="border-slate-200/60 dark:border-slate-800 my-6" />);
+    } else if (trimmed === '') {
+      flushList(index);
+    } else {
+      flushList(index);
+      renderedElements.push(
+        <p key={`p-${index}`} className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed my-2.5 font-medium">
+          {processText(line)}
+        </p>
+      );
+    }
+  });
+
+  flushList(lines.length);
+  return <div className="text-left font-sans">{renderedElements}</div>;
+};
+
+// Reusable, highly interactive Floating Label Input component with validation states
+const FloatingLabelInput = ({
+  id,
+  type = "text",
+  labelText,
+  value,
+  onChange,
+  isValid,
+  showSuccess,
+  showError,
+  placeholder = " ",
+  required = false
+}: {
+  id: string;
+  type?: string;
+  labelText: string;
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  isValid: boolean;
+  showSuccess: boolean;
+  showError: boolean;
+  placeholder?: string;
+  required?: boolean;
+}) => {
+  return (
+    <div className="relative group">
+      <input
+        type={type}
+        id={id}
+        required={required}
+        value={value}
+        onChange={onChange}
+        placeholder={placeholder}
+        className={`peer w-full px-4 pt-6 pb-2 text-xs bg-slate-50 hover:bg-slate-100/40 dark:bg-[#0D1117] dark:hover:bg-[#161B22]/50 border rounded-xl text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:bg-white dark:focus:bg-[#161B22] transition-all duration-300 placeholder-transparent ${
+          showSuccess
+            ? 'border-emerald-500/50 focus:ring-emerald-500/20 focus:border-emerald-500'
+            : showError
+              ? 'border-red-500/50 focus:ring-red-500/20 focus:border-red-500'
+              : 'border-slate-200/60 dark:border-[#1F2937] focus:ring-blue-500/20 dark:focus:ring-blue-500/30 focus:border-blue-500 dark:focus:border-blue-400'
+        }`}
+      />
+      <label
+        htmlFor={id}
+        className={`absolute left-4 top-1.5 text-[9px] font-extrabold uppercase tracking-wider transition-all peer-placeholder-shown:text-2xs peer-placeholder-shown:top-4 peer-focus:top-1.5 peer-focus:text-[9px] pointer-events-none ${
+          showSuccess
+            ? 'text-emerald-500'
+            : showError
+              ? 'text-red-500'
+              : 'text-slate-400 dark:text-slate-500 peer-focus:text-blue-500 dark:peer-focus:text-blue-400'
+        }`}
+      >
+        {labelText}
+      </label>
+      <div className="absolute right-4 top-1/2 -translate-y-1/2 flex items-center pointer-events-none transition-opacity duration-200">
+        {showSuccess && <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" />}
+        {showError && <X className="w-3.5 h-3.5 text-red-500" />}
+      </div>
+    </div>
+  );
+};
+
+// Reusable, highly interactive Floating Label Textarea component with validation states
+const FloatingLabelTextarea = ({
+  id,
+  labelText,
+  value,
+  onChange,
+  isValid,
+  showSuccess,
+  showError,
+  placeholder = " ",
+  required = false,
+  rows = 4
+}: {
+  id: string;
+  labelText: string;
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  isValid: boolean;
+  showSuccess: boolean;
+  showError: boolean;
+  placeholder?: string;
+  required?: boolean;
+  rows?: number;
+}) => {
+  return (
+    <div className="relative group">
+      <textarea
+        id={id}
+        required={required}
+        value={value}
+        onChange={onChange}
+        rows={rows}
+        placeholder={placeholder}
+        className={`peer w-full px-4 pt-6 pb-2 text-xs bg-slate-50 hover:bg-slate-100/40 dark:bg-[#0D1117] dark:hover:bg-[#161B22]/50 border rounded-xl text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:bg-white dark:focus:bg-[#161B22] transition-all duration-300 placeholder-transparent leading-relaxed ${
+          showSuccess
+            ? 'border-emerald-500/50 focus:ring-emerald-500/20 focus:border-emerald-500'
+            : showError
+              ? 'border-red-500/50 focus:ring-red-500/20 focus:border-red-500'
+              : 'border-slate-200/60 dark:border-[#1F2937] focus:ring-blue-500/20 dark:focus:ring-blue-500/30 focus:border-blue-500 dark:focus:border-blue-400'
+        }`}
+      />
+      <label
+        htmlFor={id}
+        className={`absolute left-4 top-1.5 text-[9px] font-extrabold uppercase tracking-wider transition-all peer-placeholder-shown:text-2xs peer-placeholder-shown:top-5 peer-focus:top-1.5 peer-focus:text-[9px] pointer-events-none ${
+          showSuccess
+            ? 'text-emerald-500'
+            : showError
+              ? 'text-red-500'
+              : 'text-slate-400 dark:text-slate-500 peer-focus:text-blue-500 dark:peer-focus:text-blue-400'
+        }`}
+      >
+        {labelText}
+      </label>
+      <div className="absolute right-4 top-4 flex items-center pointer-events-none transition-opacity duration-200">
+        {showSuccess && <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" />}
+        {showError && <X className="w-3.5 h-3.5 text-red-500" />}
+      </div>
+    </div>
+  );
+};
 
 export default function ToolsSuite() {
   // Calculator Tab states
@@ -147,21 +390,35 @@ export default function ToolsSuite() {
   });
 
   // --- Proposal Form State ---
-  const [proposalName, setProposalName] = useState<string>('');
-  const [proposalCompany, setProposalCompany] = useState<string>('');
-  const [proposalEmail, setProposalEmail] = useState<string>('');
-  const [proposalPhone, setProposalPhone] = useState<string>('');
+  const [proposalName, setProposalName] = useState<string>('Azhar Uddin');
+  const [proposalCompany, setProposalCompany] = useState<string>('Niaz Digital');
+  const [proposalEmail, setProposalEmail] = useState<string>('azhar@niazdigital.com');
+  const [proposalPhone, setProposalPhone] = useState<string>('+91 90124 03699');
   const [proposalCountry, setProposalCountry] = useState<string>('United States');
-  const [proposalBudget, setProposalBudget] = useState<string>('$500 - $2,500');
-  const [proposalTimeline, setProposalTimeline] = useState<string>('Standard (3-6 weeks)');
-  const [proposalRequirements, setProposalRequirements] = useState<string>('');
-  const [uploadedFiles, setUploadedFiles] = useState<MockFile[]>([]);
+  const [proposalBudget, setProposalBudget] = useState<string>('$200 – $500');
+  const [proposalTimeline, setProposalTimeline] = useState<string>('30 Days');
+  const [proposalRequirements, setProposalRequirements] = useState<string>('I need a high-performance business website with modern UI/UX, SEO optimization, AI automation, CRM integration, and scalable architecture.');
+  const [uploadedFiles, setUploadedFiles] = useState<UploadedFile[]>([]);
   const [isDragging, setIsDragging] = useState<boolean>(false);
+  const [showCountryDropdown, setShowCountryDropdown] = useState<boolean>(false);
+  const [countrySearch, setCountrySearch] = useState<string>('');
 
   // --- Generated Proposal Outputs ---
   const [generatedProposal, setGeneratedProposal] = useState<any | null>(null);
   const [proposalLoading, setProposalLoading] = useState<boolean>(false);
   const [selectedAddons, setSelectedAddons] = useState<Record<string, boolean>>({});
+  const [copyLabel, setCopyLabel] = useState<string>('Copy Markdown');
+  const countryDropdownRef = React.useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleOutsideClick = (event: MouseEvent) => {
+      if (countryDropdownRef.current && !countryDropdownRef.current.contains(event.target as Node)) {
+        setShowCountryDropdown(false);
+      }
+    };
+    document.addEventListener('mousedown', handleOutsideClick);
+    return () => document.removeEventListener('mousedown', handleOutsideClick);
+  }, []);
 
   // Real-time Calculators Pricing Math
 
@@ -355,8 +612,22 @@ export default function ToolsSuite() {
         return;
       }
 
+      // Check allowed types: PDF, DOCX, ZIP, PNG, JPG, JPEG, SVG
+      const allowedExtensions = ['pdf', 'docx', 'zip', 'rar', 'png', 'jpg', 'jpeg', 'svg'];
+      const fileExt = file.name.split('.').pop()?.toLowerCase() || '';
+      const isTypeAllowed = allowedExtensions.includes(fileExt) || 
+                            file.type.includes('image') || 
+                            file.type.includes('pdf') || 
+                            file.type.includes('zip') || 
+                            file.type.includes('word');
+
+      if (!isTypeAllowed) {
+        alert(`File type .${fileExt} is not supported. Please upload PDF, DOCX, ZIP, PNG, JPG, JPEG, or SVG.`);
+        return;
+      }
+
       const newId = Math.random().toString(36).substring(2, 9);
-      const newFile: MockFile = {
+      const newFile: UploadedFile = {
         id: newId,
         name: file.name,
         size: `${sizeMB.toFixed(2)} MB`,
@@ -366,6 +637,19 @@ export default function ToolsSuite() {
       };
 
       setUploadedFiles(prev => [...prev, newFile]);
+
+      // Read real image thumbnails if it is an image file
+      if (file.type.startsWith('image/')) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          if (e.target?.result) {
+            setUploadedFiles(prev => 
+              prev.map(f => f.id === newId ? { ...f, thumbnailUrl: e.target?.result as string } : f)
+            );
+          }
+        };
+        reader.readAsDataURL(file);
+      }
 
       // Simulate file upload progress
       let currentProgress = 0;
@@ -394,10 +678,8 @@ export default function ToolsSuite() {
     if (type.includes('image')) return ImageIcon;
     if (type.includes('zip') || type.includes('rar') || type.includes('tar')) return FileArchive;
     return FileText;
-  };
-
-  // Form Submission and Dynamic Smart Proposal Compilation
-  const triggerProposalGeneration = (e: React.FormEvent) => {
+  };  // Form Submission and Dynamic Smart Proposal Compilation
+  const triggerProposalGeneration = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!proposalName || !proposalEmail || !proposalRequirements) {
@@ -407,83 +689,106 @@ export default function ToolsSuite() {
 
     setProposalLoading(true);
 
-    setTimeout(() => {
+    try {
       const activeCost = getActiveCalculatorCost();
-      let estTimelineText = '3 - 5 Weeks';
-      let stack: string[] = [];
-      let services: string[] = [];
-      let roadmap: string[] = [];
-      let inclusions: string[] = [];
-      let addOnsList: any[] = [];
+      const response = await fetch('/api/generate-proposal', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: proposalName,
+          company: proposalCompany,
+          email: proposalEmail,
+          phone: proposalPhone,
+          country: proposalCountry,
+          budget: proposalBudget,
+          timeline: proposalTimeline,
+          description: proposalRequirements,
+          activeCalculator: activeTab,
+          basePrice: activeCost
+        }),
+      });
 
+      if (!response.ok) {
+        throw new Error("Failed to generate technical proposal.");
+      }
+
+      const data = await response.json();
+      const proposalText = data.text;
+
+      // Build structured add-ons based on category
+      let addOnsList: any[] = [];
       if (activeTab === 'website') {
-        estTimelineText = webDelivery === 'Urgent' ? '1 - 2 Weeks' : webDelivery === 'Priority' ? '2 - 3 Weeks' : '4 - 6 Weeks';
-        stack = webPlatform === 'Custom React' || webPlatform === 'Next.js' 
-          ? ['Next.js React Framework', 'TypeScript Type-Safety', 'Tailwind CSS utility', 'Vite Bundler', 'Lucide Vector Library']
-          : webPlatform === 'Shopify' ? ['Shopify Theme Liquid', 'Storefront APIs', 'Secure Cart APIs'] : ['WordPress Engine', 'Elementor builder', 'MySQL secure schema'];
-        services = [`Custom ${webPlatform} development`, `${webPages} design iterations`, 'CRM integrations pipeline setup'];
-        roadmap = ['Requirements & UX Wireframing', 'Pristine Apple-style Figma UI Design', 'Type-safe React/Liquid Frontend assembly', 'Launch, Domain linkage, Vitals auditing'];
-        inclusions = ['Fully 100% Mobile Responsive layout design', 'Sub-second Resource Load speed indexing', '1-Year complimentary high-performance maintenance', 'Comprehensive SEO micro-data setup'];
         addOnsList = [
           { id: 'custom_cms', label: 'Admin Custom CMS Dashboard', price: 250, desc: 'Add or modify items on the go with zero coding.' },
           { id: 'live_chatbot', label: 'Floating AI Support Agent (Gemini API)', price: 400, desc: 'Instantly answers visitor questions and logs inquiries.' }
         ];
       } else if (activeTab === 'seo') {
-        estTimelineText = 'Ongoing Monthly Retainer';
-        stack = ['Google Search Console', 'Google Analytics 4', 'Screaming Frog Crawler', 'JSON-LD / Schema Markup Builder'];
-        services = ['Technical crawling & Redirect fixes', 'Semantic meta tags restructuring', 'Continuous keyword rank scaling'];
-        roadmap = ['Complete Technical Website Audit', 'On-Page SEO semantic refactoring', 'Local Maps & GMB Profile synchronization', 'Monthly analytic reports and keyword tracking'];
-        inclusions = ['Comprehensive CLS/LCP Core Vitals tuning', 'Continuous search snippet optimization', 'Weekly Google Console indexing triggers'];
         addOnsList = [
           { id: 'blog_writing', label: 'High-authority Monthly blog posts (x4)', price: 150, desc: 'Targeting specific high-volume industry keywords.' }
         ];
       } else if (activeTab === 'social') {
-        estTimelineText = 'Continuous Monthly Service';
-        stack = ['Figma Creator Suite', 'Adobe Premiere Pro', 'CapCut Pro editor', 'Meta Ads Planner'];
-        services = [`SMM Management (${smmPosts} Posts / month)`, `${smmReels} Visual Reels short-cuts`];
-        roadmap = ['Editorial content planning session', 'Figma layout & Visual brand assets build', 'Video editing and micro-effects layout', 'Scheduled platform auto-distribution & monitoring'];
-        inclusions = ['Custom high-end graphic design frames', 'Captivating brand-consistent copy layouts', 'Bespoke trending hashtag selection'];
         addOnsList = [
           { id: 'com_manage', label: 'Full Community Management & Replies', price: 100, desc: 'We monitor comments, reply to direct messages within 1 hour.' }
         ];
       } else if (activeTab === 'automation') {
-        estTimelineText = '2 - 3 Weeks';
-        stack = ['n8n.io Workflow Automation', 'Make.com server integration', 'GoHighLevel CRM SDK', 'OpenAI/Gemini REST webhooks'];
-        services = ['Event-driven CRM auto-lead capture', 'Trigger notifications loops (Slack/WhatsApp)', 'Automated follow-up sequences'];
-        roadmap = ['CRM structure analysis and token setups', 'n8n/Make webhook flow mapping design', 'Secure API keys staging and credentials vaults', 'End-to-end integration and error testing'];
-        inclusions = ['Zero manual entry pipeline latency', 'Secure credential and API endpoints hosting', 'Detailed workflow debugging logs dashboard'];
         addOnsList = [
           { id: 'extra_api', label: 'Additional API Destination Webhook', price: 120, desc: 'Connect another external platform to the flow.' }
         ];
       } else if (activeTab === 'branding') {
-        estTimelineText = '2 - 4 Weeks';
-        stack = ['Figma Design Studio', 'Canva Creator templates', 'Vector EPS assets', 'Modern Font pairing files'];
-        services = ['Bespoke minimalist logo design', 'Corporate brand guidelines production', 'Reusable social template kits'];
-        roadmap = ['Core Brand values discovery session', '3 Logo concepts & presentation cycles', 'Color theme, typographies, assets mapping', 'Hand-off of Canva/Figma visual handbook'];
-        inclusions = ['Scalable high-fidelity SVG/EPS layouts', 'Reusable presentation slide template deck', 'Primal typography selection documentation'];
         addOnsList = [
           { id: 'brand_stationary', label: 'Premium Business Card & Stationary Kit', price: 80, desc: 'Print-ready high-dpi files with custom mockups.' }
         ];
       } else if (activeTab === 'assistant') {
-        estTimelineText = 'Flexible Retainer (Monthly)';
-        stack = ['Google Workspace admin tools', 'HubSpot / GoHighLevel CRM', 'Notion workspace management', 'Slack notification boards'];
-        services = [`Virtual Assistant Support (${eaHours} Hours/month)`, 'Calendar control & Email triage routines'];
-        roadmap = ['Onboarding call to handoff instructions', 'Credential setups & workspace delegation', 'Continuous daily operations assistance', 'Weekly reporting logs on tasks performed'];
-        inclusions = ['Highly professional bilingual communications', 'Sub-2-hour urgency response times', 'Dedicated Notion workspace tracking board'];
         addOnsList = [
           { id: 'extra_hours', label: 'Optional Overtime Hours Buffer (x5 hrs)', price: 90, desc: 'Secures extra hours at a highly discounted rate.' }
         ];
+      }
+
+      // Default tech stacks and structures as backup
+      let stack: string[] = [];
+      if (activeTab === 'website') {
+        stack = ['Next.js React Framework', 'TypeScript Type-Safety', 'Tailwind CSS utility', 'Vite Bundler', 'Lucide Vector Library'];
+      } else if (activeTab === 'seo') {
+        stack = ['Google Search Console', 'Google Analytics 4', 'Screaming Frog Crawler', 'JSON-LD Schema Markup'];
+      } else if (activeTab === 'social') {
+        stack = ['Figma Creator Suite', 'Adobe Premiere Pro', 'CapCut Pro editor', 'Meta Ads Planner'];
+      } else if (activeTab === 'automation') {
+        stack = ['n8n.io Workflow Automation', 'Make.com server integration', 'GoHighLevel CRM SDK', 'OpenAI/Gemini REST webhooks'];
+      } else if (activeTab === 'branding') {
+        stack = ['Figma Design Studio', 'Canva Creator templates', 'Vector EPS assets', 'Modern Font pairing files'];
+      } else if (activeTab === 'assistant') {
+        stack = ['Google Workspace admin tools', 'HubSpot / GoHighLevel CRM', 'Notion workspace management', 'Slack notification boards'];
       }
 
       setGeneratedProposal({
         proposalId: `TG-2026-${Math.floor(1000 + Math.random() * 9000)}`,
         date: new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }),
         basePrice: activeCost,
-        timeline: estTimelineText,
+        timeline: proposalTimeline,
         techStack: stack,
-        recommendedServices: services,
-        roadmap: roadmap,
-        inclusions: inclusions,
+        recommendedServices: [
+          activeTab === 'website' ? `Custom ${webPlatform} Development` :
+          activeTab === 'seo' ? 'Technical SEO & Content Optimization' :
+          activeTab === 'social' ? 'Social Media Branding & Posting' :
+          activeTab === 'automation' ? 'Workflow & CRM Automations' :
+          activeTab === 'branding' ? 'Logo & Custom Corporate Identity' : 'Executive Assistant Support',
+          'Premium Multi-Device Optimization Check',
+          '1-Year complimentary high-performance updates'
+        ],
+        roadmap: [
+          'Requirements Analysis & Workflow Drafting',
+          'Apple-grade interactive UI UX Design',
+          'Clean TypeScript & REST Webhook assembly',
+          'Performance metrics audit & Official Launch'
+        ],
+        inclusions: [
+          'Fully 100% Mobile Responsive design',
+          'Sub-second Resource Load speed indexing',
+          'SSL Secure credential layers config',
+          'Complimentary Technical onboarding handoffs'
+        ],
         addOns: addOnsList,
         clientName: proposalName,
         clientCompany: proposalCompany || 'Your Venture',
@@ -493,10 +798,9 @@ export default function ToolsSuite() {
         clientBudget: proposalBudget,
         clientTimeline: proposalTimeline,
         requirements: proposalRequirements,
-        filesCount: uploadedFiles.length
+        filesCount: uploadedFiles.length,
+        markdownContent: proposalText
       });
-
-      setProposalLoading(false);
 
       // Smooth scroll to proposal output container
       setTimeout(() => {
@@ -506,7 +810,12 @@ export default function ToolsSuite() {
         }
       }, 100);
 
-    }, 1300);
+    } catch (err) {
+      console.error(err);
+      alert("There was an error generating your AI technical proposal. Please check your internet connection or try again.");
+    } finally {
+      setProposalLoading(false);
+    }
   };
 
   const getAddonTotal = () => {
@@ -520,52 +829,151 @@ export default function ToolsSuite() {
     return addOnCost;
   };
 
-  const downloadSimulatedProposal = () => {
+  const downloadProposalPDF = () => {
     if (!generatedProposal) return;
-    const element = document.createElement("a");
+    
+    const printWindow = window.open('', '_blank');
+    if (!printWindow) {
+      alert("Please allow popups to save/download your proposal PDF.");
+      return;
+    }
+    
     const totalEstimate = generatedProposal.basePrice + getAddonTotal();
     
-    const fileContent = `
-=========================================
-TECHGLOZE PREMIUM PROJECT PROPOSAL
-Proposal ID: ${generatedProposal.proposalId}
-Date: ${generatedProposal.date}
-=========================================
+    const proposalHTML = `
+      <html>
+        <head>
+          <title>TechGloze Proposal - ${generatedProposal.proposalId}</title>
+          <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+          <style>
+            @media print {
+              body { padding: 1.5cm; color: #000; background: #fff; }
+              .no-print { display: none; }
+            }
+            body { font-family: system-ui, -apple-system, sans-serif; padding: 2rem; background: #fafafa; color: #1e293b; }
+            .proposal-card { max-width: 800px; margin: 0 auto; background: #fff; padding: 2.5rem; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border: 1px solid #e2e8f0; }
+          </style>
+        </head>
+        <body>
+          <div class="proposal-card">
+            <div class="flex justify-between items-center border-b pb-6 mb-6">
+              <div>
+                <h1 class="text-3xl font-extrabold text-blue-600">TECHGLOZE</h1>
+                <p class="text-xs text-gray-500 font-bold uppercase tracking-wider">Premium Project Proposal</p>
+              </div>
+              <div class="text-right">
+                <p class="text-xs font-mono font-bold text-gray-400">ID: ${generatedProposal.proposalId}</p>
+                <p class="text-xs text-gray-400">Date: ${generatedProposal.date}</p>
+              </div>
+            </div>
+            
+            <div class="grid grid-cols-2 gap-4 mb-8 bg-gray-50 p-5 rounded-lg">
+              <div>
+                <span class="text-[9px] font-bold text-gray-400 uppercase tracking-wider block mb-1">PREPARED FOR</span>
+                <p class="text-sm font-bold text-gray-800">${generatedProposal.clientName}</p>
+                <p class="text-xs text-gray-500">${generatedProposal.clientCompany} (${generatedProposal.clientCountry})</p>
+              </div>
+              <div class="text-right">
+                <span class="text-[9px] font-bold text-gray-400 uppercase tracking-wider block mb-1">ESTIMATED INVESTMENT</span>
+                <p class="text-lg font-black text-gray-900">$${totalEstimate.toLocaleString()} USD</p>
+                <p class="text-xs text-gray-500">Timeline: ${generatedProposal.timeline}</p>
+              </div>
+            </div>
 
-CLIENT INFORMATION:
-Name: ${generatedProposal.clientName}
-Company: ${generatedProposal.clientCompany}
-Email: ${generatedProposal.clientEmail}
-Phone: ${generatedProposal.clientPhone}
-Location: ${generatedProposal.clientCountry}
-Indicated Budget: ${generatedProposal.clientBudget}
-Indicated Timeline: ${generatedProposal.clientTimeline}
+            <div class="prose max-w-none text-sm leading-relaxed text-gray-700">
+              ${generatedProposal.markdownContent
+                .replace(/### (.*)/g, '<h3 class="text-md font-bold mt-4 mb-2 text-gray-800">$1</h3>')
+                .replace(/## (.*)/g, '<h2 class="text-lg font-bold mt-6 mb-2 text-gray-950 border-b pb-1">$1</h2>')
+                .replace(/# (.*)/g, '<h1 class="text-xl font-extrabold mt-8 mb-4 text-gray-950">$1</h1>')
+                .replace(/\*\*(.*?)\*\*/g, '<strong class="font-extrabold text-gray-900">$1</strong>')
+                .replace(/- (.*)/g, '<li class="ml-4 list-disc my-1">$1</li>')
+                .replace(/\n/g, '<br>')}
+            </div>
+            
+            <div class="mt-8 pt-6 border-t text-center text-xs text-gray-400 no-print flex justify-center">
+              <button onclick="window.print()" class="px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg cursor-pointer transition">
+                Print or Save as PDF
+              </button>
+            </div>
+          </div>
+          <script>
+            window.onload = function() {
+              setTimeout(function() {
+                window.print();
+              }, 400);
+            };
+          </script>
+        </body>
+      </html>
+    `;
+    printWindow.document.write(proposalHTML);
+    printWindow.document.close();
+  };
 
-PROJECT PRICE ESTIMATE: $${totalEstimate.toLocaleString()}
-Project Timeline: ${generatedProposal.timeline}
+  const downloadProposalDOCX = () => {
+    if (!generatedProposal) return;
+    
+    const totalEstimate = generatedProposal.basePrice + getAddonTotal();
+    
+    const htmlContent = `
+      <html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+        <head>
+          <title>TechGloze Proposal</title>
+          <style>
+            body { font-family: Arial, sans-serif; line-height: 1.6; color: #333333; }
+            h1 { color: #2563eb; font-size: 20pt; border-bottom: 2px solid #2563eb; padding-bottom: 6px; }
+            h2 { color: #1e3a8a; font-size: 14pt; border-bottom: 1px solid #ddd; padding-bottom: 4px; margin-top: 20px; }
+            h3 { color: #1e40af; font-size: 11pt; margin-top: 15px; }
+            .header { margin-bottom: 25px; }
+            .meta { background-color: #f3f4f6; padding: 15px; border: 1px solid #e5e7eb; border-radius: 6px; margin-bottom: 25px; }
+            li { margin-left: 20px; }
+          </style>
+        </head>
+        <body>
+          <div class="header">
+            <h1>TECHGLOZE PREMIUM PROJECT PROPOSAL</h1>
+            <p><strong>Proposal ID:</strong> ${generatedProposal.proposalId}</p>
+            <p><strong>Date:</strong> ${generatedProposal.date}</p>
+          </div>
+          
+          <div class="meta">
+            <h3>CLIENT INFORMATION</h3>
+            <p><strong>Name:</strong> ${generatedProposal.clientName}</p>
+            <p><strong>Company:</strong> ${generatedProposal.clientCompany}</p>
+            <p><strong>Email:</strong> ${generatedProposal.clientEmail}</p>
+            <p><strong>Phone:</strong> ${generatedProposal.clientPhone}</p>
+            <p><strong>Location:</strong> ${generatedProposal.clientCountry}</p>
+            <p><strong>Indicated Budget:</strong> ${generatedProposal.clientBudget}</p>
+            <p><strong>Indicated Timeline:</strong> ${generatedProposal.clientTimeline}</p>
+            <hr style="border: none; border-top: 1px solid #ddd; margin: 10px 0;">
+            <p><strong>TOTAL PROPOSAL ESTIMATE:</strong> $${totalEstimate.toLocaleString()} USD</p>
+          </div>
 
-SUGGESTED TECHNOLOGICAL STACK:
-${generatedProposal.techStack.map((tech: string) => ` - ${tech}`).join('\n')}
+          <div>
+            ${generatedProposal.markdownContent
+              .replace(/# (.*)/g, '<h1>$1</h1>')
+              .replace(/## (.*)/g, '<h2>$1</h2>')
+              .replace(/### (.*)/g, '<h3>$1</h3>')
+              .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+              .replace(/- (.*)/g, '<li>$1</li>')
+              .replace(/\n/g, '<br>')}
+          </div>
+        </body>
+      </html>
+    `;
 
-CORE RECOMMENDED SERVICES:
-${generatedProposal.recommendedServices.map((svc: string) => ` - ${svc}`).join('\n')}
-
-PROJECT ROADMAP STEPS:
-${generatedProposal.roadmap.map((step: string, index: number) => ` [Phase 0${index + 1}] ${step}`).join('\n')}
-
-GUARANTEED INCLUSIONS:
-${generatedProposal.inclusions.map((inc: string) => ` - ${inc}`).join('\n')}
-
-We look forward to collaborating with you to scale your business growth.
-To lock in this estimate, please reach out via WhatsApp at +91 90124 03699 or reply directly.
-`;
-
-    const file = new Blob([fileContent], {type: 'text/plain'});
-    element.href = URL.createObjectURL(file);
-    element.download = `TechGloze_Proposal_${generatedProposal.proposalId}.txt`;
-    document.body.appendChild(element);
-    element.click();
-    document.body.removeChild(element);
+    const blob = new Blob(['\ufeff' + htmlContent], {
+      type: 'application/msword'
+    });
+    
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `TechGloze_Proposal_${generatedProposal.proposalId}.doc`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
   };
 
   const getWhatsAppProposalLink = () => {
@@ -633,11 +1041,11 @@ ${generatedProposal.clientName}`;
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 mb-10 pb-6 border-b border-slate-200/50 dark:border-slate-800/60">
           {[
             { id: 'website', label: 'Website Cost', icon: Globe },
-            { id: 'seo', label: 'SEO Audit', icon: Search },
+            { id: 'seo', label: 'SEO Cost', icon: Search },
             { id: 'social', label: 'Social Media', icon: Share2 },
             { id: 'automation', label: 'AI Automation', icon: Zap },
-            { id: 'branding', label: 'Branding Identity', icon: Award },
-            { id: 'assistant', label: 'Virtual Assistant', icon: Users },
+            { id: 'branding', label: 'Branding', icon: Award },
+            { id: 'assistant', label: 'Executive & VA', icon: Users },
           ].map((tab) => {
             const Icon = tab.icon;
             const isActive = activeTab === tab.id;
@@ -1473,112 +1881,185 @@ ${generatedProposal.clientName}`;
             <p className="text-xs text-slate-400 mt-1">Provide your contact coordinates and detailed specifications. Our logic engine compiles estimates, roadmaps, and tech-stacks instantly.</p>
           </div>
 
-          <form onSubmit={triggerProposalGeneration} className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          <form onSubmit={triggerProposalGeneration} className="grid grid-cols-1 lg:grid-cols-12 gap-8 relative z-10">
             
             {/* Input fields panel */}
             <div className="lg:col-span-7 flex flex-col gap-4 text-left">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label className="text-3xs font-extrabold text-slate-400 uppercase block mb-1">Your Full Name *</label>
-                  <input
-                    type="text"
-                    required
-                    value={proposalName}
-                    onChange={(e) => setProposalName(e.target.value)}
-                    placeholder="e.g. John Doe"
-                    className="w-full px-4 py-2.5 text-xs bg-slate-50/50 dark:bg-slate-950/40 border border-slate-200/60 dark:border-slate-800/80 rounded-xl focus:outline-none focus:border-blue-500 font-semibold"
-                  />
-                </div>
+                <FloatingLabelInput
+                  id="proposal-name"
+                  labelText="Your Full Name *"
+                  required
+                  value={proposalName}
+                  onChange={(e) => setProposalName(e.target.value)}
+                  isValid={proposalName.trim().length >= 2}
+                  showSuccess={proposalName.trim().length >= 2}
+                  showError={proposalName.trim().length > 0 && proposalName.trim().length < 2}
+                  placeholder="e.g. John Doe"
+                />
 
-                <div>
-                  <label className="text-3xs font-extrabold text-slate-400 uppercase block mb-1">Company / Organization</label>
-                  <input
-                    type="text"
-                    value={proposalCompany}
-                    onChange={(e) => setProposalCompany(e.target.value)}
-                    placeholder="e.g. Acme Ventures"
-                    className="w-full px-4 py-2.5 text-xs bg-slate-50/50 dark:bg-slate-950/40 border border-slate-200/60 dark:border-slate-800/80 rounded-xl focus:outline-none focus:border-blue-500 font-semibold"
-                  />
-                </div>
+                <FloatingLabelInput
+                  id="proposal-company"
+                  labelText="Company / Organization"
+                  value={proposalCompany}
+                  onChange={(e) => setProposalCompany(e.target.value)}
+                  isValid={true}
+                  showSuccess={proposalCompany.trim().length >= 2}
+                  showError={false}
+                  placeholder="e.g. Acme Ventures"
+                />
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label className="text-3xs font-extrabold text-slate-400 uppercase block mb-1">Email Address *</label>
-                  <input
-                    type="email"
-                    required
-                    value={proposalEmail}
-                    onChange={(e) => setProposalEmail(e.target.value)}
-                    placeholder="e.g. john@acme.com"
-                    className="w-full px-4 py-2.5 text-xs bg-slate-50/50 dark:bg-slate-950/40 border border-slate-200/60 dark:border-slate-800/80 rounded-xl focus:outline-none focus:border-blue-500 font-semibold"
-                  />
-                </div>
+                <FloatingLabelInput
+                  id="proposal-email"
+                  type="email"
+                  labelText="Email Address *"
+                  required
+                  value={proposalEmail}
+                  onChange={(e) => setProposalEmail(e.target.value)}
+                  isValid={/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(proposalEmail)}
+                  showSuccess={/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(proposalEmail)}
+                  showError={proposalEmail.trim().length > 0 && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(proposalEmail)}
+                  placeholder="e.g. john@acme.com"
+                />
 
-                <div>
-                  <label className="text-3xs font-extrabold text-slate-400 uppercase block mb-1">Phone Number</label>
-                  <input
-                    type="tel"
-                    value={proposalPhone}
-                    onChange={(e) => setProposalPhone(e.target.value)}
-                    placeholder="e.g. +1 (555) 019-2834"
-                    className="w-full px-4 py-2.5 text-xs bg-slate-50/50 dark:bg-slate-950/40 border border-slate-200/60 dark:border-slate-800/80 rounded-xl focus:outline-none focus:border-blue-500 font-semibold"
-                  />
-                </div>
+                <FloatingLabelInput
+                  id="proposal-phone"
+                  type="tel"
+                  labelText="Phone Number"
+                  value={proposalPhone}
+                  onChange={(e) => {
+                    // Quick phone cleaning and formatting helper
+                    const raw = e.target.value;
+                    const cleaned = raw.replace(/[^\d+]/g, '');
+                    if (cleaned.startsWith('+')) {
+                      if (cleaned.length <= 3) setProposalPhone(cleaned);
+                      else if (cleaned.length <= 8) setProposalPhone(`${cleaned.slice(0, 3)} ${cleaned.slice(3)}`);
+                      else setProposalPhone(`${cleaned.slice(0, 3)} ${cleaned.slice(3, 8)} ${cleaned.slice(8, 13)}`);
+                    } else {
+                      const digits = cleaned.replace(/\D/g, '');
+                      if (digits.length <= 3) setProposalPhone(digits);
+                      else if (digits.length <= 6) setProposalPhone(`(${digits.slice(0, 3)}) ${digits.slice(3)}`);
+                      else setProposalPhone(`(${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6, 10)}`);
+                    }
+                  }}
+                  isValid={proposalPhone.trim().length >= 7}
+                  showSuccess={proposalPhone.trim().length >= 7}
+                  showError={proposalPhone.trim().length > 0 && proposalPhone.trim().length < 7}
+                  placeholder="e.g. +1 (555) 019-2834"
+                />
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                <div>
-                  <label className="text-3xs font-extrabold text-slate-400 uppercase block mb-1">Country Location</label>
-                  <input
-                    type="text"
-                    value={proposalCountry}
-                    onChange={(e) => setProposalCountry(e.target.value)}
-                    placeholder="e.g. United States"
-                    className="w-full px-4 py-2.5 text-xs bg-slate-50/50 dark:bg-slate-950/40 border border-slate-200/60 dark:border-slate-800/80 rounded-xl focus:outline-none focus:border-blue-500 font-semibold"
-                  />
+                {/* Searchable Country Selector Dropdown */}
+                <div className="relative" ref={countryDropdownRef}>
+                  <label className="absolute left-4 top-1.5 text-[9px] font-extrabold uppercase tracking-wider text-slate-400 dark:text-slate-500 z-10">Country Location *</label>
+                  <button
+                    type="button"
+                    onClick={() => setShowCountryDropdown(!showCountryDropdown)}
+                    className="w-full text-left px-4 pt-6 pb-2 text-xs bg-slate-50 hover:bg-slate-100/40 dark:bg-[#0D1117] dark:hover:bg-[#161B22]/50 border border-slate-200/60 dark:border-[#1F2937] rounded-xl text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 font-semibold flex justify-between items-center h-[52px]"
+                  >
+                    <span>{proposalCountry || 'Select Country'}</span>
+                    <ChevronDown className="w-4 h-4 text-slate-400" />
+                  </button>
+
+                  {showCountryDropdown && (
+                    <div 
+                      className="absolute z-50 left-0 right-0 mt-1.5 max-h-56 overflow-y-auto bg-white dark:bg-[#161B22] border border-slate-200 dark:border-[#1F2937] rounded-xl shadow-xl p-2 flex flex-col gap-0.5"
+                    >
+                      <div className="p-1 border-b border-slate-100 dark:border-[#1F2937] mb-1.5 flex items-center gap-1.5 sticky top-0 bg-white dark:bg-[#161B22] z-10">
+                        <Search className="w-3.5 h-3.5 text-slate-400 shrink-0" />
+                        <input
+                          type="text"
+                          value={countrySearch}
+                          onChange={(e) => setCountrySearch(e.target.value)}
+                          placeholder="Search countries..."
+                          className="w-full text-3xs font-semibold bg-transparent border-none outline-none focus:ring-0 text-slate-800 dark:text-white"
+                          autoFocus
+                        />
+                        {countrySearch && (
+                          <button type="button" onClick={() => setCountrySearch('')} className="p-0.5 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800">
+                            <X className="w-3 h-3 text-slate-400" />
+                          </button>
+                        )}
+                      </div>
+                      
+                      {ALL_COUNTRIES.filter(c => c.toLowerCase().includes(countrySearch.toLowerCase())).length > 0 ? (
+                        ALL_COUNTRIES.filter(c => c.toLowerCase().includes(countrySearch.toLowerCase())).map((c) => (
+                          <button
+                            key={c}
+                            type="button"
+                            onClick={() => {
+                              setProposalCountry(c);
+                              setShowCountryDropdown(false);
+                              setCountrySearch('');
+                            }}
+                            className={`px-3 py-2 text-left rounded-lg text-3xs font-semibold cursor-pointer transition-colors flex items-center justify-between ${
+                              proposalCountry === c
+                                ? 'bg-blue-500/10 text-blue-600 dark:text-blue-400 font-bold'
+                                : 'text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800/40'
+                            }`}
+                          >
+                            <span>{c}</span>
+                            {proposalCountry === c && <Check className="w-3.5 h-3.5 text-blue-500" />}
+                          </button>
+                        ))
+                      ) : (
+                        <span className="p-3 text-4xs text-slate-400 font-bold text-center">No countries matched</span>
+                      )}
+                    </div>
+                  )}
                 </div>
 
-                <div>
-                  <label className="text-3xs font-extrabold text-slate-400 uppercase block mb-1">Intended Budget Scale</label>
+                <div className="relative">
+                  <label className="absolute left-4 top-1.5 text-[9px] font-extrabold uppercase tracking-wider text-slate-400 dark:text-slate-500 z-10">Intended Budget Scale</label>
                   <select
                     value={proposalBudget}
                     onChange={(e) => setProposalBudget(e.target.value)}
-                    className="w-full px-4 py-2.5 text-xs bg-slate-50/50 dark:bg-slate-950/40 border border-slate-200/60 dark:border-slate-800/80 rounded-xl focus:outline-none focus:border-blue-500 font-semibold"
+                    className="w-full px-4 pt-6 pb-2 text-xs bg-slate-50 hover:bg-slate-100/40 dark:bg-[#0D1117] dark:hover:bg-[#161B22]/50 border border-slate-200/60 dark:border-[#1F2937] rounded-xl text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 font-semibold h-[52px]"
                   >
-                    <option>$120 - $500</option>
-                    <option>$500 - $2,500</option>
-                    <option>$2,500 - $10,000</option>
-                    <option>$10,000 - $25,000</option>
-                    <option>$25,000+</option>
+                    <option>$50 – $200</option>
+                    <option>$200 – $500</option>
+                    <option>$500 – $1,000</option>
+                    <option>$1,000 – $2,500</option>
+                    <option>$2,500 – $5,000</option>
+                    <option>$5,000 – $10,000</option>
+                    <option>$10,000+</option>
                   </select>
                 </div>
 
-                <div>
-                  <label className="text-3xs font-extrabold text-slate-400 uppercase block mb-1">Target Timeline</label>
+                <div className="relative">
+                  <label className="absolute left-4 top-1.5 text-[9px] font-extrabold uppercase tracking-wider text-slate-400 dark:text-slate-500 z-10">Target Timeline</label>
                   <select
                     value={proposalTimeline}
                     onChange={(e) => setProposalTimeline(e.target.value)}
-                    className="w-full px-4 py-2.5 text-xs bg-slate-50/50 dark:bg-slate-950/40 border border-slate-200/60 dark:border-slate-800/80 rounded-xl focus:outline-none focus:border-blue-500 font-semibold"
+                    className="w-full px-4 pt-6 pb-2 text-xs bg-slate-50 hover:bg-slate-100/40 dark:bg-[#0D1117] dark:hover:bg-[#161B22]/50 border border-slate-200/60 dark:border-[#1F2937] rounded-xl text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 font-semibold h-[52px]"
                   >
-                    <option>Urgent (1-2 weeks)</option>
-                    <option>Standard (3-6 weeks)</option>
-                    <option>Flexible / Retainer</option>
+                    <option>7 Days</option>
+                    <option>14 Days</option>
+                    <option>21 Days</option>
+                    <option>30 Days</option>
+                    <option>45 Days</option>
+                    <option>60 Days</option>
+                    <option>90 Days</option>
+                    <option>Flexible</option>
                   </select>
                 </div>
               </div>
 
-              <div>
-                <label className="text-3xs font-extrabold text-slate-400 uppercase block mb-1">Project Goals & Feature Requirements *</label>
-                <textarea
-                  required
-                  rows={4}
-                  value={proposalRequirements}
-                  onChange={(e) => setProposalRequirements(e.target.value)}
-                  placeholder="We need a premium, blazing-fast web page with beautiful custom branding templates and n8n integrations to sync incoming customer form inputs automatically..."
-                  className="w-full px-4 py-2.5 text-xs bg-slate-50/50 dark:bg-slate-950/40 border border-slate-200/60 dark:border-slate-800/80 rounded-xl focus:outline-none focus:border-blue-500 font-semibold leading-relaxed"
-                />
-              </div>
+              <FloatingLabelTextarea
+                id="proposal-requirements"
+                labelText="Project Goals & Feature Requirements *"
+                required
+                rows={4}
+                value={proposalRequirements}
+                onChange={(e) => setProposalRequirements(e.target.value)}
+                isValid={proposalRequirements.trim().length >= 10}
+                showSuccess={proposalRequirements.trim().length >= 10}
+                showError={proposalRequirements.trim().length > 0 && proposalRequirements.trim().length < 10}
+                placeholder="We need a premium, blazing-fast web page with beautiful custom branding templates and n8n integrations..."
+              />
             </div>
 
             {/* Drag & Drop File Upload Panel */}
@@ -1599,7 +2080,7 @@ ${generatedProposal.clientName}`;
                 >
                   <Upload className="w-8 h-8 text-slate-400 mb-2.5 animate-bounce" />
                   <span className="text-xs font-bold text-slate-700 dark:text-slate-300 block mb-1">Drag & Drop files here</span>
-                  <p className="text-[10px] text-slate-400 max-w-[200px] leading-normal block mb-3">Accepting PDF, DOCX, PPTX, ZIP, PNG, JPG up to 25MB.</p>
+                  <p className="text-[10px] text-slate-400 max-w-[200px] leading-normal block mb-3">Accepting PDF, DOCX, ZIP, PNG, JPG, JPEG, SVG up to 25MB.</p>
                   
                   <label className="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-bold text-3xs cursor-pointer shadow-sm transition-colors block">
                     <span>Select files manually</span>
@@ -1623,9 +2104,13 @@ ${generatedProposal.clientName}`;
                           className="p-3 rounded-xl border border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-950 flex items-center justify-between gap-3 text-left"
                         >
                           <div className="flex items-center gap-2.5 min-w-0">
-                            <div className="p-1.5 rounded-lg bg-slate-50 dark:bg-slate-900 text-blue-500">
-                              <FileIcon className="w-4 h-4" />
-                            </div>
+                            {file.thumbnailUrl ? (
+                              <img src={file.thumbnailUrl} className="w-8 h-8 rounded object-cover shrink-0" referrerPolicy="no-referrer" />
+                            ) : (
+                              <div className="p-1.5 rounded-lg bg-slate-50 dark:bg-slate-900 text-blue-500">
+                                <FileIcon className="w-4 h-4" />
+                              </div>
+                            )}
                             <div className="min-w-0">
                               <span className="text-2xs font-extrabold text-slate-800 dark:text-slate-200 block truncate max-w-[150px]">{file.name}</span>
                               <span className="text-[9px] text-slate-400 block mt-0.5">{file.size}</span>
@@ -1812,6 +2297,29 @@ ${generatedProposal.clientName}`;
                       </div>
                     </div>
 
+                    {/* Full Interactive AI Narrative specifications */}
+                    <div className="border-t border-slate-100 dark:border-slate-800/80 pt-6">
+                      <div className="flex items-center justify-between mb-4">
+                        <span className="text-3xs font-extrabold text-slate-400 uppercase tracking-widest">Detailed Specifications Blueprint</span>
+                        <button
+                          type="button"
+                          onClick={() => {
+                            navigator.clipboard.writeText(generatedProposal.markdownContent);
+                            const prevLabel = copyLabel;
+                            setCopyLabel("Copied Blueprint!");
+                            setTimeout(() => setCopyLabel(prevLabel), 1800);
+                          }}
+                          className="px-2.5 py-1 text-4xs bg-blue-500/10 hover:bg-blue-500/20 text-blue-600 dark:text-blue-400 font-bold uppercase tracking-wider rounded-md transition flex items-center gap-1 cursor-pointer"
+                        >
+                          <Sparkles className="w-3 h-3" />
+                          <span>{copyLabel}</span>
+                        </button>
+                      </div>
+                      <div className="bg-slate-50 dark:bg-slate-900/30 border border-slate-100 dark:border-slate-800/80 rounded-2xl p-6 overflow-hidden">
+                        <MarkdownRenderer content={generatedProposal.markdownContent} />
+                      </div>
+                    </div>
+
                   </div>
 
                   {/* Right options, add-ons and Call-To-Actions (Actions Sidebar) */}
@@ -1879,11 +2387,19 @@ ${generatedProposal.clientName}`;
                       </a>
 
                       <button
-                        onClick={downloadSimulatedProposal}
+                        onClick={downloadProposalPDF}
                         className="w-full py-3.5 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/80 font-extrabold text-2xs uppercase tracking-wider rounded-xl flex items-center justify-center gap-2 cursor-pointer shadow-sm"
                       >
-                        <Download className="w-4 h-4" />
+                        <Download className="w-4 h-4 text-red-500" />
                         <span>Download Proposal PDF</span>
+                      </button>
+
+                      <button
+                        onClick={downloadProposalDOCX}
+                        className="w-full py-3.5 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/80 font-extrabold text-2xs uppercase tracking-wider rounded-xl flex items-center justify-center gap-2 cursor-pointer shadow-sm"
+                      >
+                        <Download className="w-4 h-4 text-blue-500" />
+                        <span>Download Word (.doc)</span>
                       </button>
 
                       <button

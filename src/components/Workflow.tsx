@@ -191,14 +191,16 @@ export default function Workflow() {
     };
   }, [activeStep, workflowStages.length]);
 
-  // Swipe snapping handler
+  // Swipe snapping handler with touch momentum support
   const handleDragEnd = (event: any, info: any) => {
     const swipeThreshold = 50; // trigger offset
-    if (info.offset.x < -swipeThreshold) {
+    const velocityThreshold = 120; // flick momentum velocity
+    
+    if (info.offset.x < -swipeThreshold || info.velocity.x < -velocityThreshold) {
       if (activeStep < workflowStages.length - 1) {
         setActiveStep(prev => prev + 1);
       }
-    } else if (info.offset.x > swipeThreshold) {
+    } else if (info.offset.x > swipeThreshold || info.velocity.x > velocityThreshold) {
       if (activeStep > 0) {
         setActiveStep(prev => prev - 1);
       }

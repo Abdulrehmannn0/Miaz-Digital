@@ -264,6 +264,155 @@ Structure the response in beautiful markdown:
   }
 });
 
+// API 4: Smart Technical Proposal Generator
+app.post('/api/generate-proposal', async (req: Request, res: Response): Promise<void> => {
+  try {
+    const { name, company, email, phone, country, budget, timeline, description, activeCalculator, basePrice } = req.body;
+
+    if (!name || !email || !description) {
+      res.status(400).json({ error: "Missing required fields (Name, Email, Description)" });
+      return;
+    }
+
+    const key = process.env.GEMINI_API_KEY;
+    if (!key) {
+      // Return high-quality mock proposal estimates with en-dash matching client demands
+      const mockMarkdown = `# Project Execution Blueprint (TG-2026-${Math.floor(1000 + Math.random() * 9000)})
+Prepared for: **${name}**  
+Company: **${company || "Niaz Digital"}**  
+Location: **${country}**  
+Estimated Investment: **$${(basePrice || 350).toLocaleString()} USD**  
+Estimated Timeline: **${timeline || "30 Days"}**  
+
+---
+
+## 1. Executive Summary
+We are pleased to submit this execution blueprint for ${company || "Niaz Digital"}. Our mission is to construct a modern, high-performance solution that accelerates your digital footprint, drives real conversions, and integrates intelligent systems. 
+
+This proposal maps out a custom-tailored strategy designed to maximize ROI, incorporating absolute typographic precision, fluid layout designs, and sub-second rendering speeds to minimize customer bounce rates.
+
+## 2. Project Scope
+Based on your specifications, we will architect a cohesive system prioritizing scalability, clean code standards, and robust performance:
+- Fully mobile-responsive interface styled with high-contrast Tailwind configurations.
+- Custom integrations to sync forms, leads, and operational workflows.
+- Performance optimization ensuring Google Core Web Vitals scoring in the 90-100 green range.
+
+## 3. Recommended Technology Stack
+For a secure, future-proof, and lightning-fast deployment, we recommend:
+- **Frontend / Engine**: Next.js (React Framework) or Tailwind CSS
+- **Programming Language**: TypeScript (strict type-safety)
+- **Deployment / Hosting**: Vercel Edge Networks
+- **Database / Backend**: Supabase or Firebase Firestore (if cloud storage needed)
+- **Automation Pipeline**: n8n workflows & webhook triggers
+
+## 4. Estimated Timeline
+We propose a structured, milestone-based execution timeline of **${timeline || "30 Days"}** divided into four major stages:
+1. **Milestone 1: Strategic Alignment & Blueprinting (Days 1-7)**  
+   Mapping user journeys, low-fidelity wireframing, and interactive brand typography setup.
+2. **Milestone 2: High-Fidelity UI Design & Mockups (Days 8-15)**  
+   Prototyping responsive Apple-grade interfaces with fluid motion paths.
+3. **Milestone 3: Interactive Assembly & Integration (Days 16-24)**  
+   Composing the front-end with clean React states and mapping operational API webhooks.
+4. **Milestone 4: Testing, Performance Optimization & Launch (Days 25-30)**  
+   Compressing assets, auditing Core Web Vitals, and domain hand-off.
+
+## 5. Estimated Budget
+The complete investment is calculated as **$${(basePrice || 350).toLocaleString()} USD** based on your selected criteria:
+- **Creative Strategy & UX/UI Prototyping**: $${Math.round((basePrice || 350) * 0.3)} USD
+- **Technical Assembly & API Integration**: $${Math.round((basePrice || 350) * 0.5)} USD
+- **Performance Tuning & Search Optimization**: $${Math.round((basePrice || 350) * 0.2)} USD
+
+## 6. Deliverables
+A comprehensive list of high-quality handoffs includes:
+- Fully production-compiled source repository on GitHub.
+- Configured production deployment under your domain with SSL certification.
+- Admin dashboard login credentials and visual workflow manuals.
+
+## 7. SEO Strategy
+To capture organic search demand and ensure high search engine placement:
+- Semantic HTML tags structure mapping.
+- Core Web Vitals tuning: sub-second LCP (Largest Contentful Paint) and zero CLS (Cumulative Layout Shift).
+- Implementation of structured JSON-LD Schema markups to capture Google rich answer boxes.
+
+## 8. AI Automation Opportunities
+To eliminate manual work and minimize pipeline latencies:
+- Auto-sync lead forms with CRM pipelines (HubSpot, GoHighLevel).
+- Auto-route email/WhatsApp alerts immediately upon action triggers.
+
+## 9. CRM Integration
+- Complete setup of automated fields synchronization to log contacts, tags, and timeline entries cleanly.
+
+## 10. Performance Optimization
+- Native image formats conversion (WebP/AVIF) and asset minifications to ensure instant page load speeds.
+
+## 11. Hosting Recommendation
+- We recommend hosting the application on Vercel's global CDN, providing instant global response times and 99.9% uptime.
+
+## 12. Maintenance Plan
+- Includes 12 months of standard critical updates, monthly security patching, and hosting stability surveillance.
+
+## 13. Next Steps
+To finalize this scope and lock in your price:
+1. **Book a 15-Minute Discovery Call** with Abdul Rehman to align goals.
+2. Review design milestones and approve wireframes.
+3. Initiate secure project setup.
+
+*Let's collaborate to build something outstanding!*`;
+
+      res.json({ text: mockMarkdown });
+      return;
+    }
+
+    const ai = getGeminiClient();
+    const prompt = `
+Generate a highly detailed, professional, and prestigious AI Technical Proposal for a client.
+Client Details:
+- Name: ${name}
+- Company: ${company || "Your Venture"}
+- Email: ${email}
+- Phone: ${phone || "Not provided"}
+- Country: ${country}
+- Target Budget: ${budget}
+- Desired Timeline: ${timeline}
+- Active Calculator Context: ${activeCalculator || "General Tech Services"} (Calculated Base Price: $${basePrice || "Custom"})
+- Project Requirements & Goals: ${description}
+
+Please output a beautifully-structured, comprehensive, client-ready proposal strictly using standard Markdown (MD).
+Do not include any wrapper symbols other than standard MD.
+The proposal MUST include the following 13 numbered sections with highly-specific and customized recommendations based on the client's goals and description:
+1. Executive Summary: Emphasize scaling revenue, professional branding, and premium interactive UX.
+2. Project Scope: Define concrete deliverables based on their requirements.
+3. Recommended Technology Stack: Specify concrete technologies (e.g., Next.js, React, Tailwind CSS, TypeScript, n8n, Supabase, Vercel, WordPress/Liquid if relevant). Explain WHY these are selected.
+4. Estimated Timeline: Map out a structured milestone calendar matching the timeline target (${timeline}).
+5. Estimated Budget: Give a clear price-locked value or realistic breakdown.
+6. Deliverables: A checklist of all functional hand-offs.
+7. SEO Strategy: Define local or technical SEO parameters, PageSpeed tuning, JSON-LD Schema, meta structures.
+8. AI Automation Opportunities: Detail exact automation setups (e.g. n8n, Zapier) to reduce manual work.
+9. CRM Integration: Specify how to connect contact forms or data to HubSpot, GoHighLevel, or spreadsheets.
+10. Performance Optimization: Detail asset compression, CDN caching, AVIF, serverless edge networks.
+11. Hosting Recommendation: Give standard cloud hosting (Vercel, Netlify, Cloud Run, WP Engine).
+12. Maintenance Plan: Propose standard support structure.
+13. Next Steps: Instruct them on booking a discovery call.
+
+Ensure the tone is elite, world-class, confident, and highly persuasive.
+`;
+
+    const response = await ai.models.generateContent({
+      model: "gemini-3.5-flash",
+      contents: prompt,
+      config: {
+        systemInstruction: "You are the Principal Solutions Architect and CTO at TechGloze IT Solutions. Write incredibly detailed, prestigious, and technical client-facing proposals that look extremely authoritative.",
+        temperature: 0.5,
+      }
+    });
+
+    res.json({ text: response.text });
+  } catch (error: any) {
+    console.error("Gemini API Error (Proposal):", error);
+    res.status(500).json({ error: "Failed to generate technical proposal: " + error.message });
+  }
+});
+
 
 // Serve static frontend assets and mount Vite middleware
 async function startServer() {
