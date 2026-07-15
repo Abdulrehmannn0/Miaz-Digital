@@ -18,7 +18,8 @@ import {
   X,
   FileText,
   ChevronRight,
-  CheckCircle2
+  CheckCircle2,
+  Globe
 } from 'lucide-react';
 import { PORTFOLIO_DATA, CASE_STUDIES_DATA } from '../data';
 import { PortfolioItem, CaseStudy } from '../types';
@@ -58,7 +59,7 @@ export default function Portfolio() {
   };
 
   const categories = [
-    'All', 'Websites', 'Mobile Apps', 'Dashboards', 'Branding', 'Meta Ads', 'AI Automation'
+    'All', 'Web Development', 'SEO', 'Social Media', 'Branding', 'AI Automation', 'Business Operations'
   ];
 
   const filteredPortfolio = PORTFOLIO_DATA.filter(item => {
@@ -252,44 +253,93 @@ export default function Portfolio() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 20 }}
                 transition={{ duration: 0.3 }}
-                className="group relative flex flex-col justify-between bg-white/70 dark:bg-slate-900/50 backdrop-blur-xl rounded-[22px] border border-white/50 dark:border-white/10 shadow-sm hover:shadow-xl transition-all overflow-hidden"
+                className="group relative flex flex-col justify-between bg-white dark:bg-slate-950/40 backdrop-blur-xl rounded-[32px] border border-slate-100 dark:border-slate-800/80 shadow-sm hover:shadow-xl hover:scale-[1.01] transition-all duration-300 overflow-hidden"
               >
                 
                 {/* Responsive Image Banner */}
-                <div className="relative aspect-video w-full overflow-hidden">
+                <div className="relative aspect-video w-full overflow-hidden bg-slate-100 dark:bg-slate-900">
                   <img 
                     src={item.image} 
                     alt={item.title} 
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   />
-                  {/* Subtle Video Hover indicator */}
-                  <div className="absolute inset-0 bg-slate-950/25 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                    <div className="w-12 h-12 rounded-full bg-white/95 flex items-center justify-center text-blue-600 shadow-lg group-hover:scale-110 transition-transform">
-                      <Play className="w-5 h-5 ml-0.5 fill-current" />
+                  
+                  {/* Absolute Badge Overlays */}
+                  <div className="absolute top-4 left-4 flex flex-col gap-1.5 z-10">
+                    <div className="flex gap-1.5 items-center">
+                      {item.countryBadge && (
+                        <span className="inline-flex items-center gap-1 text-[10px] font-bold text-slate-800 dark:text-slate-100 bg-white/90 dark:bg-slate-900/95 backdrop-blur-sm px-2.5 py-1 rounded-full border border-slate-100/20 shadow-sm">
+                          <Globe className="w-3 h-3 text-blue-500" />
+                          {item.countryBadge}
+                        </span>
+                      )}
+                      {item.industryBadge && (
+                        <span className="inline-flex items-center text-[10px] font-bold text-white bg-blue-600/90 backdrop-blur-sm px-2.5 py-1 rounded-full shadow-sm">
+                          {item.industryBadge}
+                        </span>
+                      )}
                     </div>
                   </div>
-                  {/* Technology labels overlay */}
-                  <div className="absolute top-3 left-3 flex flex-wrap gap-1.5 z-10">
-                    {item.tags.map((tag, idx) => (
-                      <span key={idx} className="text-3xs font-bold text-white bg-slate-900/80 backdrop-blur-sm px-2.5 py-1 rounded-full">
-                        {tag}
+
+                  {item.projectType && (
+                    <div className="absolute top-4 right-4 z-10">
+                      <span className="inline-flex items-center text-[9px] font-extrabold text-white bg-slate-900/90 dark:bg-slate-950/90 backdrop-blur-sm px-2.5 py-1 rounded-full uppercase tracking-wider">
+                        {item.projectType}
                       </span>
-                    ))}
-                  </div>
+                    </div>
+                  )}
                 </div>
 
                 {/* Info & Content Body */}
-                <div className="p-6 text-left flex flex-col justify-between flex-grow">
+                <div className="p-6 md:p-8 text-left flex flex-col justify-between flex-grow">
                   <div>
-                    <span className="text-3xs font-extrabold text-blue-600 dark:text-blue-400 tracking-wider uppercase block mb-1">
+                    <span className="text-[10px] font-extrabold text-blue-600 dark:text-blue-400 tracking-widest uppercase block mb-1">
                       {item.client}
                     </span>
-                    <h3 className="font-display font-extrabold text-lg text-slate-900 dark:text-white leading-snug mb-3 group-hover:text-blue-600 transition-colors">
+                    <h3 className="font-display font-extrabold text-lg md:text-xl text-slate-900 dark:text-white leading-tight mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                       {item.title}
                     </h3>
                     
+                    {item.shortDescription && (
+                      <p className="text-xs md:text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-6 font-medium">
+                        {item.shortDescription}
+                      </p>
+                    )}
+
+                    {/* Services Provided Badges */}
+                    {item.servicesUsed && item.servicesUsed.length > 0 && (
+                      <div className="mb-4">
+                        <span className="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider block mb-2">
+                          Services Provided
+                        </span>
+                        <div className="flex flex-wrap gap-1.5">
+                          {item.servicesUsed.map((svc, sIdx) => (
+                            <span key={sIdx} className="text-[9px] font-bold text-blue-600 dark:text-blue-400 bg-blue-50/50 dark:bg-blue-500/10 border border-blue-100/10 dark:border-blue-500/10 px-2 py-0.5 rounded-full">
+                              {svc}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Tech Stack Badges */}
+                    {item.techStack && item.techStack.length > 0 && (
+                      <div className="mb-6">
+                        <span className="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider block mb-2">
+                          Technology Stack
+                        </span>
+                        <div className="flex flex-wrap gap-1.5">
+                          {item.techStack.map((tech, tIdx) => (
+                            <span key={tIdx} className="text-[9px] font-bold text-slate-600 dark:text-slate-300 bg-slate-50 dark:bg-slate-800/60 border border-slate-100 dark:border-slate-800/80 px-2 py-0.5 rounded-full font-mono">
+                              {tech}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                    
                     {/* Performance Metrics Highlight */}
-                    <div className="px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-800 mb-6 flex items-center gap-3">
+                    <div className="px-4 py-3 rounded-2xl bg-emerald-500/5 dark:bg-emerald-500/10 border border-emerald-500/10 mb-6 flex items-center gap-2.5">
                       <TrendingUp className="w-4 h-4 text-emerald-500 shrink-0" />
                       <span className="text-2xs font-bold text-emerald-600 dark:text-emerald-400 leading-tight">
                         {item.results}
@@ -297,28 +347,37 @@ export default function Portfolio() {
                     </div>
                   </div>
 
-                  <div className="flex items-center justify-between mt-auto">
-                    {item.caseStudyId ? (
-                      <button
-                        onClick={() => handleOpenCaseStudy(item.caseStudyId)}
-                        className="text-xs font-bold text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1 cursor-pointer"
-                      >
-                        Read Case Study <ChevronRight className="w-4 h-4" />
-                      </button>
-                    ) : (
-                      <span className="text-xs text-slate-400">Case study coming soon</span>
-                    )}
-
-                    {item.liveUrl && (
+                  {/* Action Buttons Grid */}
+                  <div className="grid grid-cols-2 gap-3 pt-4 border-t border-slate-100 dark:border-slate-800/80 mt-auto">
+                    {item.liveUrl ? (
                       <a 
                         href={item.liveUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="p-2 rounded-full border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-500 dark:text-slate-300 hover:text-blue-600"
-                        title="Live Preview"
+                        className="flex items-center justify-center gap-1.5 py-3 rounded-xl border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 hover:text-blue-600 font-bold text-xs uppercase tracking-wider transition-colors cursor-pointer text-center"
+                        title="Live Website"
                       >
-                        <ArrowUpRight className="w-4.5 h-4.5" />
+                        <span>Live Site</span>
+                        <ArrowUpRight className="w-3.5 h-3.5" />
                       </a>
+                    ) : (
+                      <div className="flex items-center justify-center py-3 rounded-xl border border-dashed border-slate-200 dark:border-slate-800 text-slate-400 text-xs font-bold uppercase tracking-wider">
+                        Offline
+                      </div>
+                    )}
+
+                    {item.caseStudyId ? (
+                      <button
+                        onClick={() => handleOpenCaseStudy(item.caseStudyId)}
+                        className="flex items-center justify-center gap-1.5 py-3 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow-md shadow-blue-500/10 hover:shadow-lg transition-all cursor-pointer text-center"
+                      >
+                        <span>Case Study</span>
+                        <ChevronRight className="w-3.5 h-3.5" />
+                      </button>
+                    ) : (
+                      <div className="flex items-center justify-center py-3 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-400 text-xs font-bold uppercase tracking-wider">
+                        Coming Soon
+                      </div>
                     )}
                   </div>
                 </div>

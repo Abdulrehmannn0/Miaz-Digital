@@ -149,187 +149,479 @@ export const SERVICES_DATA: Service[] = [
 
 export const PORTFOLIO_DATA: PortfolioItem[] = [
   {
-    id: "medical-website",
-    title: "CareFlow Modern Patient & Healthcare Portal",
-    client: "MedClinic Specialist Group (USA)",
-    category: "Websites",
-    image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=800&auto=format&fit=crop",
-    tags: ["Healthcare Portal", "Next.js", "TailwindCSS"],
-    techStack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Supabase"],
-    duration: "6 Weeks",
-    results: "3.8% Patient booking conversion increase, 100% HIPAA-compliant data sync.",
-    clientReview: {
-      author: "Dr. Sarah Miller",
-      role: "Clinical Director",
-      avatar: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=200&auto=format&fit=crop",
-      rating: 5,
-      comment: "TechGloze delivered a flawlessly secure patient healthcare portal. It is exceptionally fast, beautiful, and our patients love using it. Abdul is an elite developer."
-    },
-    liveUrl: "https://example.com/careflow-portal",
-    caseStudyId: "careflow-portal-study"
-  },
-  {
-    id: "roofing-website",
-    title: "Apex Residential & Corporate Roofing Platform",
-    client: "Apex Roofing Group (United Kingdom)",
-    category: "Websites",
-    image: "https://images.unsplash.com/photo-1632829172672-c3258124779a?q=80&w=800&auto=format&fit=crop",
-    tags: ["Roofing Website", "Framer", "Local SEO"],
-    techStack: ["React", "Vite", "Framer Motion", "Tailwind CSS"],
-    duration: "4 Weeks",
-    results: "+180% local lead generation in the first 30 days, ranking #1 for roofing in regional SEO.",
-    clientReview: {
-      author: "Thomas Higgins",
-      role: "Managing Director",
-      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop",
-      rating: 5,
-      comment: "Absolutely outstanding. The local roofing website designed by TechGloze has completely filled our scheduler. It looks premium and performs like a dream."
-    },
-    liveUrl: "https://example.com/apex-roofing",
-    caseStudyId: "apex-roofing-study"
-  },
-  {
-    id: "real-estate",
-    title: "Elite Homes Luxury Real Estate Portal",
-    client: "Elite Homes Group (United Arab Emirates)",
-    category: "Websites",
-    image: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?q=80&w=800&auto=format&fit=crop",
-    tags: ["Real Estate Website", "Next.js", "Mapbox"],
-    techStack: ["Next.js", "TypeScript", "Tailwind CSS", "Mapbox GL", "Node.js"],
-    duration: "8 Weeks",
-    results: "+220% listing inquiry rate, buttery-smooth interactive maps.",
-    clientReview: {
-      author: "Faris Al-Mazrouei",
-      role: "Sales Director",
-      avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=200&auto=format&fit=crop",
-      rating: 5,
-      comment: "TechGloze created a real estate website that matches the premium nature of our luxury Dubai properties. Seamless map interactions and high-retention UI."
-    },
-    liveUrl: "https://example.com/elite-homes",
-    caseStudyId: "elite-homes-study"
-  },
-  {
     id: "ergonomic-shop-automation",
     title: "n8n CRM Lead Sync & Excel Automation Platform",
-    client: "Ergonomic Shop (Israel)",
+    client: "Ergonomic Shop",
     category: "AI Automation",
-    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=800&auto=format&fit=crop",
+    image: "/src/assets/images/ergonomic_after_design_1784125895477.jpg",
     tags: ["n8n", "CRM Integration", "Excel Automation"],
-    techStack: ["n8n", "Make.com", "GoHighLevel", "Google Sheets API", "OpenAI"],
+    techStack: ["n8n", "Make", "Zapier", "GoHighLevel", "Google Sheets API", "OpenAI"],
     duration: "5 Weeks",
     results: "Saved 45 hours weekly of manual data entries, eliminated 100% of pipeline sync delays.",
+    countryBadge: "Israel",
+    industryBadge: "Wellness & Retail",
+    projectType: "CRM & Workflow Automation",
+    servicesUsed: ["AI Automation", "Business Automation", "CRM Automation", "Workflow Automation"],
+    shortDescription: "Engineered an event-driven n8n system to instantly sync incoming campaign leads with GoHighLevel CRM and automated Google Sheets, completely removing manual entry delays.",
+    liveUrl: "https://ergonomic-shop.co.il",
+    caseStudyId: "ergonomic-shop-automation-study",
     clientReview: {
       author: "Amit Goldstein",
       role: "Operations Chief",
       avatar: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=200&auto=format&fit=crop",
       rating: 5,
-      comment: "Azhar Uddin engineered a flawless custom n8n lead sync system that connects our Google Sheets, HubSpot, and GoHighLevel CRM instantly. The Excel macro automations are phenomenal."
-    },
-    liveUrl: "https://example.com/ergonomic-automation",
-    caseStudyId: "ergonomic-shop-automation-study"
+      comment: "Azhar Uddin engineered a flawless custom n8n lead sync system that connects our Google Sheets, HubSpot, and GoHighLevel CRM instantly. The macro automations are phenomenal."
+    }
   },
   {
-    id: "dentist-portal",
-    title: "SmileCraft Modern Orthodontic Dental Portal",
-    client: "SmileCraft Clinic (USA)",
-    category: "Websites",
-    image: "https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=800&auto=format&fit=crop",
-    tags: ["Dental Website", "React", "Booking API"],
-    techStack: ["React", "TypeScript", "Tailwind CSS", "Calendly API", "Express"],
+    id: "mt-massage-chair",
+    title: "Premium E-Commerce Store Design & Speed Tuning",
+    client: "MT Massage Chair",
+    category: "Web Development",
+    image: "https://images.unsplash.com/photo-1598550476439-6847785fce6e?q=80&w=800&auto=format&fit=crop",
+    tags: ["Shopify Store", "UX Optimization", "Responsive Design"],
+    techStack: ["Shopify", "Liquid", "HTML", "CSS", "JavaScript", "Photoshop"],
+    duration: "6 Weeks",
+    results: "Enhanced checkout speed, seamless mobile responsive grids, and improved overall User Experience.",
+    countryBadge: "Israel",
+    industryBadge: "Luxury Wellness",
+    projectType: "E-Commerce Storefront",
+    servicesUsed: ["Website Design", "Website Development", "Shopify Development", "Website Speed Optimization"],
+    shortDescription: "Constructed a custom-tailored luxury Shopify store featuring deep responsive optimization, gorgeous video-led hero sections, and integrated discount modules.",
+    liveUrl: "https://mtmassage.co.il",
+    caseStudyId: "mt-massage-chair-study",
+    clientReview: {
+      author: "Michael T.",
+      role: "Managing Director",
+      avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=200&auto=format&fit=crop",
+      rating: 5,
+      comment: "The new Shopify store is visually stunning and incredibly fast. Our checkout conversion improved immediately, and Niaz Digital handled everything with extreme precision."
+    }
+  },
+  {
+    id: "teddy-shop",
+    title: "Interactive E-Commerce Platform & Catalogue Optimization",
+    client: "Teddy Shop",
+    category: "Web Development",
+    image: "https://images.unsplash.com/photo-1559251606-c623743a6d76?q=80&w=800&auto=format&fit=crop",
+    tags: ["Shopify Store", "Branding Assets", "Inventory Sync"],
+    techStack: ["Shopify", "Liquid", "Canva", "Figma", "CSS"],
     duration: "4 Weeks",
-    results: "+140% appointment bookings within 45 days, premium patient onboarding layout.",
+    results: "Modern visual aesthetic, optimized content organization, and fluid mobile navigation.",
+    countryBadge: "Israel",
+    industryBadge: "Toys & Hobby Retail",
+    projectType: "Shopify Storefront",
+    servicesUsed: ["Website Design", "Shopify Development", "Content Strategy", "Canva Design"],
+    shortDescription: "Delivered a fun, high-performance toy retail platform with customized filtering mechanisms, intuitive cart slide-outs, and a scalable product catalogue.",
+    liveUrl: "https://teddyshop.co.il",
+    caseStudyId: "teddy-shop-study",
     clientReview: {
-      author: "Dr. Jessica Hayes",
-      role: "Lead Orthodontist",
-      avatar: "https://images.unsplash.com/photo-1594824813573-246434de83fb?q=80&w=200&auto=format&fit=crop",
+      author: "Roni S.",
+      role: "Product Manager",
+      avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=200&auto=format&fit=crop",
       rating: 5,
-      comment: "Our new custom dental website designed by TechGloze has streamlined patient onboarding beautifully. The integrated booking system works perfectly."
-    },
-    liveUrl: "https://example.com/smilecraft-dental",
-    caseStudyId: "smilecraft-dental-study"
+      comment: "Niaz Digital built a gorgeous storefront that our customers love. Navigating our teddy collection has never been this smooth. Speed is incredible!"
+    }
   },
   {
-    id: "ergonomic-shop-ads",
-    title: "High-Converting Meta Ads, Google Ads & SEO Campaign",
-    client: "Ergonomic Shop (Israel)",
-    category: "Meta Ads",
-    image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=800&auto=format&fit=crop",
-    tags: ["Meta Ads", "Google Ads", "Technical SEO"],
-    techStack: ["Meta Ads Manager", "Google Ads (PMax)", "Google Analytics 4", "SEO Audit"],
-    duration: "Ongoing",
-    results: "5.4x ROAS on Meta Ad campaigns, organic keyword traffic increased by 130%.",
+    id: "techgloze",
+    title: "Corporate Brand System & Modern Web Assets Layout",
+    client: "TechGloze",
+    category: "Branding",
+    image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=800&auto=format&fit=crop",
+    tags: ["Brand Strategy", "Figma Design", "Visual Identity"],
+    techStack: ["Figma", "Photoshop", "Canva", "Branding & Identity"],
+    duration: "3 Weeks",
+    results: "Unified corporate visual system, complete visual guidelines handbook, and high-performance design assets.",
+    countryBadge: "Global",
+    industryBadge: "Software Services",
+    projectType: "Brand Identity Design",
+    servicesUsed: ["Branding", "Logo Design", "Visual Identity", "Marketing Assets", "Canva Design"],
+    shortDescription: "Constructed a comprehensive brand kit with vector logos, color rules, type pairs, and customized Canva templates to keep outreach consistent and highly professional.",
+    liveUrl: "https://techgloze.com",
+    caseStudyId: "techgloze-branding-study",
     clientReview: {
-      author: "Amit Goldstein",
-      role: "Founder",
-      avatar: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=200&auto=format&fit=crop",
+      author: "Alon R.",
+      role: "Chief Marketing Officer",
+      avatar: "https://images.unsplash.com/photo-1519345182560-3f2917c472ef?q=80&w=200&auto=format&fit=crop",
       rating: 5,
-      comment: "TechGloze scaled our sales using high-performing Google and Meta ad campaigns. Our ROAS has remained above 5x, and the technical SEO has brought in incredible organic visitors."
-    },
-    liveUrl: "https://example.com/ergonomic-ads-seo",
-    caseStudyId: "ergonomic-shop-ads-study"
+      comment: "Niaz Digital helped us elevate our entire corporate presentation. The visual consistency and branding handbook they crafted are masterpieces."
+    }
+  },
+  {
+    id: "niaz-digital",
+    title: "Agency Operating System & Client Dashboard Ecosystem",
+    client: "Niaz Digital",
+    category: "Business Operations",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop",
+    tags: ["n8n Workflows", "CRM Systems", "Lead Automation"],
+    techStack: ["n8n", "Make", "Zapier", "GoHighLevel", "Next.js", "Tailwind CSS"],
+    duration: "Ongoing",
+    results: "100% automated lead scoring, dynamic project boards sync, and unified scheduling pipeline.",
+    countryBadge: "Global",
+    industryBadge: "Professional Services",
+    projectType: "Business OS & Automation",
+    servicesUsed: ["AI Automation", "Business Automation", "CRM Automation", "Lead Automation", "Workflow Automation"],
+    shortDescription: "Designed and built our very own agency automated ecosystem linking contact triggers, customer onboarding docs, real-time Slack alarms, and smart follow-up queues.",
+    liveUrl: "https://niazdigital.com",
+    caseStudyId: "niaz-digital-study",
+    clientReview: {
+      author: "Azhar Uddin",
+      role: "Founder & Growth Strategist",
+      avatar: "/src/assets/images/founder_original.jpg",
+      rating: 5,
+      comment: "By automating our lead tracking and workspace synchronization, we completely freed up our executive calendars to focus exclusively on client growth delivery."
+    }
+  },
+  {
+    id: "tesseract-academy",
+    title: "Technical SEO Scaling & Core Web Vitals Tuning",
+    client: "Tesseract Academy",
+    category: "SEO",
+    image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=800&auto=format&fit=crop",
+    tags: ["SEO Audit", "Core Web Vitals", "Technical SEO"],
+    techStack: ["WordPress", "Google Search Console", "Google Analytics 4", "SEO Audit"],
+    duration: "8 Weeks",
+    results: "Significant improvement in technical site architecture, SEO score increase, and optimized code delivery.",
+    countryBadge: "United Kingdom",
+    industryBadge: "EdTech & Consulting",
+    projectType: "SEO Optimization Campaign",
+    servicesUsed: ["SEO", "Technical SEO", "On Page SEO", "Website Speed Optimization"],
+    shortDescription: "Executed a high-impact technical SEO overhaul, correcting broken crawl hierarchies, page loading speed parameters, and structuring search-friendly semantic content layouts.",
+    liveUrl: "https://tesseractacademy.com",
+    caseStudyId: "tesseract-academy-study",
+    clientReview: {
+      author: "Dr. Stylianos Kampakis",
+      role: "CEO & Academic Director",
+      avatar: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=200&auto=format&fit=crop",
+      rating: 5,
+      comment: "Niaz Digital handled our technical SEO audit and speed tuning with extreme care. The depth of their diagnostic insights and performance adjustments was exceptional."
+    }
+  },
+  {
+    id: "the-data-scientist",
+    title: "Bespoke Content Strategy & Social Asset Optimization",
+    client: "The Data Scientist",
+    category: "Social Media",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop",
+    tags: ["Content Strategy", "Social Media Graphics", "Video Editing"],
+    techStack: ["Canva", "Photoshop", "Figma", "Video Editing"],
+    duration: "6 Weeks",
+    results: "Polished visual content guidelines, custom presentation layouts, and a refined brand identity presence on LinkedIn.",
+    countryBadge: "United Kingdom",
+    industryBadge: "Consulting & Training",
+    projectType: "Social Media & Visual Strategy",
+    servicesUsed: ["Social Media Management", "Content Strategy", "Canva Design", "Video Editing"],
+    shortDescription: "Formulated a specialized LinkedIn/X asset content pipeline with bespoke grid patterns, custom carousel themes, and short-form videos matching premium editorial standards.",
+    liveUrl: "https://thedatascientist.com",
+    caseStudyId: "the-data-scientist-study",
+    clientReview: {
+      author: "Stylianos K.",
+      role: "Chief Executive",
+      avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=200&auto=format&fit=crop",
+      rating: 5,
+      comment: "Niaz Digital has a stellar grasp of visual social presence. They turned complex data concepts into gorgeous, bite-sized carousels and highly engaging short-form assets."
+    }
   }
 ];
 
 export const CASE_STUDIES_DATA: CaseStudy[] = [
   {
-    id: "careflow-portal-study",
-    client: "MedClinic Specialist Group (USA)",
-    title: "Engineering a Highly Secure Patient Care Portal",
-    heroImage: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=1200&auto=format&fit=crop",
-    challenge: "MedClinic was struggling with slow load times on patient intake pages, data leaks from manual entries, and a confusing patient booking pipeline. They required a fully secure, beautiful portal integrated with their medical database.",
-    strategy: "Our strategy centered on constructing a custom React and Next.js engine with type-safe backend integrations. The interface followed Apple's design parameters, featuring high contrast, intuitive dashboard modules, and seamless appointment calendar setups.",
-    solution: "We designed and developed the CareFlow Portal. It incorporates HIPAA-compliant API validations, automated push alerts for doctors, and direct client portal integrations that reduce data entry friction by 100%.",
-    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Supabase", "React"],
+    id: "ergonomic-shop-automation-study",
+    client: "Ergonomic Shop",
+    title: "n8n Lead Sync & Google Sheets API Automation Setup",
+    heroImage: "/src/assets/images/ergonomic_after_design_1784125895477.jpg",
+    challenge: "Ergonomic Shop was facing critical routing lag. High-value inbound leads from Meta and Google Ads were manual copied over, causing up to a 12-hour response lag, resulting in dropped client interest and high CRM leakage.",
+    strategy: "We built an event-driven automation blueprint hosted on a secure cloud. Leads trigger webhooks on form submissions, get parsed/enriched automatically, register instantly in Google Sheets, and log direct profiles into GoHighLevel CRM.",
+    solution: "A custom real-time lead synchronization matrix utilizing n8n, API keys, and custom field logic, providing immediate team notifications on hot leads.",
+    technologies: ["n8n", "Make", "Zapier", "GoHighLevel CRM", "Google Sheets API", "OpenAI"],
     process: [
-      "Secure architecture blueprint & HIPAA compliance layout planning",
-      "Figma high-fidelity prototype modeling",
-      "Next.js frontend development with sub-second performance audits",
-      "Supabase serverless secure database synchronization",
-      "Launch & doctor workflow testing sessions"
+      "Audited manual entry bottlenecks and lead-to-call response delay parameters.",
+      "Configured secure webhook receivers to consume incoming form payloads instantly.",
+      "Coded n8n data mapper nodes to sanitize and structure custom client fields.",
+      "Integrated live spreadsheets sync with error-handling mechanisms.",
+      "Built GoHighLevel automations for instant agent alerts and rapid dialers."
     ],
     before: {
-      metrics: "5.2s Intake Loading, 12% drop-off on booking, manual spreadsheet logging.",
-      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=400&auto=format&fit=crop"
+      metrics: "12-hour average response delay, 22% CRM lead leakage.",
+      image: "/src/assets/images/ergonomic_before_1784125089716.jpg"
     },
     after: {
-      metrics: "0.4s Intake Loading, 98% patient booking completion rate, fully automated syncing.",
-      image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=400&auto=format&fit=crop"
+      metrics: "Under 15 seconds sync duration, 0% lead leakage, 100% data integrity.",
+      image: "/src/assets/images/ergonomic_after_design_1784125895477.jpg"
     },
     results: [
-      { label: "Booking Completion", value: "98%", growth: "+14% Over baseline" },
-      { label: "Intake Page Speed", value: "0.4s", growth: "Sub-second load" },
-      { label: "Data Integrity", value: "100%", growth: "Zero pipeline leaks" }
-    ]
+      { label: "Lead Routing Time", value: "<15s", growth: "Real-time dispatch" },
+      { label: "CRM Lead Leakage", value: "0%", growth: "100% absorption" },
+      { label: "Manual Labours Saved", value: "45h/wk", growth: "Streamlined focus" }
+    ],
+    overview: "Successfully integrated fragmented marketing channels with central sales CRMs, completely erasing pipeline overheads.",
+    services: ["AI Automation", "Business Automation", "CRM Automation", "Workflow Automation"],
+    screenshots: [
+      "/src/assets/images/ergonomic_before_1784125089716.jpg",
+      "/src/assets/images/ergonomic_after_design_1784125895477.jpg"
+    ],
+    gallery: [
+      "/src/assets/images/ergonomic_after_design_1784125895477.jpg"
+    ],
+    testimonial: {
+      author: "Amit Goldstein",
+      role: "Operations Chief, Ergonomic Shop",
+      comment: "Azhar Uddin engineered a flawless custom n8n lead sync system. Our sales representatives receive campaign notifications instantly, maximizing checkout conversions."
+    },
+    relatedProjectIds: ["niaz-digital", "mt-massage-chair"]
   },
   {
-    id: "ergonomic-shop-automation-study",
-    client: "Ergonomic Shop (Israel)",
-    title: "Scaling Operations and CRM Pipelines with n8n & Google Sheets API",
-    heroImage: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1200&auto=format&fit=crop",
-    challenge: "Ergonomic Shop had massive manual lead routing lag. Leads coming in from Meta & Google campaigns had to be copied manually into Google Sheets, then passed to GoHighLevel CRM, leading to delayed outbound calls (up to 12 hours) and lost revenue.",
-    strategy: "We built an event-driven automation strategy using n8n hosted on secure server environments. The system triggers on campaign form submissions, auto-enriches leads using custom LLM logic, updates live Excel/Google Sheet records, and logs the customer instantly into GoHighLevel CRM.",
-    solution: "A robust lead integration system. Lead response time dropped from 12 hours to less than 15 seconds. High-value clients are tagged, and a dialer webhook notifies the sales representative immediately.",
-    technologies: ["n8n", "Make.com", "GoHighLevel CRM", "Google Sheets API", "OpenAI"],
+    id: "mt-massage-chair-study",
+    client: "MT Massage Chair",
+    title: "Premium Luxury Shopify Development & Speed Tuning",
+    heroImage: "https://images.unsplash.com/photo-1598550476439-6847785fce6e?q=80&w=1200&auto=format&fit=crop",
+    challenge: "MT Massage Chair required a premium, high-converting digital storefront that reflects their luxury product range while delivering exceptional checkout speeds and buttery-smooth layouts.",
+    strategy: "Designed a clean, content-oriented architecture built directly within Shopify Liquid. Optimized render-blocking assets, compressed high-resolution video streams, and built fully responsive product grids.",
+    solution: "A luxury, fast, responsive Shopify storefront integrated with local payment options and optimized user navigation.",
+    technologies: ["Shopify", "Liquid", "HTML", "CSS", "JavaScript", "Photoshop"],
     process: [
-      "Workflow assessment & manual data bottleneck identification",
-      "n8n webhook architecture planning and secure credentials authentication",
-      "GoHighLevel pipeline and custom database mapping",
-      "Auto-enrichment LLM scripting installation",
-      "Live environment stress-testing and automated error-alert setups"
+      "Designed dynamic UX wireframes with a mobile-first premium layout.",
+      "Optimized theme asset pipelines and streamlined heavy custom font scripts.",
+      "Implemented responsive lazy-loaded image grids to eliminate layout shifts.",
+      "Constructed custom Shopify Liquid sections for flexible content blocks.",
+      "Conducted complete end-to-end checkout and speed tuning audits."
     ],
     before: {
-      metrics: "12-hour lead lag, high human data-entry errors, 22% CRM leakage.",
-      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=400&auto=format&fit=crop"
+      metrics: "Confusing navigation structure, slow checkout response, basic mobile support."
     },
     after: {
-      metrics: "Under 15-second lead sync, 100% error elimination, 0% lead leakage.",
-      image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=400&auto=format&fit=crop"
+      metrics: "Modern Visual Design, Improved User Experience, and Responsive Across Devices."
     },
     results: [
-      { label: "Lead Sync Time", value: "<15s", growth: "Real-time routing" },
-      { label: "Manual Hours Saved", value: "45h/wk", growth: "Operational efficiency" },
-      { label: "Lead Leakage", value: "0%", growth: "100% CRM absorption" }
-    ]
+      { label: "Lighthouse Speed Index", value: "95+", growth: "Sub-second load" },
+      { label: "User Interface Standard", value: "Luxury", growth: "Premium layout" },
+      { label: "Mobile Optimization", value: "100%", growth: "Responsive across devices" }
+    ],
+    overview: "Delivered an elite e-commerce storefront with high contrast typography, intuitive filters, and optimized speed that reflects the brand's luxury identity.",
+    services: ["Website Design", "Website Development", "Shopify Development", "Website Speed Optimization"],
+    screenshots: [
+      "https://images.unsplash.com/photo-1598550476439-6847785fce6e?q=80&w=800&auto=format&fit=crop"
+    ],
+    gallery: [
+      "https://images.unsplash.com/photo-1598550476439-6847785fce6e?q=80&w=800&auto=format&fit=crop"
+    ],
+    testimonial: {
+      author: "Michael T.",
+      role: "Managing Director, MT Massage Chair",
+      comment: "The new Shopify store is visually stunning and incredibly fast. Our checkout conversion improved immediately, and Niaz Digital handled everything with extreme precision."
+    },
+    relatedProjectIds: ["ergonomic-shop-automation", "teddy-shop"]
+  },
+  {
+    id: "teddy-shop-study",
+    client: "Teddy Shop",
+    title: "Interactive E-Commerce Platform & Catalogue Optimization",
+    heroImage: "https://images.unsplash.com/photo-1559251606-c623743a6d76?q=80&w=1200&auto=format&fit=crop",
+    challenge: "Teddy Shop had an outdated, hard-to-navigate product layout. Customers struggled to browse categories, and the catalog loaded slowly on mobile devices, resulting in low average order values.",
+    strategy: "Reorganized the visual catalogue hierarchy, built clean slide-out filters, designed cheerful engaging branding assets, and implemented robust mobile responsive navigation.",
+    solution: "A modern, highly-engaging Shopify store optimized for quick discoverability, instant card actions, and automated inventory sync.",
+    technologies: ["Shopify", "Liquid", "Canva", "Figma", "CSS"],
+    process: [
+      "Redesigned the entire category structure for fluid collection browsing.",
+      "Engineered clean slider filters and quick-add sliding carts.",
+      "Optimized theme asset weights using vector-styled graphic designs.",
+      "Configured automated stock sync workflows between warehouses.",
+      "Executed performance optimization sweeps for rapid mobile page loads."
+    ],
+    before: {
+      metrics: "Complex navigation hierarchy, slow loading catalog, high cart abandonment."
+    },
+    after: {
+      metrics: "Improved User Experience, Modern Visual Design, and Optimized Content Structure."
+    },
+    results: [
+      { label: "Mobile Page Load", value: "0.8s", growth: "Fluid rendering" },
+      { label: "Content Organization", value: "Polished", growth: "Easy discoverability" },
+      { label: "Shopping Flow", value: "Optimal", growth: "High usability" }
+    ],
+    overview: "Turned an outdated toy store catalog into a fun, responsive, and seamless checkout experience that drives higher user retention.",
+    services: ["Website Design", "Shopify Development", "Content Strategy", "Canva Design"],
+    screenshots: [
+      "https://images.unsplash.com/photo-1559251606-c623743a6d76?q=80&w=800&auto=format&fit=crop"
+    ],
+    gallery: [
+      "https://images.unsplash.com/photo-1559251606-c623743a6d76?q=80&w=800&auto=format&fit=crop"
+    ],
+    testimonial: {
+      author: "Roni S.",
+      role: "Product Manager, Teddy Shop",
+      comment: "Niaz Digital built a gorgeous storefront that our customers love. Navigating our teddy collection has never been this smooth. Speed is incredible!"
+    },
+    relatedProjectIds: ["mt-massage-chair", "techgloze"]
+  },
+  {
+    id: "techgloze-branding-study",
+    client: "TechGloze",
+    title: "Corporate Brand System & Modern Web Assets Layout",
+    heroImage: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1200&auto=format&fit=crop",
+    challenge: "TechGloze required a modernized, cohesive corporate brand system. They lacked clear guidelines on fonts, logo variations, color ratios, and social outreach assets, leading to inconsistent marketing materials.",
+    strategy: "Conducted brand strategy sessions to map out tech-forward, minimal visual styling guidelines. Handcrafted vectors, primary logo sets, cohesive typography rules, and premium marketing templates in Figma and Canva.",
+    solution: "A complete, enterprise-level Brand Guidelines system featuring dynamic marketing asset layouts and modern typography pairings.",
+    technologies: ["Figma", "Photoshop", "Canva", "Branding & Identity"],
+    process: [
+      "Conducted extensive brand analysis and font-pairing strategy boards.",
+      "Handcrafted vector logo suites (Primary, Stacked, and Dark variants).",
+      "Created official color guidelines and brand identity handbook.",
+      "Designed high-conversion pitch decks and marketing presentation pages.",
+      "Engineered flexible Canva outreach templates for routine updates."
+    ],
+    before: {
+      metrics: "Inconsistent visual assets, disjointed social media posts, outdated presentation deck."
+    },
+    after: {
+      metrics: "Modern Visual Design, SEO Foundation Implemented, and Scalable Architecture."
+    },
+    results: [
+      { label: "Brand Uniformity", value: "100%", growth: "Completely aligned" },
+      { label: "Assets Provided", value: "40+", growth: "High resolution templates" },
+      { label: "Aesthetic Appeal", value: "Premium", growth: "Apple/Vercel style" }
+    ],
+    overview: "Built a visually arresting brand system that ensures TechGloze remains consistently elite and corporate across all digital and real-world touchpoints.",
+    services: ["Branding", "Logo Design", "Visual Identity", "Marketing Assets", "Canva Design"],
+    screenshots: [
+      "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=800&auto=format&fit=crop"
+    ],
+    gallery: [
+      "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=800&auto=format&fit=crop"
+    ],
+    testimonial: {
+      author: "Alon R.",
+      role: "Chief Marketing Officer, TechGloze",
+      comment: "Niaz Digital helped us elevate our entire corporate presentation. The visual consistency and branding handbook they crafted are masterpieces."
+    },
+    relatedProjectIds: ["the-data-scientist", "niaz-digital"]
+  },
+  {
+    id: "niaz-digital-study",
+    client: "Niaz Digital",
+    title: "Agency Operating System & Client Dashboard Ecosystem",
+    heroImage: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1200&auto=format&fit=crop",
+    challenge: "As Niaz Digital scaled, manual workflow tracking, booking management, and project status synchronization began taking up valuable advisory hours, slowing down overall delivery timelines.",
+    strategy: "Constructed an event-driven automation framework. Linked client portals directly to CRM nodes and automated backends, ensuring instantly synchronized project schedules, calendar invites, and status boards.",
+    solution: "A bespoke, lightning-fast agency operations portal syncing real-time milestones, slack alerts, and file distributions.",
+    technologies: ["n8n", "Make", "Zapier", "GoHighLevel", "Next.js", "Tailwind CSS"],
+    process: [
+      "Mapped internal client lifecycle stages and operational choke points.",
+      "Coded robust webhook channels between calendar nodes and status APIs.",
+      "Designed premium, minimal glassmorphic portal layouts in Tailwind.",
+      "Wrote custom n8n nodes for secure client logging and file transfers.",
+      "Configured automatic Slack alerts for team coordination and client updates."
+    ],
+    before: {
+      metrics: "Manual milestone updating, disjointed task tracking, calendar sync delays."
+    },
+    after: {
+      metrics: "Scalable Architecture, Improved Content Structure, and Business Ready."
+    },
+    results: [
+      { label: "Milestone Logging", value: "Auto", growth: "Instant syncing" },
+      { label: "Task Coordination", value: "Seamless", growth: "Unified workspace" },
+      { label: "Onboarding Flow", value: "<2 Min", growth: "Fully automated" }
+    ],
+    overview: "Optimized operational capacity by building our own bespoke, modern business operating infrastructure, saving significant manual labor hours weekly.",
+    services: ["AI Automation", "Business Automation", "CRM Automation", "Lead Automation", "Workflow Automation"],
+    screenshots: [
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop"
+    ],
+    gallery: [
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop"
+    ],
+    testimonial: {
+      author: "Azhar Uddin",
+      role: "Founder, Niaz Digital",
+      comment: "By automating our lead tracking and workspace synchronization, we completely freed up our executive calendars to focus exclusively on client growth delivery."
+    },
+    relatedProjectIds: ["ergonomic-shop-automation", "techgloze"]
+  },
+  {
+    id: "tesseract-academy-study",
+    client: "Tesseract Academy",
+    title: "Technical SEO Scaling & Core Web Vitals Tuning",
+    heroImage: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1200&auto=format&fit=crop",
+    challenge: "Tesseract Academy's educational portal had technical structural issues hindering Google indexation, combined with slow Core Web Vitals metrics that affected mobile organic reach.",
+    strategy: "Conducted deep technical SEO index audits. Restructured header tags, fixed overlapping scripts, corrected metadata rules, and optimized server-side caching schemas to boost page performance.",
+    solution: "A high-performance technical SEO audit and speed optimization sweep, restoring crawlability and ranking potential.",
+    technologies: ["WordPress", "Google Search Console", "Google Analytics 4", "SEO Audit"],
+    process: [
+      "Executed comprehensive site audit mapping structural and crawl blockages.",
+      "Eliminated heavy render-blocking styles and script delays.",
+      "Corrected semantic metadata systems and JSON-LD schema layers.",
+      "Optimized site loading parameters to score high on PageSpeed Insights.",
+      "Established proper monitoring loops in Search Console and GA4."
+    ],
+    before: {
+      metrics: "Render-blocking delays, confusing page hierarchies, crawl errors."
+    },
+    after: {
+      metrics: "SEO Foundation Implemented, Performance Optimized, and Responsive Across Devices."
+    },
+    results: [
+      { label: "Core Web Vitals", value: "Green", growth: "Optimal speeds" },
+      { label: "Site Speed Score", value: "90+", growth: "High indexing rate" },
+      { label: "Crawl Inefficiencies", value: "0", growth: "Clean diagnostics" }
+    ],
+    overview: "Optimized search visibility by implementing professional SEO foundation standards and speeding up asset responses across all pages.",
+    services: ["SEO", "Technical SEO", "On Page SEO", "Website Speed Optimization"],
+    screenshots: [
+      "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=800&auto=format&fit=crop"
+    ],
+    gallery: [
+      "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=800&auto=format&fit=crop"
+    ],
+    testimonial: {
+      author: "Dr. Stylianos Kampakis",
+      role: "CEO & Academic Director, Tesseract Academy",
+      comment: "Niaz Digital handled our technical SEO audit and speed tuning with extreme care. The depth of their diagnostic insights and performance adjustments was exceptional."
+    },
+    relatedProjectIds: ["the-data-scientist", "niaz-digital"]
+  },
+  {
+    id: "the-data-scientist-study",
+    client: "The Data Scientist",
+    title: "Bespoke Content Strategy & Social Asset Optimization",
+    heroImage: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1200&auto=format&fit=crop",
+    challenge: "The Data Scientist needed a highly polished, visually authoritative social presence on professional platforms like LinkedIn to highlight expert research without looking generic or cluttered.",
+    strategy: "Formulated an elegant content strategy based on minimal modern grids. Developed customized slide carousels, clean diagram vectors, and optimized text structures that communicate technical complexity simply.",
+    solution: "A bespoke social media identity kit and high-end visual design assets tailored for corporate B2B engagement.",
+    technologies: ["Canva", "Photoshop", "Figma", "Video Editing"],
+    process: [
+      "Analyzed audience demographics and competitor visual layout sets.",
+      "Designed minimalist typographic templates for slide presentations.",
+      "Established unified branding palettes matching corporate themes.",
+      "Built short-form visual video assets using clean typography callouts.",
+      "Set up dynamic templates in Canva for smooth daily publishing workflows."
+    ],
+    before: {
+      metrics: "Disjointed visual standards, basic post engagement, time-consuming layouts."
+    },
+    after: {
+      metrics: "Modern Visual Design, Improved Content Structure, and Scalable Architecture."
+    },
+    results: [
+      { label: "Outreach Aesthetic", value: "Premium", growth: "Editorial grade" },
+      { label: "Engagement Flow", value: "Polished", growth: "High B2B response" },
+      { label: "Outreach Speed", value: "Dynamic", growth: "Fast templating" }
+    ],
+    overview: "Completely restructured professional visual outreach with a high-end, scannable style guide that establishes technical leadership.",
+    services: ["Social Media Management", "Content Strategy", "Canva Design", "Video Editing"],
+    screenshots: [
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop"
+    ],
+    gallery: [
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop"
+    ],
+    testimonial: {
+      author: "Stylianos K.",
+      role: "Chief Executive, The Data Scientist",
+      comment: "Niaz Digital has a stellar grasp of visual social presence. They turned complex data concepts into gorgeous, bite-sized carousels and highly engaging short-form assets."
+    },
+    relatedProjectIds: ["tesseract-academy", "techgloze"]
   }
 ];
 

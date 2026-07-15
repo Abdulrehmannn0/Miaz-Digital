@@ -11,15 +11,22 @@ import {
   Eye,
   CheckCircle2,
   FileText,
-  ChevronRight
+  ChevronRight,
+  Globe,
+  ArrowUpRight,
+  X
 } from 'lucide-react';
-import { PORTFOLIO_DATA } from '../data';
+import { PORTFOLIO_DATA, CASE_STUDIES_DATA } from '../data';
+import { PortfolioItem, CaseStudy } from '../types';
 import { updateMetaTags } from '../lib/wordpress';
 import logoImg from '../assets/images/niaz_digital_logo_1784067879724.jpg';
 
 export default function PortfolioPage() {
   const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
+  const [activeCaseStudy, setActiveCaseStudy] = useState<CaseStudy | null>(null);
+  
+  // Before / After Slider State
   const [sliderPosition, setSliderPosition] = useState<number>(50);
   const sliderContainerRef = useRef<HTMLDivElement>(null);
   const isDraggingRef = useRef<boolean>(false);
@@ -48,6 +55,14 @@ export default function PortfolioPage() {
     setSliderPosition((x / rect.width) * 100);
   };
 
+  const handleOpenCaseStudy = (caseStudyId?: string) => {
+    if (!caseStudyId) return;
+    const study = CASE_STUDIES_DATA.find(s => s.id === caseStudyId);
+    if (study) {
+      setActiveCaseStudy(study);
+    }
+  };
+
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' });
     updateMetaTags({
@@ -59,7 +74,7 @@ export default function PortfolioPage() {
   }, []);
 
   const categories = [
-    'All', 'Websites', 'Mobile Apps', 'Dashboards', 'Branding', 'Meta Ads', 'AI Automation'
+    'All', 'Web Development', 'SEO', 'Social Media', 'Branding', 'AI Automation', 'Business Operations'
   ];
 
   const filteredPortfolio = PORTFOLIO_DATA.filter(item => {
@@ -250,53 +265,236 @@ export default function PortfolioPage() {
         </div>
 
         {/* Dynamic Portfolio Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-24">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-24">
           <AnimatePresence mode="popLayout">
             {filteredPortfolio.map((item) => (
               <motion.div
                 key={item.id}
                 layout
-                initial={{ opacity: 0, y: 10 }}
+                initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 10 }}
-                transition={{ duration: 0.2 }}
-                className="group relative rounded-[28px] bg-slate-50/50 dark:bg-slate-900/30 border border-slate-100 dark:border-slate-800/80 overflow-hidden flex flex-col justify-between"
+                exit={{ opacity: 0, y: 20 }}
+                transition={{ duration: 0.3 }}
+                className="group relative flex flex-col justify-between bg-white dark:bg-slate-950/40 backdrop-blur-xl rounded-[32px] border border-slate-100 dark:border-slate-800/80 shadow-sm hover:shadow-xl hover:scale-[1.01] transition-all duration-300 overflow-hidden"
               >
-                {/* Visual Image / Color placeholder */}
-                <div className="w-full aspect-[16/10] bg-slate-100 dark:bg-slate-950/80 relative flex items-center justify-center overflow-hidden">
-                  <span className="font-display font-black text-slate-200 dark:text-slate-900/50 text-4xl uppercase tracking-widest">{item.category}</span>
+                
+                {/* Responsive Image Banner */}
+                <div className="relative aspect-video w-full overflow-hidden bg-slate-100 dark:bg-slate-900">
+                  <img 
+                    src={item.image} 
+                    alt={item.title} 
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  />
                   
-                  {/* Subtle decorative grid overlay */}
-                  <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px] pointer-events-none" />
-                  
-                  {/* Highlight bar */}
-                  <div className="absolute bottom-4 left-4 right-4 p-4 rounded-xl bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm border border-white/50 dark:border-white/10 flex items-center justify-between translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
-                    <span className="text-xs font-bold text-slate-900 dark:text-white">Learn more details</span>
-                    <ArrowRight className="w-4 h-4 text-blue-500" />
+                  {/* Absolute Badge Overlays */}
+                  <div className="absolute top-4 left-4 flex flex-col gap-1.5 z-10">
+                    <div className="flex gap-1.5 items-center">
+                      {item.countryBadge && (
+                        <span className="inline-flex items-center gap-1 text-[10px] font-bold text-slate-800 dark:text-slate-100 bg-white/90 dark:bg-slate-900/95 backdrop-blur-sm px-2.5 py-1 rounded-full border border-slate-100/20 shadow-sm">
+                          <Globe className="w-3 h-3 text-blue-500" />
+                          {item.countryBadge}
+                        </span>
+                      )}
+                      {item.industryBadge && (
+                        <span className="inline-flex items-center text-[10px] font-bold text-white bg-blue-600/90 backdrop-blur-sm px-2.5 py-1 rounded-full shadow-sm">
+                          {item.industryBadge}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+
+                  {item.projectType && (
+                    <div className="absolute top-4 right-4 z-10">
+                      <span className="inline-flex items-center text-[9px] font-extrabold text-white bg-slate-900/90 dark:bg-slate-950/90 backdrop-blur-sm px-2.5 py-1 rounded-full uppercase tracking-wider">
+                        {item.projectType}
+                      </span>
+                    </div>
+                  )}
+                </div>
+
+                {/* Info & Content Body */}
+                <div className="p-6 md:p-8 text-left flex flex-col justify-between flex-grow">
+                  <div>
+                    <span className="text-[10px] font-extrabold text-blue-600 dark:text-blue-400 tracking-widest uppercase block mb-1">
+                      {item.client}
+                    </span>
+                    <h3 className="font-display font-extrabold text-lg md:text-xl text-slate-900 dark:text-white leading-tight mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                      {item.title}
+                    </h3>
+                    
+                    {item.shortDescription && (
+                      <p className="text-xs md:text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-6 font-medium">
+                        {item.shortDescription}
+                      </p>
+                    )}
+
+                    {/* Services Provided Badges */}
+                    {item.servicesUsed && item.servicesUsed.length > 0 && (
+                      <div className="mb-4">
+                        <span className="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider block mb-2">
+                          Services Provided
+                        </span>
+                        <div className="flex flex-wrap gap-1.5">
+                          {item.servicesUsed.map((svc, sIdx) => (
+                            <span key={sIdx} className="text-[9px] font-bold text-blue-600 dark:text-blue-400 bg-blue-50/50 dark:bg-blue-500/10 border border-blue-100/10 dark:border-blue-500/10 px-2 py-0.5 rounded-full">
+                              {svc}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Tech Stack Badges */}
+                    {item.techStack && item.techStack.length > 0 && (
+                      <div className="mb-6">
+                        <span className="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider block mb-2">
+                          Technology Stack
+                        </span>
+                        <div className="flex flex-wrap gap-1.5">
+                          {item.techStack.map((tech, tIdx) => (
+                            <span key={tIdx} className="text-[9px] font-bold text-slate-600 dark:text-slate-300 bg-slate-50 dark:bg-slate-800/60 border border-slate-100 dark:border-slate-800/80 px-2 py-0.5 rounded-full font-mono">
+                              {tech}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                    
+                    {/* Performance Metrics Highlight */}
+                    <div className="px-4 py-3 rounded-2xl bg-emerald-500/5 dark:bg-emerald-500/10 border border-emerald-500/10 mb-6 flex items-center gap-2.5">
+                      <TrendingUp className="w-4 h-4 text-emerald-500 shrink-0" />
+                      <span className="text-2xs font-bold text-emerald-600 dark:text-emerald-400 leading-tight">
+                        {item.results}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Action Buttons Grid */}
+                  <div className="grid grid-cols-2 gap-3 pt-4 border-t border-slate-100 dark:border-slate-800/80 mt-auto">
+                    {item.liveUrl ? (
+                      <a 
+                        href={item.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center justify-center gap-1.5 py-3 rounded-xl border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 hover:text-blue-600 font-bold text-xs uppercase tracking-wider transition-colors cursor-pointer text-center"
+                        title="Live Website"
+                      >
+                        <span>Live Site</span>
+                        <ArrowUpRight className="w-3.5 h-3.5" />
+                      </a>
+                    ) : (
+                      <div className="flex items-center justify-center py-3 rounded-xl border border-dashed border-slate-200 dark:border-slate-800 text-slate-400 text-xs font-bold uppercase tracking-wider">
+                        Offline
+                      </div>
+                    )}
+
+                    {item.caseStudyId ? (
+                      <button
+                        onClick={() => handleOpenCaseStudy(item.caseStudyId)}
+                        className="flex items-center justify-center gap-1.5 py-3 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow-md shadow-blue-500/10 hover:shadow-lg transition-all cursor-pointer text-center"
+                      >
+                        <span>Case Study</span>
+                        <ChevronRight className="w-3.5 h-3.5" />
+                      </button>
+                    ) : (
+                      <div className="flex items-center justify-center py-3 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-400 text-xs font-bold uppercase tracking-wider">
+                        Coming Soon
+                      </div>
+                    )}
                   </div>
                 </div>
 
-                <div className="p-6 md:p-8 text-left">
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">
-                      {item.category}
-                    </span>
-                    <span className="text-3xs font-semibold text-slate-400 dark:text-slate-500">
-                      Completed System
-                    </span>
-                  </div>
-
-                  <h3 className="font-display font-bold text-xl text-slate-900 dark:text-white mb-2 group-hover:text-blue-500 transition-colors">
-                    {item.title}
-                  </h3>
-                  <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
-                    {item.results}
-                  </p>
-                </div>
               </motion.div>
             ))}
           </AnimatePresence>
         </div>
+
+        {/* Dynamic Case Study Sheet Overlay Modal */}
+        <AnimatePresence>
+          {activeCaseStudy && (
+            <div className="fixed inset-0 z-50 overflow-y-auto bg-slate-950/60 backdrop-blur-md flex items-center justify-center p-4 md:p-10">
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                className="w-full max-w-4xl bg-white dark:bg-slate-950 rounded-[32px] border border-slate-100 dark:border-slate-800 shadow-2xl overflow-hidden text-left max-h-[85vh] flex flex-col"
+              >
+                {/* Modal Sticky Header */}
+                <div className="p-6 border-b border-slate-100 dark:border-slate-900 flex items-center justify-between bg-white dark:bg-slate-950 sticky top-0 z-10">
+                  <div>
+                    <span className="text-3xs font-black uppercase tracking-widest text-blue-500">Case Study Strategic Blueprint</span>
+                    <h4 className="font-display font-bold text-base text-slate-900 dark:text-white truncate max-w-lg">{activeCaseStudy.title}</h4>
+                  </div>
+                  <button 
+                    onClick={() => setActiveCaseStudy(null)}
+                    className="p-2.5 rounded-full border border-slate-200 dark:border-slate-800 text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors cursor-pointer"
+                  >
+                    <X className="w-5 h-5" />
+                  </button>
+                </div>
+
+                {/* Scrollable Content Body */}
+                <div className="p-8 md:p-12 overflow-y-auto flex-grow flex flex-col gap-10">
+                  
+                  {/* Challenge & Solution Grid */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                      <span className="text-3xs font-black uppercase tracking-wider text-red-500 block mb-3">The Challenge</span>
+                      <p className="text-xs md:text-sm text-slate-500 dark:text-slate-400 leading-relaxed font-medium">{activeCaseStudy.challenge}</p>
+                    </div>
+                    <div>
+                      <span className="text-3xs font-black uppercase tracking-wider text-emerald-500 block mb-3">The Solution</span>
+                      <p className="text-xs md:text-sm text-slate-500 dark:text-slate-400 leading-relaxed font-medium">{activeCaseStudy.solution}</p>
+                    </div>
+                  </div>
+
+                  {/* Execution Process Phases */}
+                  <div className="border-t border-slate-100 dark:border-slate-900 pt-8">
+                    <span className="text-3xs font-black uppercase tracking-wider text-slate-400 block mb-6">Strategic Execution Phases</span>
+                    <div className="flex flex-col gap-4">
+                      {activeCaseStudy.process.map((step, i) => (
+                        <div key={i} className="flex gap-4 items-start text-xs md:text-sm font-semibold text-slate-700 dark:text-slate-300">
+                          <span className="text-blue-500 font-bold font-mono text-xs md:text-sm">0{i+1}</span>
+                          <p className="leading-relaxed">{step}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Core Systems Implemented */}
+                  <div className="border-t border-slate-100 dark:border-slate-900 pt-8">
+                    <span className="text-3xs font-black uppercase tracking-wider text-slate-400 block mb-4">Core Systems Implemented</span>
+                    <div className="flex flex-wrap gap-2">
+                      {activeCaseStudy.technologies.map((t, idx) => (
+                        <span 
+                          key={idx}
+                          className="px-3 py-1.5 bg-slate-50 dark:bg-slate-900/50 text-slate-500 dark:text-slate-400 border border-slate-100 dark:border-slate-800/80 text-3xs font-bold uppercase rounded-full"
+                        >
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Growth Metrics */}
+                  <div className="border-t border-slate-100 dark:border-slate-900 pt-8">
+                    <span className="text-3xs font-black uppercase tracking-wider text-slate-400 block mb-6">Verified Client Gains</span>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                      {activeCaseStudy.results.map((res, i) => (
+                        <div key={i} className="p-6 bg-slate-50/50 dark:bg-slate-900/30 rounded-2xl border border-slate-100/50 dark:border-slate-900">
+                          <span className="text-3xs font-black text-slate-400 uppercase tracking-wider block mb-2">{res.label}</span>
+                          <span className="text-3xl font-black font-display text-blue-600 dark:text-blue-400 block mb-1">{res.value}</span>
+                          <span className="text-2xs font-bold text-slate-500 dark:text-slate-400 block">{res.growth}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                </div>
+              </motion.div>
+            </div>
+          )}
+        </AnimatePresence>
 
       </div>
     </section>

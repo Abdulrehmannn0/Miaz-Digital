@@ -33,6 +33,12 @@ export interface PortfolioItem {
   };
   liveUrl?: string;
   caseStudyId?: string;
+  // Redesign fields
+  countryBadge?: string;
+  industryBadge?: string;
+  projectType?: string;
+  servicesUsed?: string[];
+  shortDescription?: string;
 }
 
 export interface CaseStudy {
@@ -58,6 +64,18 @@ export interface CaseStudy {
     value: string;
     growth: string;
   }[];
+  // Redesign fields
+  overview?: string;
+  services?: string[];
+  screenshots?: string[];
+  gallery?: string[];
+  testimonial?: {
+    author: string;
+    role: string;
+    comment: string;
+    avatar?: string;
+  };
+  relatedProjectIds?: string[];
 }
 
 export interface BlogArticle {
