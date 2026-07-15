@@ -4,6 +4,7 @@
  */
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Linkedin, Twitter, Instagram, Github, ArrowUp } from 'lucide-react';
 import { FOUNDER_DATA } from '../data';
 import logoImg from '../assets/images/niaz_digital_logo_1784067879724.jpg';
@@ -31,12 +32,14 @@ export default function Footer() {
           {/* Column 1: Logo & Vision */}
           <div className="col-span-1 md:col-span-5 text-left flex flex-col gap-5">
             <div className="flex items-center">
-              <img 
-                src={logoImg} 
-                alt="Niaz Digital Logo" 
-                className="h-10 w-auto rounded-lg object-contain"
-                referrerPolicy="no-referrer"
-              />
+              <Link to="/">
+                <img 
+                  src={logoImg} 
+                  alt="Niaz Digital Logo" 
+                  className="h-10 w-auto rounded-lg object-contain"
+                  referrerPolicy="no-referrer"
+                />
+              </Link>
             </div>
             <p className="text-xs leading-relaxed max-w-sm">
               An elite digital agency constructing bespoke high-performance digital flagships, automating complex spreadsheet operations, and scaling brand revenue parameters predictably.
@@ -64,27 +67,45 @@ export default function Footer() {
           <div className="col-span-1 md:col-span-3 text-left">
             <span className="text-3xs font-black uppercase tracking-wider text-slate-200 block mb-4">Core Sections</span>
             <ul className="flex flex-col gap-2.5 text-xs">
-              {[
-                { name: 'Story & Mission', id: '#about' },
-                { name: 'Services Spectrum', id: '#services' },
-                { name: 'Case Studies', id: '#portfolio' },
-                { name: 'Client Sandbox', id: '#tools' }
-              ].map((link, i) => (
-                <li key={i}>
-                  <a href={link.id} className="hover:text-white transition-colors block py-0.5">{link.name}</a>
-                </li>
-              ))}
+              <li>
+                <Link to="/about" className="hover:text-white transition-colors block py-0.5">Story & Mission</Link>
+              </li>
+              <li>
+                <Link to="/founder" className="hover:text-white transition-colors block py-0.5">About Founder</Link>
+              </li>
+              <li>
+                <Link to="/services" className="hover:text-white transition-colors block py-0.5">Services Spectrum</Link>
+              </li>
+              <li>
+                <Link to="/portfolio" className="hover:text-white transition-colors block py-0.5">Our Portfolio</Link>
+              </li>
+              <li>
+                <Link to="/case-studies" className="hover:text-white transition-colors block py-0.5">Case Studies</Link>
+              </li>
+              <li>
+                <Link to="/client-portal" className="hover:text-white transition-colors block py-0.5">Client Portal</Link>
+              </li>
             </ul>
           </div>
 
           {/* Column 3: Contact & FAQ */}
           <div className="col-span-1 md:col-span-4 text-left flex flex-col gap-4">
             <div>
-              <span className="text-3xs font-black uppercase tracking-wider text-slate-200 block mb-3">Headquarters</span>
-              <p className="text-3xs leading-relaxed">
-                Noida, India<br />
-                Global Digital Remote Services
-              </p>
+              <span className="text-3xs font-black uppercase tracking-wider text-slate-200 block mb-3">Resources</span>
+              <ul className="flex flex-col gap-2.5 text-xs mb-4">
+                <li>
+                  <Link to="/faq" className="hover:text-white transition-colors block py-0.5">FAQ Directory</Link>
+                </li>
+                <li>
+                  <Link to="/contact" className="hover:text-white transition-colors block py-0.5">Contact & Onboarding</Link>
+                </li>
+                <li>
+                  <Link to="/privacy" className="hover:text-white transition-colors block py-0.5">Privacy Policy</Link>
+                </li>
+                <li>
+                  <Link to="/terms" className="hover:text-white transition-colors block py-0.5">Terms & Conditions</Link>
+                </li>
+              </ul>
             </div>
             <div>
               <span className="text-3xs font-black uppercase tracking-wider text-slate-200 block mb-1">Inbound Briefing Ticket</span>

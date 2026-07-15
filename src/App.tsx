@@ -23,6 +23,18 @@ import AiChatbot from './components/AiChatbot';
 import InteractiveFX from './components/InteractiveFX';
 import BlogListing from './pages/BlogListing';
 import SingleBlog from './pages/SingleBlog';
+import AboutPage from './pages/AboutPage';
+import FounderPage from './pages/FounderPage';
+import ServicesPage from './pages/ServicesPage';
+import ServiceDetailPage from './pages/ServiceDetailPage';
+import PortfolioPage from './pages/PortfolioPage';
+import CaseStudiesPage from './pages/CaseStudiesPage';
+import ContactPage from './pages/ContactPage';
+import FaqPage from './pages/FaqPage';
+import ClientPortalPage from './pages/ClientPortalPage';
+import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
+import TermsPage from './pages/TermsPage';
+import NotFoundPage from './pages/NotFoundPage';
 import { LanguageCode } from './types';
 
 interface HomeProps {
@@ -171,8 +183,20 @@ export default function App() {
       <main className="pt-20">
         <Routes>
           <Route path="/" element={<Home currentLang={currentLang} handleScrollToSection={handleScrollToSection} />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/founder" element={<FounderPage />} />
+          <Route path="/services" element={<ServicesPage />} />
+          <Route path="/services/:serviceId" element={<ServiceDetailPage />} />
+          <Route path="/portfolio" element={<PortfolioPage />} />
+          <Route path="/case-studies" element={<CaseStudiesPage />} />
           <Route path="/blog" element={<BlogListing />} />
           <Route path="/blog/:slug" element={<SingleBlog />} />
+          <Route path="/contact" element={<ContactPage />} />
+          <Route path="/faq" element={<FaqPage />} />
+          <Route path="/client-portal" element={<ClientPortalPage />} />
+          <Route path="/privacy" element={<PrivacyPolicyPage />} />
+          <Route path="/terms" element={<TermsPage />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>
 
