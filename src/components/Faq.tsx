@@ -97,15 +97,14 @@ export default function Faq() {
               <p className="text-3xs text-slate-500 dark:text-slate-400 mt-0.5">Submit your core parameters via our AI sandbox or chat assistant.</p>
             </div>
           </div>
-          <button
-            onClick={() => {
-              const el = document.getElementById('contact');
-              if (el) el.scrollIntoView({ behavior: 'smooth' });
-            }}
-            className="px-5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-bold text-3xs rounded-full shadow-md shadow-blue-500/20 cursor-pointer shrink-0"
+          <a
+            href="https://wa.me/919012403699"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-bold text-3xs rounded-full shadow-md shadow-blue-500/20 cursor-pointer shrink-0 flex items-center justify-center"
           >
             Ask Azhar Uddin Direct
-          </button>
+          </a>
         </div>
 
       </div>

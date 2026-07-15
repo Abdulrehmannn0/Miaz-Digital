@@ -214,15 +214,14 @@ export default function Workflow() {
               
               <div className="mt-4 p-4 rounded-xl border border-dashed border-slate-200 dark:border-slate-800 flex items-center justify-between">
                 <span className="text-3xs text-slate-400 leading-tight">Ready to initiate the Discovery phase with Azhar Uddin?</span>
-                <button
-                  onClick={() => {
-                    const el = document.getElementById('contact');
-                    if (el) el.scrollIntoView({ behavior: 'smooth' });
-                  }}
+                <a
+                  href="https://wa.me/919012403699"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-xs font-bold text-blue-600 dark:text-blue-400 hover:underline cursor-pointer flex items-center gap-1 shrink-0"
                 >
                   Start Phase 01 &rarr;
-                </button>
+                </a>
               </div>
 
             </div>

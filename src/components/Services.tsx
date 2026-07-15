@@ -234,16 +234,16 @@ export default function Services({ onBookCall }: ServicesProps) {
                 </ul>
 
                 <div className="flex flex-col sm:flex-row gap-3 items-center">
-                  <button
-                    onClick={() => {
-                      setActiveDetailsModal(null);
-                      onBookCall();
-                    }}
+                  <a
+                    href="https://wa.me/919012403699"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => setActiveDetailsModal(null)}
                     className="w-full sm:w-auto px-6 py-3 bg-blue-600 hover:bg-blue-500 text-xs font-bold text-white rounded-full flex items-center justify-center gap-2 shadow-lg shadow-blue-500/25 cursor-pointer"
                   >
                     <PhoneCall className="w-4 h-4" />
                     Consult on this project
-                  </button>
+                  </a>
                   <button
                     onClick={() => setActiveDetailsModal(null)}
                     className="w-full sm:w-auto px-6 py-3 border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800 text-xs font-bold text-slate-600 dark:text-slate-300 rounded-full cursor-pointer"

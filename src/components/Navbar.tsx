@@ -27,6 +27,7 @@ import {
 } from 'lucide-react';
 import { LanguageCode } from '../types';
 import { DIALECTS } from '../data';
+import logoImg from '../assets/images/niaz_digital_logo_1784067879724.jpg';
 
 interface NavbarProps {
   currentLang: LanguageCode;
@@ -115,7 +116,7 @@ export default function Navbar({
           onClick={() => handleNavClick('hero')}
         >
           <img 
-            src="/src/assets/images/niaz_digital_logo_1784067879724.jpg" 
+            src={logoImg} 
             alt="Niaz Digital Logo" 
             className="h-10 w-auto rounded-lg object-contain group-hover:scale-105 transition-transform"
             referrerPolicy="no-referrer"
@@ -207,7 +208,7 @@ export default function Navbar({
           {/* WhatsApp Direct */}
           <a
             id="whatsapp-header-btn"
-            href="https://wa.me/1234567890"
+            href="https://wa.me/919012403699"
             target="_blank"
             rel="noopener noreferrer"
             className="p-2.5 rounded-full text-emerald-600 hover:bg-emerald-50 dark:hover:bg-emerald-950/20 transition-colors"
@@ -219,14 +220,16 @@ export default function Navbar({
           </a>
 
           {/* Core Action: Book Call */}
-          <button
+          <a
             id="cta-discovery-btn"
-            onClick={() => handleNavClick('contact')}
+            href="https://wa.me/919012403699"
+            target="_blank"
+            rel="noopener noreferrer"
             className="relative px-6 py-2.5 text-sm font-semibold text-white bg-blue-600 hover:bg-blue-500 rounded-full shadow-md shadow-blue-600/25 cursor-pointer hover:shadow-lg transition-all flex items-center gap-1.5 overflow-hidden group"
           >
             <PhoneCall className="w-4 h-4 group-hover:scale-110 transition-transform" />
             {t.nav.cta}
-          </button>
+          </a>
         </div>
 
         {/* Mobile Hamburger Trigger */}
@@ -260,12 +263,14 @@ export default function Navbar({
                 <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-4">
                   Engineering high-end modular designs, zero-human automation routines, and hyper-targeted advertising setups.
                 </p>
-                <button
-                  onClick={() => handleNavClick('contact')}
+                <a
+                  href="https://wa.me/919012403699"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-xs font-bold text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1.5 cursor-pointer"
                 >
                   Schedule Initial Consultation &rarr;
-                </button>
+                </a>
               </div>
 
               <div className="col-span-9 grid grid-cols-3 gap-6">
@@ -371,13 +376,15 @@ export default function Navbar({
                 </div>
               </div>
 
-              <button
-                onClick={() => handleNavClick('contact')}
+              <a
+                href="https://wa.me/919012403699"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-full py-3 mt-4 bg-blue-600 text-white rounded-xl font-bold cursor-pointer hover:bg-blue-500 transition-colors flex items-center justify-center gap-2"
               >
                 <PhoneCall className="w-5 h-5" />
                 {t.nav.cta}
-              </button>
+              </a>
             </div>
           </motion.div>
         )}

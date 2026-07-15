@@ -22,10 +22,9 @@ export default function Hero({ currentLang, onCtaClick }: HeroProps) {
 
   // Statistics State
   const [stats, setStats] = useState({
-    projects: 0,
-    countries: 0,
     experience: 0,
-    satisfaction: 0
+    projects: 0,
+    industries: 0
   });
 
   useEffect(() => {
@@ -53,18 +52,16 @@ export default function Hero({ currentLang, onCtaClick }: HeroProps) {
     const timer = setInterval(() => {
       count++;
       setStats({
-        projects: Math.floor((180 / steps) * count),
-        countries: Math.floor((24 / steps) * count),
-        experience: Math.floor((10 / steps) * count),
-        satisfaction: Math.min(100, Math.floor((100 / steps) * count))
+        experience: Math.floor((9 / steps) * count),
+        projects: Math.floor((100 / steps) * count),
+        industries: Math.floor((20 / steps) * count)
       });
 
       if (count >= steps) {
         setStats({
-          projects: 184,
-          countries: 24,
-          experience: 10,
-          satisfaction: 99
+          experience: 9,
+          projects: 100,
+          industries: 20
         });
         clearInterval(timer);
       }
@@ -74,11 +71,15 @@ export default function Hero({ currentLang, onCtaClick }: HeroProps) {
   }, []);
 
   const partnerLogos = [
-    { name: "Stripe", svg: "M4 12h16" }, // Placeholders that look sleek
-    { name: "Apple", svg: "M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" },
-    { name: "Vercel", svg: "M12 2L2 22h20L12 2z" },
-    { name: "Linear", svg: "M12 2L2 12h20L12 2z" },
-    { name: "Framer", svg: "M5 2h14v8H5zm0 10h14v10L12 17l-7 5z" }
+    { name: "WordPress", svg: "M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18.5a8.45 8.45 0 01-4.8-1.5l3.35-9.5 3.12 9.07a8.45 8.45 0 01-1.67.93zm5.17-10.42a4.43 4.43 0 00-.44-1.51c-.27-.44-.53-.82-.53-1.27 0-.5.38-.97.92-.97a1.9 1.9 0 01.14 0 7.8 7.8 0 00-4.3-1.6c-2 0-3.8.9-5 2.3h.3c.5 0 1.4 0 1.4 0 .3 0 .3-.4 0-.4h-.6L11 12.1l1.1-3.4-.1-.3h-.7c-.3 0-.3-.4 0-.4h1.4c.3 0 .3-.4 0-.4h-.6l1.8 5.4.5-1.5c.2-.7.3-1.2.3-1.6z" },
+    { name: "Shopify", svg: "M19 5h-3V4c0-2.2-1.8-4-4-4S8 1.8 8 4v1H5c-1.1 0-2 .9-2 2l1.5 14c.1 1.1 1 2 2.1 2h10.8c1.1 0 2-.9 2.1-2L21 7c0-1.1-.9-2-2-2zM10 4c0-1.1.9-2 2-2s2 .9 2 2v1h-4V4zm8 15H6l-1.2-11h14.4L18 19z" },
+    { name: "Google", svg: "M12.24 10.285V13.4h6.887c-.275 1.565-1.88 4.604-6.887 4.604-4.33 0-7.859-3.579-7.859-8s3.529-8 7.859-8c2.46 0 4.105 1.025 5.047 1.926l2.427-2.334C18.121 2.029 15.44 1 12.24 1 6.033 1 12.24s5.033 11.24 11.24 11.24c5.89 0 9.87-4.137 9.87-10.029 0-.645-.07-1.129-.151-1.614l-8.72-.052z" },
+    { name: "Meta", svg: "M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm3.3 12.3c-.6 0-1.1-.3-1.4-.8l-.9-1.5-.9 1.5c-.3.5-.8.8-1.4.8-1 0-1.8-.8-1.8-1.8s.8-1.8 1.8-1.8c.6 0 1.1.3 1.4.8l.9 1.5.9-1.5c.3-.5.8-.8 1.4-.8 1 0 1.8.8 1.8 1.8s-.8 1.8-1.8 1.8z" },
+    { name: "OpenAI", svg: "M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm3.12 14.5a3.17 3.17 0 0 1-1.59-2.75V10.4l1.35.78c.36.21.78.32 1.2.32a2.38 2.38 0 0 0 1.2-.32l2.45-1.42V12.9l-3.26 1.88c-.37.21-.8.32-1.2.32a2.43 2.43 0 0 1-1.2-.31zm1.34-3.13l1.35.78c.77.45 1.25 1.28 1.25 2.17v3.13l-1.35-.78a2.38 2.38 0 0 0-1.2-.32c-.42 0-.84.11-1.2.32l-2.45 1.42V10.4l3.26-1.88c.37-.21.8-.32 1.2-.32a2.43 2.43 0 0 1 1.2.31z" },
+    { name: "Claude", svg: "M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm1 14.5h-2v-4H8V10.5h3v-3h2v3h3v2h-3z" },
+    { name: "Gemini", svg: "M12 2c0 5-5 5-5 5s5 0 5 5c0-5 5-5 5-5s-5 0-5-5zm6 11c0 3-3 3-3 3s3 0 3 3c0-3 3-3 3-3s-3 0-3-3z" },
+    { name: "n8n", svg: "M12 2c5.52 0 10 4.48 10 10s-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2zm-1 5v10l5-5-5-5z" },
+    { name: "Make", svg: "M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4 11H8V9h8v4z" }
   ];
 
   return (
@@ -129,7 +130,13 @@ export default function Hero({ currentLang, onCtaClick }: HeroProps) {
 
           {/* Master Display Heading */}
           <h1 className="font-display font-extrabold text-4xl sm:text-5xl md:text-6xl text-slate-900 dark:text-white tracking-tight leading-[1.05] max-w-2xl">
-            Helping Businesses <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-500 to-sky-400 dark:from-blue-400 dark:via-indigo-400 dark:to-sky-300">Scale</span> Through Design, Marketing & Tech.
+            {currentLang === 'EN' ? (
+              <>
+                Building <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-500 to-sky-400 dark:from-blue-400 dark:via-indigo-400 dark:to-sky-300">Intelligent Digital Systems</span> That Scale Modern Businesses.
+              </>
+            ) : (
+              t.hero.headline
+            )}
           </h1>
 
           {/* Editorial Subheadline */}
@@ -139,14 +146,16 @@ export default function Hero({ currentLang, onCtaClick }: HeroProps) {
 
           {/* Action CTAs */}
           <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto mt-2">
-            <button
+            <a
               id="hero-primary-cta"
-              onClick={() => onCtaClick('contact')}
+              href="https://wa.me/919012403699"
+              target="_blank"
+              rel="noopener noreferrer"
               className="w-full sm:w-auto px-8 py-4 text-base font-semibold text-white bg-blue-600 hover:bg-blue-500 rounded-full shadow-lg shadow-blue-600/30 cursor-pointer flex items-center justify-center gap-2 group transition-all"
             >
               {t.hero.ctaPrimary}
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform" />
-            </button>
+            </a>
             
             <button
               id="hero-secondary-cta"
@@ -180,6 +189,14 @@ export default function Hero({ currentLang, onCtaClick }: HeroProps) {
             <div className="grid grid-cols-2 gap-y-8 gap-x-6">
               <div className="flex flex-col text-left">
                 <span className="text-3xl font-display font-black text-slate-900 dark:text-white flex items-center">
+                  {stats.experience}
+                  <span className="text-teal-500 dark:text-teal-400 ml-0.5">+</span>
+                </span>
+                <span className="text-xs font-semibold text-slate-500 mt-1">Years Experience</span>
+              </div>
+
+              <div className="flex flex-col text-left">
+                <span className="text-3xl font-display font-black text-slate-900 dark:text-white flex items-center">
                   {stats.projects}
                   <span className="text-blue-600 dark:text-blue-400 ml-0.5">+</span>
                 </span>
@@ -188,26 +205,17 @@ export default function Hero({ currentLang, onCtaClick }: HeroProps) {
 
               <div className="flex flex-col text-left">
                 <span className="text-3xl font-display font-black text-slate-900 dark:text-white flex items-center">
-                  {stats.countries}
+                  {stats.industries}
                   <span className="text-indigo-500 dark:text-indigo-400 ml-0.5">+</span>
                 </span>
-                <span className="text-xs font-semibold text-slate-500 mt-1">Countries Served</span>
+                <span className="text-xs font-semibold text-slate-500 mt-1">Industries Served</span>
               </div>
 
               <div className="flex flex-col text-left">
                 <span className="text-3xl font-display font-black text-slate-900 dark:text-white flex items-center">
-                  {stats.experience}
-                  <span className="text-teal-500 dark:text-teal-400 ml-0.5">Y</span>
+                  Global
                 </span>
-                <span className="text-xs font-semibold text-slate-500 mt-1">Years Experience</span>
-              </div>
-
-              <div className="flex flex-col text-left">
-                <span className="text-3xl font-display font-black text-slate-900 dark:text-white flex items-center">
-                  {stats.satisfaction}
-                  <span className="text-blue-600 dark:text-blue-400 ml-0.5">%</span>
-                </span>
-                <span className="text-xs font-semibold text-slate-500 mt-1">Client Satisfaction</span>
+                <span className="text-xs font-semibold text-slate-500 mt-1">Remote Services</span>
               </div>
             </div>
 

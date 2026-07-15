@@ -117,6 +117,10 @@ export default function Contact() {
                 <a href="mailto:contact@techgloze.com" className="hover:underline font-semibold">contact@techgloze.com</a>
               </div>
               <div className="flex items-center gap-3 text-xs text-slate-600 dark:text-slate-300">
+                <PhoneCall className="w-4.5 h-4.5 text-blue-500 shrink-0" />
+                <a href={`tel:${FOUNDER_DATA.phone?.replace(/\s/g, '')}`} className="hover:underline font-semibold">{FOUNDER_DATA.phone}</a>
+              </div>
+              <div className="flex items-center gap-3 text-xs text-slate-600 dark:text-slate-300">
                 <MapPin className="w-4.5 h-4.5 text-blue-500 shrink-0" />
                 <span className="font-semibold">Noida, India (Global Remote IT Solutions)</span>
               </div>

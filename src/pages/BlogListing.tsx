@@ -9,6 +9,7 @@ import { motion } from 'motion/react';
 import { Calendar, Clock, ChevronRight, AlertCircle, RefreshCw, BookOpen, ArrowLeft } from 'lucide-react';
 import { fetchAllPosts, updateMetaTags } from '../lib/wordpress';
 import { BlogArticle } from '../types';
+import logoImg from '../assets/images/niaz_digital_logo_1784067879724.jpg';
 
 export default function BlogListing() {
   const [posts, setPosts] = useState<BlogArticle[]>([]);
@@ -40,7 +41,7 @@ export default function BlogListing() {
       title: "Niaz Digital Journal | Premium Systems & Growth Insights",
       description: "Read the latest digital growth articles, Technical SEO insights, CRM automation blueprints, and custom system case studies directly from Azhar Uddin and the Niaz Digital team.",
       canonicalUrl: window.location.href,
-      ogImage: "/src/assets/images/niaz_digital_logo_1784067879724.jpg"
+      ogImage: logoImg
     });
   }, []);
 

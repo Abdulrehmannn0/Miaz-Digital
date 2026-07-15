@@ -261,14 +261,14 @@ export default function About() {
               </div>
 
               {/* Consultation Booking CTA */}
-              <button
-                onClick={() => {
-                  document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-                }}
+              <a
+                href="https://wa.me/919012403699"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold uppercase tracking-wider rounded-full shadow-lg shadow-blue-500/25 hover:shadow-xl transition-all cursor-pointer flex items-center gap-2"
               >
                 Book a Free Consultation
-              </button>
+              </a>
             </div>
 
           </div>

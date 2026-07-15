@@ -535,16 +535,15 @@ export default function ToolsSuite() {
                     </div>
                   </div>
 
-                  <button
-                    onClick={() => {
-                      const el = document.getElementById('contact');
-                      if (el) el.scrollIntoView({ behavior: 'smooth' });
-                    }}
+                  <a
+                    href="https://wa.me/919012403699"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="w-full py-3.5 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl flex items-center justify-center gap-2 shadow-md shadow-blue-500/20 cursor-pointer"
                   >
                     <FileCheck className="w-4.5 h-4.5" />
                     Lock In This Estimate &rarr;
-                  </button>
+                  </a>
                 </div>
               </motion.div>
             )}

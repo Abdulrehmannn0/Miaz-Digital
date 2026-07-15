@@ -490,10 +490,10 @@ export const DIALECTS = {
       cta: "Discovery Call"
     },
     hero: {
-      badge: "★ PREMIER DIGITAL DESIGN & AUTOMATION STUDIO",
-      headline: "Building Premium Digital Systems That Scale Businesses.",
-      subheadline: "Helping ambitious businesses grow through premium websites, AI automation, SaaS solutions, and modern digital experiences built for performance—not just aesthetics.",
-      ctaPrimary: "Book Discovery Call",
+      badge: "AI • Digital Growth • Business Systems",
+      headline: "Building Intelligent Digital Systems That Scale Modern Businesses.",
+      subheadline: "Niaz Digital helps startups, agencies, coaches, and local businesses grow with high-performance websites, SEO, branding, AI automation, social media management, and business support—all under one trusted digital partner.",
+      ctaPrimary: "Book a Free Consultation",
       ctaSecondary: "View Portfolio"
     }
   },

@@ -6,6 +6,7 @@
 import React from 'react';
 import { Linkedin, Twitter, Instagram, Github, ArrowUp } from 'lucide-react';
 import { FOUNDER_DATA } from '../data';
+import logoImg from '../assets/images/niaz_digital_logo_1784067879724.jpg';
 
 export default function Footer() {
   const handleScrollToTop = () => {
@@ -31,7 +32,7 @@ export default function Footer() {
           <div className="col-span-1 md:col-span-5 text-left flex flex-col gap-5">
             <div className="flex items-center">
               <img 
-                src="/src/assets/images/niaz_digital_logo_1784067879724.jpg" 
+                src={logoImg} 
                 alt="Niaz Digital Logo" 
                 className="h-10 w-auto rounded-lg object-contain"
                 referrerPolicy="no-referrer"
