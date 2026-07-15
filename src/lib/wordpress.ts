@@ -56,7 +56,7 @@ export function mapWordPressPost(post: any): BlogArticle {
   const authorObj = post._embedded?.['author']?.[0];
   const author = {
     name: authorObj?.name || "Azhar Uddin",
-    avatar: authorObj?.avatar_urls?.['96'] || "/src/assets/images/azhar_uddin_founder_1784067891161.jpg",
+    avatar: authorObj?.avatar_urls?.['96'] || "/src/assets/images/founder_original.jpg",
     role: "Founder, Niaz Digital"
   };
 

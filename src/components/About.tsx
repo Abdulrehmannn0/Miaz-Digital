@@ -294,7 +294,7 @@ export default function About() {
               {
                 name: "Azhar Uddin",
                 role: "Founder & Digital Growth Strategist",
-                image: "/src/assets/images/azhar_uddin_founder_1784067891161.jpg",
+                image: "/src/assets/images/founder_original.jpg",
               },
               {
                 name: "Sarah Jenkins",

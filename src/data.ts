@@ -8,7 +8,7 @@ import { Service, PortfolioItem, CaseStudy, BlogArticle, FAQItem, FounderProfile
 export const FOUNDER_DATA: FounderProfile = {
   name: "Azhar Uddin",
   title: "Founder & Digital Growth Strategist",
-  image: "/src/assets/images/azhar_uddin_founder_1784067891161.jpg",
+  image: "/src/assets/images/founder_original.jpg",
   bio: "Azhar Uddin is the Founder of Niaz Digital, a digital growth agency helping startups, agencies, coaches, and local businesses build powerful digital systems. Since beginning his professional journey in 2016, he has focused on delivering websites, SEO, branding, AI automation, business systems, and virtual assistance that help businesses operate more efficiently and grow sustainably.",
   tagline: "Building Digital Systems That Help Businesses Grow Smarter.",
   mission: "To empower businesses with smart digital solutions, efficient systems, and strategic marketing that save time, improve productivity, and create sustainable growth.",
@@ -232,7 +232,7 @@ export const PORTFOLIO_DATA: PortfolioItem[] = [
       role: "Operations Chief",
       avatar: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=200&auto=format&fit=crop",
       rating: 5,
-      comment: "Abdul Rehman engineered a flawless custom n8n lead sync system that connects our Google Sheets, HubSpot, and GoHighLevel CRM instantly. The Excel macro automations are phenomenal."
+      comment: "Azhar Uddin engineered a flawless custom n8n lead sync system that connects our Google Sheets, HubSpot, and GoHighLevel CRM instantly. The Excel macro automations are phenomenal."
     },
     liveUrl: "https://example.com/ergonomic-automation",
     caseStudyId: "ergonomic-shop-automation-study"
@@ -376,8 +376,8 @@ Our clients report a **100% elimination of routing delay**, dropping response ti
 `,
     category: "AI & Automation",
     author: {
-      name: "Abdul Rehman",
-      avatar: "/src/assets/images/azhar_uddin_founder_1784067891161.jpg",
+      name: "Azhar Uddin",
+      avatar: "/src/assets/images/founder_original.jpg",
       role: "Founder"
     },
     readingTime: "5 Min Read",
@@ -409,8 +409,8 @@ Deploy your applications using clean Express proxy layers (like our premium full
 `,
     category: "Development",
     author: {
-      name: "Abdul Rehman",
-      avatar: "/src/assets/images/azhar_uddin_founder_1784067891161.jpg",
+      name: "Azhar Uddin",
+      avatar: "/src/assets/images/founder_original.jpg",
       role: "Founder"
     },
     readingTime: "4 Min Read",
@@ -439,8 +439,8 @@ Instead of dozens of fractured ad-sets, we consolidated Meta budgets into a sing
 `,
     category: "Marketing",
     author: {
-      name: "Abdul Rehman",
-      avatar: "/src/assets/images/azhar_uddin_founder_1784067891161.jpg",
+      name: "Azhar Uddin",
+      avatar: "/src/assets/images/founder_original.jpg",
       role: "Founder"
     },
     readingTime: "6 Min Read",

@@ -184,7 +184,7 @@ export default function Workflow() {
               <div className="p-5 rounded-2xl bg-white/70 dark:bg-slate-900/50 backdrop-blur-md border border-white/50 dark:border-white/10 shadow-sm">
                 <div className="flex items-center gap-2 mb-2">
                   <span className="w-2 h-2 rounded-full bg-blue-500" />
-                  <span className="text-3xs font-extrabold tracking-wider text-slate-400 uppercase">Abdul Rehman's Advisory Insight</span>
+                  <span className="text-3xs font-extrabold tracking-wider text-slate-400 uppercase">Azhar Uddin's Advisory Insight</span>
                 </div>
                 <p className="text-2xs text-slate-500 dark:text-slate-400 leading-relaxed italic">
                   "{workflowStages[activeStep].founderInsight}"
@@ -213,7 +213,7 @@ export default function Workflow() {
               </div>
               
               <div className="mt-4 p-4 rounded-xl border border-dashed border-slate-200 dark:border-slate-800 flex items-center justify-between">
-                <span className="text-3xs text-slate-400 leading-tight">Ready to initiate the Discovery phase with Abdul Rehman?</span>
+                <span className="text-3xs text-slate-400 leading-tight">Ready to initiate the Discovery phase with Azhar Uddin?</span>
                 <button
                   onClick={() => {
                     const el = document.getElementById('contact');

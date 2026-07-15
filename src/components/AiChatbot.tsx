@@ -26,7 +26,7 @@ interface ChatMessage {
 export default function AiChatbot() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [messages, setMessages] = useState<ChatMessage[]>([
-    { sender: 'model', text: "Hello! I am TechGloze AI assistant. I can calculate cost estimates, detail our SEO strategies, explain Abdul Rehman's track record, or walk you through our custom automation systems. What project goals are we pursuing?" }
+    { sender: 'model', text: "Hello! I am Niaz Digital's AI assistant. I can calculate cost estimates, detail our SEO strategies, explain Azhar Uddin's track record, or walk you through our custom automation systems. What project goals are we pursuing?" }
   ]);
   const [inputVal, setInputVal] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
@@ -34,7 +34,7 @@ export default function AiChatbot() {
   const chatBottomRef = useRef<HTMLDivElement>(null);
 
   const quickReplies = [
-    "What is Abdul Rehman's background?",
+    "What is Azhar Uddin's background?",
     "Calculate custom Web App cost",
     "How does your SEO optimization work?"
   ];

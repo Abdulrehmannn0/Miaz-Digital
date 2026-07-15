@@ -71,7 +71,7 @@ export default function Contact() {
                 Initiate your digital flagship transformation.
               </h2>
               <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
-                Skip the generic agency hierarchy. By submitting your inbound project brief, you gain direct access to our founder Abdul Rehman. We respond within 12 hours with a comprehensive technical specification.
+                Skip the generic agency hierarchy. By submitting your inbound project brief, you gain direct access to our founder Azhar Uddin. We respond within 12 hours with a comprehensive technical specification.
               </p>
             </div>
 
@@ -274,13 +274,13 @@ export default function Contact() {
                   </h3>
 
                   <p className="text-xs text-slate-500 dark:text-slate-400 max-w-sm mx-auto leading-relaxed">
-                    Thank you, <strong>{name}</strong>. Your inquiry for <strong>{company || "your business"}</strong> has been securely logged under tracking ticket <strong>TG-{Math.floor(Math.random() * 9000) + 1000}</strong>.
+                    Thank you, <strong>{name}</strong>. Your inquiry for <strong>{company || "your business"}</strong> has been securely logged under tracking ticket <strong>ND-{Math.floor(Math.random() * 9000) + 1000}</strong>.
                   </p>
 
                   <div className="p-4 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-800 text-left w-full max-w-md text-3xs flex flex-col gap-2 font-medium">
                     <div className="flex justify-between text-slate-400">
                       <span>Assigned Expert:</span>
-                      <span className="font-bold text-slate-700 dark:text-slate-200">Abdul Rehman (Founder)</span>
+                      <span className="font-bold text-slate-700 dark:text-slate-200">Azhar Uddin (Founder)</span>
                     </div>
                     <div className="flex justify-between text-slate-400">
                       <span>Callback Promise:</span>
