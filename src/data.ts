@@ -55,104 +55,95 @@ export const FOUNDER_DATA: FounderProfile = {
 };
 
 export const SERVICES_DATA: Service[] = [
-  // DEVELOPMENT
   {
-    id: "web-development",
-    title: "Premium Website Development",
-    category: "Development",
-    description: "Blazing fast custom Next.js, React, and TypeScript applications engineered with sub-second page loads.",
+    id: "website-development",
+    title: "Professional Website Design & Development",
+    category: "Website Development",
+    description: "Build fast, responsive, modern websites designed to convert visitors into customers.",
     icon: "Code2",
     features: [
-      "Next.js Development & React Development",
-      "Website Redesign & Performance Overhaul",
-      "Custom Web Applications & SaaS Development",
-      "WordPress Development & Shopify Development",
-      "Landing Pages & High-Converting Funnels"
+      "Business Websites",
+      "Landing Pages",
+      "WordPress Websites",
+      "Shopify Stores",
+      "Website Maintenance"
     ],
     gradient: "from-blue-500/10 to-indigo-500/5 hover:from-blue-500/20 hover:to-indigo-500/10"
   },
   {
-    id: "mobile-apps",
-    title: "Mobile App & Dashboard Development",
-    category: "Development",
-    description: "Stunning cross-platform iOS and Android applications developed using React Native or Flutter, alongside real-time dashboards.",
-    icon: "Smartphone",
+    id: "digital-marketing",
+    title: "Social Media Management",
+    category: "Digital Marketing",
+    description: "Build a consistent online presence with professional content, strategy, and audience growth.",
+    icon: "TrendingUp",
     features: [
-      "iOS & Android Mobile App Development",
-      "Dashboard Development & Real-Time Analytics",
-      "React Native & Flutter Hybrid Apps",
-      "Push Notification Automations",
-      "Offline-first Local Databases"
+      "Content Planning",
+      "Content Creation",
+      "Reels & Graphics",
+      "Social Media Strategy",
+      "Community Management"
     ],
     gradient: "from-cyan-500/10 to-sky-500/5 hover:from-cyan-500/20 hover:to-sky-500/10"
   },
-
-  // AI & AUTOMATION
   {
-    id: "ai-automation",
-    title: "AI & Business Automation",
-    category: "AI & Automation",
-    description: "Supercharge your business with custom n8n, Make, and Zapier automated workflows and intelligent AI integrations.",
-    icon: "Cpu",
+    id: "seo",
+    title: "Search Engine Optimization",
+    category: "SEO",
+    description: "Increase your visibility on Google with technical SEO and content optimization.",
+    icon: "SearchCode",
     features: [
-      "AI Automation & Business Automation",
-      "Workflow Automation (n8n, Make, Zapier)",
-      "CRM Integration (HubSpot, GoHighLevel, etc.)",
-      "Custom AI Chatbots (Gemini/OpenAI)",
-      "Excel Automation & Automated Lead Routing"
-    ],
-    gradient: "from-purple-500/10 to-pink-500/5 hover:from-purple-500/20 hover:to-pink-500/10"
-  },
-
-  // MARKETING
-  {
-    id: "marketing-seo",
-    title: "SEO, Google Ads & Meta Ads",
-    category: "Marketing",
-    description: "Data-backed advertising and semantic organic search optimization that scales enterprise pipeline lead pipelines.",
-    icon: "TrendingUp",
-    features: [
-      "SEO (Technical SEO & Local SEO)",
-      "Google Ads (Search, Display & PMax)",
-      "Meta Ads (Facebook & Instagram scaling)",
-      "Social Media Management & Strategy",
-      "Data-driven lead generation funnels"
+      "Website SEO",
+      "Local SEO",
+      "Google Business Profile",
+      "Keyword Research",
+      "Technical SEO"
     ],
     gradient: "from-teal-500/10 to-emerald-500/5 hover:from-teal-500/20 hover:to-emerald-500/10"
   },
-
-  // DESIGN & CREATIVE
   {
-    id: "brand-creative",
-    title: "Brand Identity, Video Editing & UIUX",
-    category: "Design",
-    description: "Sleek, responsive, and award-winning visual identities and layouts crafted on modern design principles.",
+    id: "ai-automation",
+    title: "AI Workflow & Business Automation",
+    category: "AI Automation",
+    description: "Save time and automate repetitive business tasks using modern AI tools.",
+    icon: "Cpu",
+    features: [
+      "ChatGPT Integration",
+      "n8n Automation",
+      "Make.com Workflows",
+      "Zapier Automation",
+      "CRM Automation"
+    ],
+    gradient: "from-purple-500/10 to-pink-500/5 hover:from-purple-500/20 hover:to-pink-500/10"
+  },
+  {
+    id: "branding",
+    title: "Brand Identity & Creative Design",
+    category: "Branding",
+    description: "Create a professional and memorable brand identity that builds trust.",
     icon: "Layers",
     features: [
-      "UI UX Design & Figma Design Systems",
-      "Brand Identity & Minimalist Logo Systems",
-      "Graphic Design & Creative Copywriting",
-      "Video Editing & Motion Graphics",
-      "Premium Investor Pitch Deck Designs"
+      "Logo Design",
+      "Brand Guidelines",
+      "Social Media Graphics",
+      "Marketing Materials",
+      "Canva Templates"
     ],
     gradient: "from-amber-500/10 to-orange-500/5 hover:from-amber-500/20 hover:to-orange-500/10"
   },
-
-  // BUSINESS CONSULTING
   {
-    id: "business-consulting",
-    title: "Business Consulting & Data Entry",
-    category: "Data & Business",
-    description: "Professional strategic consulting to identify automation bottlenecks, clean datasets, and audit tech infrastructure.",
-    icon: "BarChart3",
+    id: "virtual-assistance",
+    title: "Executive & Virtual Assistance",
+    category: "Virtual Assistance",
+    description: "Reliable business support that helps founders focus on growth.",
+    icon: "Smartphone",
     features: [
-      "Business Consulting & Digital Strategy",
-      "Excel Automation, Formulas & Scripts",
-      "Detailed Data Entry & Database Cleanup",
-      "Analytics & Dashboard Integrations",
-      "Tech Stack Audits & Security Consulting"
+      "Email Management",
+      "Calendar Management",
+      "Client Communication",
+      "Research",
+      "Administrative Support"
     ],
-    gradient: "from-green-500/10 to-emerald-500/5 hover:from-green-500/20 hover:to-emerald-500/10"
+    gradient: "from-green-500/10 to-emerald-500/5 hover:from-green-500/20 hover:to-green-500/10"
   }
 ];
 

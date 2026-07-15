@@ -6,7 +6,7 @@
 export interface Service {
   id: string;
   title: string;
-  category: 'Design' | 'Development' | 'Marketing' | 'AI & Automation' | 'Data & Business';
+  category: string;
   description: string;
   icon: string;
   features: string[];

@@ -34,7 +34,7 @@ export default function Services({ onBookCall }: ServicesProps) {
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [activeDetailsModal, setActiveDetailsModal] = useState<Service | null>(null);
 
-  const categories = ['All', 'Design', 'Development', 'Marketing', 'AI & Automation', 'Data & Business'];
+  const categories = ['All', 'Website Development', 'Digital Marketing', 'SEO', 'AI Automation', 'Branding', 'Virtual Assistance'];
 
   // Map icon strings to Lucide components
   const iconMap: Record<string, any> = {
@@ -71,9 +71,12 @@ export default function Services({ onBookCall }: ServicesProps) {
             <span className="text-xs font-bold tracking-widest text-blue-600 dark:text-blue-400 uppercase block mb-3">
               Capabilities Spectrum
             </span>
-            <h2 className="text-3xl md:text-5xl font-display font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight">
-              A cohesive spectrum of high-end digital architecture.
+            <h2 className="text-3xl md:text-5xl font-display font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight mb-4">
+              Digital Solutions Built For Modern Businesses.
             </h2>
+            <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
+              From strategy to execution, Niaz Digital delivers complete digital solutions that help businesses build a stronger online presence, automate operations, and grow sustainably.
+            </p>
           </div>
           
           {/* Dynamic Search Box */}
