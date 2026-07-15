@@ -188,6 +188,7 @@ export default function App() {
           <Route path="/services" element={<ServicesPage />} />
           <Route path="/services/:serviceId" element={<ServiceDetailPage />} />
           <Route path="/portfolio" element={<PortfolioPage />} />
+          <Route path="/portfolio/ergonomic-shop" element={<CaseStudiesPage />} />
           <Route path="/case-studies" element={<CaseStudiesPage />} />
           <Route path="/blog" element={<BlogListing />} />
           <Route path="/blog/:slug" element={<SingleBlog />} />

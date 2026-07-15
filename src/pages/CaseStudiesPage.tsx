@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
   ArrowLeft, 
@@ -21,6 +21,7 @@ import logoImg from '../assets/images/niaz_digital_logo_1784067879724.jpg';
 
 export default function CaseStudiesPage() {
   const navigate = useNavigate();
+  const location = useLocation();
   const [activeStudy, setActiveStudy] = useState<CaseStudy | null>(null);
 
   useEffect(() => {
@@ -31,7 +32,21 @@ export default function CaseStudiesPage() {
       canonicalUrl: window.location.href,
       ogImage: logoImg
     });
-  }, []);
+
+    if (location.pathname === '/portfolio/ergonomic-shop' || location.pathname.includes('ergonomic')) {
+      const ergonomicStudy = CASE_STUDIES_DATA.find(s => s.id === 'ergonomic-shop-automation-study');
+      if (ergonomicStudy) {
+        setActiveStudy(ergonomicStudy);
+      }
+    }
+  }, [location.pathname]);
+
+  const handleCloseStudy = () => {
+    setActiveStudy(null);
+    if (location.pathname === '/portfolio/ergonomic-shop') {
+      navigate('/case-studies');
+    }
+  };
 
   return (
     <section className="py-16 md:py-24 bg-[#FFFFFF] dark:bg-[#070913] min-h-screen relative overflow-hidden">
@@ -114,7 +129,7 @@ export default function CaseStudiesPage() {
 
         {/* Strategic Case Studies details Overlay/Modal */}
         <AnimatePresence>
-          {activeCaseStudyOverlay(activeStudy, () => setActiveStudy(null))}
+          {activeCaseStudyOverlay(activeStudy, handleCloseStudy)}
         </AnimatePresence>
 
       </div>

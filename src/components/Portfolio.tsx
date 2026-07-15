@@ -4,6 +4,7 @@
  */
 
 import React, { useState, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
   ArrowUpRight, 
@@ -16,18 +17,45 @@ import {
   TrendingUp, 
   X,
   FileText,
-  ChevronRight
+  ChevronRight,
+  CheckCircle2
 } from 'lucide-react';
 import { PORTFOLIO_DATA, CASE_STUDIES_DATA } from '../data';
 import { PortfolioItem, CaseStudy } from '../types';
 
 export default function Portfolio() {
+  const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [activeCaseStudy, setActiveCaseStudy] = useState<CaseStudy | null>(null);
   
   // Before / After Slider State
   const [sliderPosition, setSliderPosition] = useState<number>(50);
   const sliderContainerRef = useRef<HTMLDivElement>(null);
+  const isDraggingRef = useRef<boolean>(false);
+
+  const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    isDraggingRef.current = true;
+    updateSliderPosition(e.clientX);
+    e.currentTarget.setPointerCapture(e.pointerId);
+  };
+
+  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (!isDraggingRef.current) return;
+    updateSliderPosition(e.clientX);
+  };
+
+  const handlePointerUp = (e: React.PointerEvent<HTMLDivElement>) => {
+    isDraggingRef.current = false;
+    e.currentTarget.releasePointerCapture(e.pointerId);
+  };
+
+  const updateSliderPosition = (clientX: number) => {
+    if (!sliderContainerRef.current) return;
+    const rect = sliderContainerRef.current.getBoundingClientRect();
+    const x = Math.max(0, Math.min(clientX - rect.left, rect.width));
+    setSliderPosition((x / rect.width) * 100);
+  };
 
   const categories = [
     'All', 'Websites', 'Mobile Apps', 'Dashboards', 'Branding', 'Meta Ads', 'AI Automation'
@@ -36,14 +64,6 @@ export default function Portfolio() {
   const filteredPortfolio = PORTFOLIO_DATA.filter(item => {
     return selectedCategory === 'All' || item.category === selectedCategory;
   });
-
-  const handleSliderMove = (e: React.MouseEvent | React.TouchEvent) => {
-    if (!sliderContainerRef.current) return;
-    const rect = sliderContainerRef.current.getBoundingClientRect();
-    const clientX = 'touches' in e ? e.touches[0].clientX : e.clientX;
-    const x = Math.max(0, Math.min(clientX - rect.left, rect.width));
-    setSliderPosition((x / rect.width) * 100);
-  };
 
   const handleOpenCaseStudy = (caseStudyId?: string) => {
     if (!caseStudyId) return;
@@ -71,72 +91,132 @@ export default function Portfolio() {
         </div>
 
         {/* Standalone Interactive Before/After Speed Comparison Bento Grid Block */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-20 items-center bg-white/40 dark:bg-slate-950/20 backdrop-blur-xl rounded-[32px] p-8 md:p-12 border border-white/50 dark:border-white/10 shadow-sm">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-20 items-center bg-white/40 dark:bg-slate-950/20 backdrop-blur-xl rounded-[32px] p-8 md:p-12 border border-slate-100 dark:border-slate-800 shadow-sm">
           
           <div className="col-span-1 lg:col-span-5 text-left flex flex-col gap-6">
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-500/10 text-3xs font-extrabold tracking-widest text-blue-700 dark:text-blue-400 uppercase w-fit">
-              <Sparkles className="w-3.5 h-3.5" /> Performance Metamorphosis
+              <Sparkles className="w-3.5 h-3.5" /> Real Client Case Study
             </span>
-            <h3 className="text-2xl md:text-3.5xl font-display font-black text-slate-900 dark:text-white tracking-tight">
-              Before & After Optimization
+            <h3 className="text-2xl md:text-3.5xl font-display font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight">
+              Website Transformation That Increased Performance & User Experience
             </h3>
             <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
-              Drag the center bar slider to witness TechGloze's performance overhaul. We take bloated, slow templates (Left) and reconstruct them into optimized static Next.js/React pipelines (Right) scoring a perfect 100/100.
+              One of our recent projects involved improving the digital experience of Ergonomic Shop, a leading massage chair retailer. Our work focused on improving user experience, website structure, navigation, content organization, SEO foundation, and overall performance while maintaining the brand identity. The optimized version demonstrates how thoughtful design and technical improvements can significantly enhance business growth.
             </p>
-            <div className="flex flex-col gap-3">
-              <div className="flex items-center gap-3 text-xs font-semibold text-slate-600 dark:text-slate-300">
-                <TrendingUp className="w-4.5 h-4.5 text-blue-500" />
-                <span>+240% Sales Conversions</span>
+            
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div className="flex items-start gap-2 text-xs font-semibold text-slate-600 dark:text-slate-300">
+                <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
+                <span>Website UX & Interface Improvement</span>
               </div>
-              <div className="flex items-center gap-3 text-xs font-semibold text-slate-600 dark:text-slate-300">
-                <Clock className="w-4.5 h-4.5 text-emerald-500" />
-                <span>0.6s sub-second full page loads</span>
+              <div className="flex items-start gap-2 text-xs font-semibold text-slate-600 dark:text-slate-300">
+                <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
+                <span>Navigation & Structure Optimization</span>
               </div>
+              <div className="flex items-start gap-2 text-xs font-semibold text-slate-600 dark:text-slate-300">
+                <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
+                <span>Better SEO Foundation</span>
+              </div>
+              <div className="flex items-start gap-2 text-xs font-semibold text-slate-600 dark:text-slate-300">
+                <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
+                <span>Faster Performance Optimization</span>
+              </div>
+              <div className="flex items-start gap-2 text-xs font-semibold text-slate-600 dark:text-slate-300">
+                <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
+                <span>Mobile Responsive Improvements</span>
+              </div>
+              <div className="flex items-start gap-2 text-xs font-semibold text-slate-600 dark:text-slate-300">
+                <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
+                <span>Improved Conversion-Oriented Layout</span>
+              </div>
+            </div>
+
+            <div className="pt-2">
+              <button
+                onClick={() => navigate('/portfolio/ergonomic-shop')}
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-bold text-xs uppercase tracking-wider shadow-lg shadow-blue-500/20 transition-all duration-200 cursor-pointer group"
+              >
+                <span>View Full Case Study</span>
+                <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </button>
             </div>
           </div>
 
-          <div className="col-span-1 lg:col-span-7">
-            {/* Custom Before / After Slider */}
-            <div 
-              ref={sliderContainerRef}
-              onMouseMove={handleSliderMove}
-              onTouchMove={handleSliderMove}
-              className="relative w-full aspect-video rounded-[22px] overflow-hidden select-none cursor-ew-resize border border-slate-200 dark:border-slate-800 shadow-2xl"
-            >
-              {/* Before State (Under layer) */}
-              <div className="absolute inset-0 bg-slate-200 dark:bg-slate-900">
-                <img 
-                  src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1200&auto=format&fit=crop" 
-                  alt="Legacy Slow Site" 
-                  className="w-full h-full object-cover grayscale opacity-70"
-                />
-                <div className="absolute top-4 left-4 bg-red-600/90 text-white font-mono text-2xs px-3 py-1 rounded-full font-bold uppercase tracking-wider backdrop-blur-sm shadow-md">
-                  Legacy WordPress (TTFB: 4.2s)
+          <div className="col-span-1 lg:col-span-7 select-none">
+            {/* Custom Before / After Slider macOS Browser Mockup */}
+            <div className="relative group/slider rounded-2xl border border-slate-200/80 dark:border-slate-800/80 bg-slate-50 dark:bg-slate-950 overflow-hidden shadow-2xl transition-all duration-500 hover:scale-[1.01] active:scale-[1.005]">
+              {/* Browser Chrome Header bar */}
+              <div className="flex items-center justify-between px-4 py-3 bg-slate-100 dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800">
+                <div className="flex items-center gap-1.5 shrink-0">
+                  <div className="w-3 h-3 rounded-full bg-red-400 dark:bg-red-500/80" />
+                  <div className="w-3 h-3 rounded-full bg-yellow-400 dark:bg-yellow-500/80" />
+                  <div className="w-3 h-3 rounded-full bg-green-400 dark:bg-green-500/80" />
+                </div>
+                <div className="flex-1 max-w-xs md:max-w-md mx-4">
+                  <div className="w-full bg-white dark:bg-slate-950 text-[10px] sm:text-[11px] text-slate-400 dark:text-slate-500 px-3 py-1 rounded-md text-center font-mono border border-slate-200/50 dark:border-slate-800/50 truncate flex items-center justify-center gap-1">
+                    <span className="text-slate-300 dark:text-slate-700">https://</span>
+                    <span className="font-semibold text-slate-600 dark:text-slate-400 transition-all duration-300">
+                      {sliderPosition > 50 ? 'ergonomic-shop.co.il' : 'ergonomic.shop'}
+                    </span>
+                  </div>
+                </div>
+                <div className="w-12 shrink-0 flex justify-end gap-1 text-slate-400 dark:text-slate-600">
+                  <span className="text-xs">&bull;&bull;&bull;</span>
                 </div>
               </div>
 
-              {/* After State (Upper layer - clipped) */}
+              {/* Interactive Comparison Stage */}
               <div 
-                className="absolute inset-0"
-                style={{ clipPath: `polygon(0 0, ${sliderPosition}% 0, ${sliderPosition}% 100%, 0 100%)` }}
+                ref={sliderContainerRef}
+                onPointerDown={handlePointerDown}
+                onPointerMove={handlePointerMove}
+                onPointerUp={handlePointerUp}
+                onPointerLeave={handlePointerUp}
+                className="relative w-full aspect-[16/10] sm:aspect-video overflow-hidden cursor-ew-resize select-none bg-slate-100 dark:bg-slate-900"
               >
-                <img 
-                  src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=1200&auto=format&fit=crop" 
-                  alt="TechGloze Rebuilt Nextjs Site" 
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute top-4 right-4 bg-emerald-600/90 text-white font-mono text-2xs px-3 py-1 rounded-full font-bold uppercase tracking-wider backdrop-blur-sm shadow-md">
-                  Next.js Headless (TTFB: 0.6s)
+                {/* AFTER State (Modern Redesign screenshot) - Under layer */}
+                <div className="absolute inset-0 bg-slate-100 dark:bg-slate-900">
+                  <img 
+                    src="/src/assets/images/ergonomic_after_design_1784125895477.jpg" 
+                    alt="After Redesign" 
+                    referrerPolicy="no-referrer"
+                    loading="lazy"
+                    className="absolute inset-0 w-full h-full object-cover object-top select-none pointer-events-none"
+                  />
                 </div>
-              </div>
 
-              {/* Slider Center Line and Handle Trigger */}
-              <div 
-                className="absolute inset-y-0 w-1 bg-white cursor-ew-resize flex items-center justify-center"
-                style={{ left: `${sliderPosition}%` }}
-              >
-                <div className="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center shadow-lg border border-white font-bold select-none text-xs">
-                  &larr;&rarr;
+                {/* BEFORE State (Old Outdated Site screenshot) - Upper layer (clipped) */}
+                <div 
+                  className="absolute inset-0 select-none pointer-events-none"
+                  style={{ clipPath: `polygon(0 0, ${sliderPosition}% 0, ${sliderPosition}% 100%, 0 100%)` }}
+                >
+                  <img 
+                    src="/src/assets/images/ergonomic_before_1784125089716.jpg" 
+                    alt="Before Redesign" 
+                    referrerPolicy="no-referrer"
+                    loading="lazy"
+                    className="absolute inset-0 w-full h-full object-cover object-top select-none pointer-events-none"
+                  />
+                </div>
+
+                {/* Static Badges - placed on top of everything inside the stage */}
+                <div className="absolute top-4 left-4 bg-red-600 text-white font-sans text-[10px] sm:text-xs px-2.5 py-1 rounded-full font-bold uppercase tracking-wider shadow-md z-30 select-none pointer-events-none">
+                  BEFORE
+                </div>
+                <div className="absolute top-4 right-4 bg-emerald-600 text-white font-sans text-[10px] sm:text-xs px-2.5 py-1 rounded-full font-bold uppercase tracking-wider shadow-md z-30 select-none pointer-events-none">
+                  AFTER
+                </div>
+
+                {/* Slider separator handle line */}
+                <div 
+                  className="absolute inset-y-0 w-0.5 bg-white cursor-ew-resize flex items-center justify-center z-20"
+                  style={{ left: `${sliderPosition}%`, transform: 'translateX(-50%)' }}
+                >
+                  <div className="w-9 h-9 rounded-full bg-blue-600 hover:bg-blue-700 active:scale-95 text-white flex items-center justify-center shadow-2xl border-2 border-white font-semibold select-none transition-transform duration-200 cursor-ew-resize">
+                    <svg className="w-4 h-4 fill-none stroke-current stroke-2" viewBox="0 0 24 24">
+                      <path d="M8 7l-5 5 5 5M16 7l5 5-5 5" />
+                    </svg>
+                  </div>
                 </div>
               </div>
             </div>
