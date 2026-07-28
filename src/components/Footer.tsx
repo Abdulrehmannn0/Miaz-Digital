@@ -74,6 +74,9 @@ export default function Footer() {
                 <Link to="/founder" className="hover:text-white transition-colors block py-0.5">About Founder</Link>
               </li>
               <li>
+                <Link to="/team" className="hover:text-white transition-colors block py-0.5">Meet the Team</Link>
+              </li>
+              <li>
                 <Link to="/services" className="hover:text-white transition-colors block py-0.5">Services Spectrum</Link>
               </li>
               <li>

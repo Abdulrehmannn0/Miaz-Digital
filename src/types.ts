@@ -126,6 +126,26 @@ export interface FounderProfile {
   };
 }
 
+export interface TeamMember {
+  id: string;
+  name: string;
+  role: string;
+  country: string;
+  photo?: string;
+  experience: string;
+  skills: string[];
+  category: 'Development' | 'Design' | 'SEO' | 'Marketing' | 'AI' | 'Operations' | 'Content' | 'Social Media' | 'Support';
+  description?: string;
+  availability: string;
+  linkedin?: string;
+  email?: string;
+  isFounder?: boolean;
+  isSupport?: boolean;
+  specialNote?: string;
+  verifiedBadge?: string;
+  journeyBadge?: string;
+}
+
 export type LanguageCode = 'EN' | 'ES' | 'AR' | 'DE';
 
 export interface LanguageContent {

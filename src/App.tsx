@@ -8,6 +8,7 @@ import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
+import Team from './components/Team';
 import Services from './components/Services';
 import Portfolio from './components/Portfolio';
 import ClientResults from './components/ClientResults';
@@ -25,6 +26,7 @@ import BlogListing from './pages/BlogListing';
 import SingleBlog from './pages/SingleBlog';
 import AboutPage from './pages/AboutPage';
 import FounderPage from './pages/FounderPage';
+import TeamPage from './pages/TeamPage';
 import ServicesPage from './pages/ServicesPage';
 import ServiceDetailPage from './pages/ServiceDetailPage';
 import PortfolioPage from './pages/PortfolioPage';
@@ -74,6 +76,9 @@ function Home({ currentLang, handleScrollToSection }: HomeProps) {
 
       {/* Global biography spotlight */}
       <About />
+
+      {/* Premium Meet the Team Experience */}
+      <Team onBookCall={() => handleScrollToSection('contact')} />
 
       {/* Educational logs (Latest 3 blogs section) */}
       <Blog />
@@ -142,7 +147,7 @@ export default function App() {
       return;
     }
 
-    const sections = ['hero', 'services', 'portfolio', 'about', 'dashboard', 'tools', 'blog', 'faq', 'contact'];
+    const sections = ['hero', 'services', 'portfolio', 'about', 'team', 'dashboard', 'tools', 'blog', 'faq', 'contact'];
     
     const handleScrollHighlight = () => {
       const scrollPos = window.scrollY + 200;
@@ -185,6 +190,7 @@ export default function App() {
           <Route path="/" element={<Home currentLang={currentLang} handleScrollToSection={handleScrollToSection} />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/founder" element={<FounderPage />} />
+          <Route path="/team" element={<TeamPage />} />
           <Route path="/services" element={<ServicesPage />} />
           <Route path="/services/:serviceId" element={<ServiceDetailPage />} />
           <Route path="/portfolio" element={<PortfolioPage />} />
