@@ -5,6 +5,7 @@
  */
 
 import { BlogArticle } from '../types';
+import { BLOG_DATA } from '../data';
 
 const WP_API_URL = "https://blog.niazdigital.com/wp-json/wp/v2";
 
@@ -99,15 +100,15 @@ export function mapWordPressPost(post: any): BlogArticle {
 export async function fetchLatestPosts(limit: number = 3): Promise<BlogArticle[]> {
   try {
     const res = await fetch(`${WP_API_URL}/posts?_embed&per_page=${limit}&status=publish`);
-    if (!res.ok) {
-      throw new Error(`WordPress API returned status ${res.status}`);
+    if (res.ok) {
+      const data = await res.json();
+      const mapped = data.map(mapWordPressPost);
+      if (mapped.length > 0) return mapped;
     }
-    const data = await res.json();
-    return data.map(mapWordPressPost);
   } catch (error) {
-    console.error("Error fetching latest WordPress posts:", error);
-    throw error;
+    console.warn("Error fetching latest WordPress posts, using local fallback:", error);
   }
+  return BLOG_DATA.slice(0, limit);
 }
 
 /**
@@ -116,15 +117,20 @@ export async function fetchLatestPosts(limit: number = 3): Promise<BlogArticle[]
 export async function fetchAllPosts(): Promise<BlogArticle[]> {
   try {
     const res = await fetch(`${WP_API_URL}/posts?_embed&per_page=20&status=publish`);
-    if (!res.ok) {
-      throw new Error(`WordPress API returned status ${res.status}`);
+    if (res.ok) {
+      const data = await res.json();
+      const mapped = data.map(mapWordPressPost);
+      if (mapped.length > 0) {
+        // Merge with local fallback posts without duplicates
+        const existingSlugs = new Set(mapped.map((p: BlogArticle) => p.slug));
+        const extraLocal = BLOG_DATA.filter(p => !existingSlugs.has(p.slug));
+        return [...mapped, ...extraLocal];
+      }
     }
-    const data = await res.json();
-    return data.map(mapWordPressPost);
   } catch (error) {
-    console.error("Error fetching all WordPress posts:", error);
-    throw error;
+    console.warn("Error fetching all WordPress posts, using local fallback:", error);
   }
+  return BLOG_DATA;
 }
 
 /**
@@ -133,18 +139,23 @@ export async function fetchAllPosts(): Promise<BlogArticle[]> {
 export async function fetchPostBySlug(slug: string): Promise<BlogArticle | null> {
   try {
     const res = await fetch(`${WP_API_URL}/posts?slug=${slug}&_embed&status=publish`);
-    if (!res.ok) {
-      throw new Error(`WordPress API returned status ${res.status}`);
+    if (res.ok) {
+      const data = await res.json();
+      if (Array.isArray(data) && data.length > 0) {
+        return mapWordPressPost(data[0]);
+      }
     }
-    const data = await res.json();
-    if (!Array.isArray(data) || data.length === 0) {
-      return null;
-    }
-    return mapWordPressPost(data[0]);
   } catch (error) {
-    console.error(`Error fetching WordPress post with slug [${slug}]:`, error);
-    throw error;
+    console.warn(`WordPress API fetch error for slug [${slug}], attempting local fallback:`, error);
   }
+
+  // Fallback to local static blog dataset
+  const localMatch = BLOG_DATA.find(post => post.slug === slug || post.id === slug);
+  if (localMatch) {
+    return localMatch;
+  }
+
+  return null;
 }
 
 /**

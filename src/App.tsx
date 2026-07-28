@@ -36,6 +36,7 @@ import FaqPage from './pages/FaqPage';
 import ClientPortalPage from './pages/ClientPortalPage';
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
 import TermsPage from './pages/TermsPage';
+import ReviewsPage from './pages/ReviewsPage';
 import NotFoundPage from './pages/NotFoundPage';
 import { LanguageCode } from './types';
 
@@ -200,6 +201,8 @@ export default function App() {
           <Route path="/blog/:slug" element={<SingleBlog />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/faq" element={<FaqPage />} />
+          <Route path="/reviews" element={<ReviewsPage />} />
+          <Route path="/testimonials" element={<ReviewsPage />} />
           <Route path="/client-portal" element={<ClientPortalPage />} />
           <Route path="/privacy" element={<PrivacyPolicyPage />} />
           <Route path="/terms" element={<TermsPage />} />
