@@ -104,7 +104,7 @@ export default function Blog() {
                 
                 {/* Image header */}
                 <a 
-                  href={`https://blog.niazdigital.com/${article.slug}/`}
+                  href={article.permalink || `https://blog.niazdigital.com/${article.slug}/`}
                   className="relative aspect-[16/10] overflow-hidden bg-slate-100 dark:bg-slate-950 block"
                 >
                   <img 
@@ -127,7 +127,7 @@ export default function Blog() {
                       <span className="flex items-center gap-1"><Clock className="w-3.5 h-3.5 text-blue-500/80" /> {article.readingTime}</span>
                     </div>
 
-                    <a href={`https://blog.niazdigital.com/${article.slug}/`}>
+                    <a href={article.permalink || `https://blog.niazdigital.com/${article.slug}/`}>
                       <h3 className="font-display font-extrabold text-base md:text-lg text-slate-900 dark:text-white leading-snug group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors mb-3 line-clamp-2">
                         {article.title}
                       </h3>
@@ -152,7 +152,7 @@ export default function Blog() {
                     </div>
 
                     <a
-                      href={`https://blog.niazdigital.com/${article.slug}/`}
+                      href={article.permalink || `https://blog.niazdigital.com/${article.slug}/`}
                       className="text-xs font-bold text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1 cursor-pointer w-fit"
                     >
                       Read Article <ChevronRight className="w-4 h-4" />

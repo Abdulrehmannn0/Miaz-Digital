@@ -82,6 +82,7 @@ export interface BlogArticle {
   id: string;
   title: string;
   slug: string;
+  permalink?: string;
   excerpt: string;
   content: string;
   category: string;

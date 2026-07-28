@@ -79,10 +79,14 @@ export function mapWordPressPost(post: any): BlogArticle {
   const image = post._embedded?.['wp:featuredmedia']?.[0]?.source_url || 
     "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?q=80&w=1200&auto=format&fit=crop";
 
+  // 7. Extract official WordPress permalink returned by the API
+  const permalink = post.link || (post.slug ? `https://blog.niazdigital.com/${post.slug}/` : "https://blog.niazdigital.com");
+
   return {
     id: post.id.toString(),
     title: decodeHtml(post.title?.rendered || ""),
     slug: post.slug || "",
+    permalink,
     excerpt: decodeHtml(stripHtml(post.excerpt?.rendered || "")),
     content: contentText, // keep raw HTML for rich display rendering
     category: categoryName,

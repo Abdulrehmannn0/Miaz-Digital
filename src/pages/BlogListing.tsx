@@ -146,7 +146,7 @@ export default function BlogListing() {
                 
                 {/* Image Header with Lazy Loading and Hover Effect */}
                 <a 
-                  href={`https://blog.niazdigital.com/${article.slug}/`}
+                  href={article.permalink || `https://blog.niazdigital.com/${article.slug}/`}
                   className="relative aspect-[16/10] overflow-hidden bg-slate-100 dark:bg-slate-900 block"
                 >
                   <img 
@@ -173,7 +173,7 @@ export default function BlogListing() {
                       </span>
                     </div>
 
-                    <a href={`https://blog.niazdigital.com/${article.slug}/`}>
+                    <a href={article.permalink || `https://blog.niazdigital.com/${article.slug}/`}>
                       <h3 className="font-display font-extrabold text-base md:text-lg text-slate-900 dark:text-white leading-snug group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors mb-3 line-clamp-2 cursor-pointer">
                         {article.title}
                       </h3>
@@ -198,7 +198,7 @@ export default function BlogListing() {
                     </div>
                     
                     <a
-                      href={`https://blog.niazdigital.com/${article.slug}/`}
+                      href={article.permalink || `https://blog.niazdigital.com/${article.slug}/`}
                       className="text-xs font-bold text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1 cursor-pointer"
                     >
                       Read Article <ChevronRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />

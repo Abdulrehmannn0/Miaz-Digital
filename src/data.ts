@@ -630,6 +630,7 @@ export const BLOG_DATA: BlogArticle[] = [
     id: "ai-automation-2026",
     title: "How to Build a Zero-Employee Lead Routing Workflow using n8n, OpenAI & HubSpot",
     slug: "build-zero-employee-lead-routing-workflow-n8n-openai",
+    permalink: "https://blog.niazdigital.com/build-zero-employee-lead-routing-workflow-n8n-openai/",
     excerpt: "Ditch manual database updates. Learn step-by-step how we programmed a self-enriching lead classification pipeline that saves 30 hours weekly.",
     content: `
 At TechGloze, we believe human time is too valuable to spend copying and pasting records between emails, spreadsheets, and CRMs.
@@ -672,6 +673,7 @@ Our clients report a **100% elimination of routing delay**, dropping response ti
     id: "lighthouse-optimization",
     title: "The Ultimate Performance Blueprint: Achieving a 100/100 Lighthouse Rating in React",
     slug: "achieving-100-lighthouse-rating-react-vite",
+    permalink: "https://blog.niazdigital.com/achieving-100-lighthouse-rating-react-vite/",
     excerpt: "A comprehensive guide on dynamic imports, critical CSS embedding, image loading attributes, and why default HMR isn't your friend on production.",
     content: `
 Page speed is the silent killer of modern advertising ROAS. A delay of just 1.5 seconds can slash your e-commerce conversion rates by half.
@@ -705,6 +707,7 @@ Deploy your applications using clean Express proxy layers (like our premium full
     id: "meta-ads-roas-scale",
     title: "Scaling Meta Campaigns to 5.4x ROAS without Increasing Creative Fatigue",
     slug: "scaling-meta-ads-roas-creative-strategy",
+    permalink: "https://blog.niazdigital.com/scaling-meta-ads-roas-creative-strategy/",
     excerpt: "How we structured Reel visual sequences, motion-graphic callouts, and multi-budget frameworks to generate high-value acquisitions.",
     content: `
 Most agencies think scaling Meta Ads is as simple as raising the budget. They double the budget, only to watch their conversion metrics tumble into a deficit.
