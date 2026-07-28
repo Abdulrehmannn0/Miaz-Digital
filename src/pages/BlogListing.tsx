@@ -40,7 +40,7 @@ export default function BlogListing() {
     updateMetaTags({
       title: "Niaz Digital Journal | Premium Systems & Growth Insights",
       description: "Read the latest digital growth articles, Technical SEO insights, CRM automation blueprints, and custom system case studies directly from Azhar Uddin and the Niaz Digital team.",
-      canonicalUrl: window.location.href,
+      canonicalUrl: "https://niazdigital.com/blog",
       ogImage: logoImg
     });
   }, []);
@@ -145,7 +145,10 @@ export default function BlogListing() {
               >
                 
                 {/* Image Header with Lazy Loading and Hover Effect */}
-                <div className="relative aspect-[16/10] overflow-hidden bg-slate-100 dark:bg-slate-900">
+                <a 
+                  href={`https://blog.niazdigital.com/${article.slug}/`}
+                  className="relative aspect-[16/10] overflow-hidden bg-slate-100 dark:bg-slate-900 block"
+                >
                   <img 
                     src={article.image} 
                     alt={article.title} 
@@ -156,7 +159,7 @@ export default function BlogListing() {
                   <span className="absolute top-4 left-4 bg-slate-900/80 backdrop-blur-sm text-white text-[9px] font-black uppercase tracking-wider px-3 py-1 rounded-full">
                     {article.category}
                   </span>
-                </div>
+                </a>
 
                 {/* Body Content */}
                 <div className="p-6 flex flex-col flex-grow justify-between">
@@ -170,9 +173,11 @@ export default function BlogListing() {
                       </span>
                     </div>
 
-                    <h3 className="font-display font-extrabold text-base md:text-lg text-slate-900 dark:text-white leading-snug group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors mb-3 line-clamp-2">
-                      {article.title}
-                    </h3>
+                    <a href={`https://blog.niazdigital.com/${article.slug}/`}>
+                      <h3 className="font-display font-extrabold text-base md:text-lg text-slate-900 dark:text-white leading-snug group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors mb-3 line-clamp-2 cursor-pointer">
+                        {article.title}
+                      </h3>
+                    </a>
 
                     <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed line-clamp-3 mb-6 font-medium">
                       {article.excerpt}
@@ -192,12 +197,12 @@ export default function BlogListing() {
                       </span>
                     </div>
                     
-                    <Link
-                      to={`/blog/${article.slug}`}
+                    <a
+                      href={`https://blog.niazdigital.com/${article.slug}/`}
                       className="text-xs font-bold text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1 cursor-pointer"
                     >
                       Read Article <ChevronRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-                    </Link>
+                    </a>
                   </div>
                 </div>
 

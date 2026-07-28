@@ -97,7 +97,7 @@ export function mapWordPressPost(post: any): BlogArticle {
 /**
  * Fetches the latest N posts from WordPress
  */
-export async function fetchLatestPosts(limit: number = 3): Promise<BlogArticle[]> {
+export async function fetchLatestPosts(limit: number = 6): Promise<BlogArticle[]> {
   try {
     const res = await fetch(`${WP_API_URL}/posts?_embed&per_page=${limit}&status=publish`);
     if (res.ok) {
@@ -187,6 +187,28 @@ export function updateMetaTags(meta: {
   ogImage?: string;
 }) {
   document.title = meta.title;
+
+  // Format canonicalUrl strictly with primary domain https://niazdigital.com
+  let path = "/";
+  if (meta.canonicalUrl) {
+    if (meta.canonicalUrl.startsWith("http")) {
+      try {
+        const parsed = new URL(meta.canonicalUrl);
+        path = parsed.pathname + parsed.search;
+      } catch {
+        path = meta.canonicalUrl;
+      }
+    } else {
+      path = meta.canonicalUrl.startsWith("/") ? meta.canonicalUrl : `/${meta.canonicalUrl}`;
+    }
+  }
+  const normalizedCanonical = `https://niazdigital.com${path}`;
+
+  // Normalize ogImage if relative
+  let normalizedOgImage = meta.ogImage;
+  if (normalizedOgImage && !normalizedOgImage.startsWith("http")) {
+    normalizedOgImage = `https://niazdigital.com${normalizedOgImage.startsWith('/') ? '' : '/'}${normalizedOgImage}`;
+  }
   
   // Description
   let descMeta = document.querySelector("meta[name='description']");
@@ -204,7 +226,7 @@ export function updateMetaTags(meta: {
     canonical.setAttribute("rel", "canonical");
     document.head.appendChild(canonical);
   }
-  canonical.setAttribute("href", meta.canonicalUrl);
+  canonical.setAttribute("href", normalizedCanonical);
 
   // Open Graph Title
   let ogTitle = document.querySelector("meta[property='og:title']");
@@ -231,18 +253,27 @@ export function updateMetaTags(meta: {
     ogUrl.setAttribute("property", "og:url");
     document.head.appendChild(ogUrl);
   }
-  ogUrl.setAttribute("content", meta.canonicalUrl);
+  ogUrl.setAttribute("content", normalizedCanonical);
 
   // Open Graph Image
-  if (meta.ogImage) {
+  if (normalizedOgImage) {
     let ogImg = document.querySelector("meta[property='og:image']");
     if (!ogImg) {
       ogImg = document.createElement("meta");
       ogImg.setAttribute("property", "og:image");
       document.head.appendChild(ogImg);
     }
-    ogImg.setAttribute("content", meta.ogImage);
+    ogImg.setAttribute("content", normalizedOgImage);
   }
+
+  // Twitter Card
+  let twitterCard = document.querySelector("meta[name='twitter:card']");
+  if (!twitterCard) {
+    twitterCard = document.createElement("meta");
+    twitterCard.setAttribute("name", "twitter:card");
+    document.head.appendChild(twitterCard);
+  }
+  twitterCard.setAttribute("content", "summary_large_image");
 
   // Twitter Title
   let twitterTitle = document.querySelector("meta[name='twitter:title']");
@@ -263,13 +294,13 @@ export function updateMetaTags(meta: {
   twitterDesc.setAttribute("content", meta.description);
 
   // Twitter Image
-  if (meta.ogImage) {
+  if (normalizedOgImage) {
     let twitterImg = document.querySelector("meta[name='twitter:image']");
     if (!twitterImg) {
       twitterImg = document.createElement("meta");
       twitterImg.setAttribute("name", "twitter:image");
       document.head.appendChild(twitterImg);
     }
-    twitterImg.setAttribute("content", meta.ogImage);
+    twitterImg.setAttribute("content", normalizedOgImage);
   }
 }

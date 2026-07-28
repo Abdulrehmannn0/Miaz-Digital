@@ -38,7 +38,7 @@ export default function ContactPage() {
     updateMetaTags({
       title: "Contact & Onboarding | Niaz Digital",
       description: "Submit your custom project brief directly to Azhar Uddin at Niaz Digital. Get a full technical and speed specification layout in 12 hours.",
-      canonicalUrl: window.location.href,
+      canonicalUrl: "https://niazdigital.com/contact",
       ogImage: logoImg
     });
   }, []);

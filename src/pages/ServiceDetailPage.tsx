@@ -35,7 +35,7 @@ export default function ServiceDetailPage() {
       updateMetaTags({
         title: `${service.title} | Premium Digital Solutions | Niaz Digital`,
         description: service.description,
-        canonicalUrl: window.location.href,
+        canonicalUrl: `https://niazdigital.com/services/${serviceId}`,
         ogImage: logoImg
       });
     }

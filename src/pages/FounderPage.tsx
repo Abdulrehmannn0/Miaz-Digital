@@ -25,7 +25,7 @@ export default function FounderPage() {
     updateMetaTags({
       title: "Azhar Uddin | Founder & Growth Strategist | Niaz Digital",
       description: "Read the professional biography and digital philosophy of Azhar Uddin, founder of Niaz Digital growth agency.",
-      canonicalUrl: window.location.href,
+      canonicalUrl: "https://niazdigital.com/founder",
       ogImage: logoImg
     });
   }, []);

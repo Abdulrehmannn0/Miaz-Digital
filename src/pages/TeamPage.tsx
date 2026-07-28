@@ -13,7 +13,7 @@ export default function TeamPage() {
     updateMetaTags({
       title: "Meet the Team | Digital Growth Strategists & Engineers | Niaz Digital",
       description: "Meet Azhar Uddin, Founder & Growth Strategist, and the engineering, SEO, marketing, and design specialists powering Niaz Digital.",
-      canonicalUrl: window.location.href,
+      canonicalUrl: "https://niazdigital.com/team",
       ogImage: logoImg
     });
   }, []);

@@ -29,7 +29,7 @@ export default function CaseStudiesPage() {
     updateMetaTags({
       title: "In-Depth Case Studies | Niaz Digital",
       description: "Explore the exact strategic, technical, and architectural methods Niaz Digital used to optimize core systems, reduce lag times, and scale client revenue.",
-      canonicalUrl: window.location.href,
+      canonicalUrl: "https://niazdigital.com/case-studies",
       ogImage: logoImg
     });
 

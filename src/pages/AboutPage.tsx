@@ -23,7 +23,7 @@ export default function AboutPage() {
     updateMetaTags({
       title: "Agency Story & Values | Niaz Digital",
       description: "Learn how Niaz Digital combines high-end technical architecture with custom conversion strategy to build robust, automated digital solutions for modern businesses.",
-      canonicalUrl: window.location.href,
+      canonicalUrl: "https://niazdigital.com/about",
       ogImage: logoImg
     });
   }, []);

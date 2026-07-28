@@ -12,7 +12,7 @@ export default function PrivacyPolicyPage() {
     updateMetaTags({
       title: "Privacy Policy | Niaz Digital",
       description: "Read Niaz Digital's privacy and data encryption policy parameters. Absolute confidentiality for client intake briefs.",
-      canonicalUrl: window.location.href,
+      canonicalUrl: "https://niazdigital.com/privacy",
       ogImage: logoImg
     });
   }, []);

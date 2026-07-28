@@ -68,7 +68,7 @@ export default function PortfolioPage() {
     updateMetaTags({
       title: "Our Work & Masterpieces | Niaz Digital",
       description: "View the portfolio of premium website builds, custom SEO optimizations, brand systems, and automated pipelines designed by Niaz Digital.",
-      canonicalUrl: window.location.href,
+      canonicalUrl: "https://niazdigital.com/portfolio",
       ogImage: logoImg
     });
   }, []);

@@ -14,7 +14,7 @@ export default function ReviewsPage() {
     updateMetaTags({
       title: 'Client Reviews & Testimonials | Niaz Digital',
       description: 'Read authentic reviews, critiques, and results from global clients, startups, and enterprises that work with Niaz Digital.',
-      canonicalUrl: window.location.href
+      canonicalUrl: "https://niazdigital.com/reviews"
     });
   }, []);
 

@@ -29,7 +29,7 @@ export default function ServicesPage() {
     updateMetaTags({
       title: "Capabilities Spectrum | Niaz Digital",
       description: "Explore the comprehensive, premium digital offering of Niaz Digital: Website development, SEO automation, workflow pipelines, and branding operations.",
-      canonicalUrl: window.location.href,
+      canonicalUrl: "https://niazdigital.com/services",
       ogImage: logoImg
     });
   }, []);

@@ -25,7 +25,7 @@ export default function FaqPage() {
     updateMetaTags({
       title: "Frequently Asked Questions | Niaz Digital",
       description: "Get immediate answers to queries regarding Niaz Digital website development speeds, custom n8n automations, project fees, and client portal tracking.",
-      canonicalUrl: window.location.href,
+      canonicalUrl: "https://niazdigital.com/faq",
       ogImage: logoImg
     });
   }, []);

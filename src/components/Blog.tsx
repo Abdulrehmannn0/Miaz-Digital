@@ -20,18 +20,18 @@ export default function Blog() {
     setLoading(true);
     setIsOfflineFallback(false);
     try {
-      const data = await fetchLatestPosts(3);
+      const data = await fetchLatestPosts(6);
       if (data && data.length > 0) {
         setPosts(data);
       } else {
         // Fallback if empty response
-        setPosts(BLOG_DATA.slice(0, 3));
+        setPosts(BLOG_DATA.slice(0, 6));
         setIsOfflineFallback(true);
       }
     } catch (err) {
       console.warn("WordPress REST API offline or unreachable. Falling back to built-in high-end blog presets.");
       // Graceful offline fallback to keep the app absolutely operational and pristine
-      setPosts(BLOG_DATA.slice(0, 3));
+      setPosts(BLOG_DATA.slice(0, 6));
       setIsOfflineFallback(true);
     } finally {
       setLoading(false);
@@ -56,7 +56,7 @@ export default function Blog() {
               Articles & Insights
             </span>
             <h2 className="text-3xl md:text-5xl font-display font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight mb-6">
-              TechGloze Journal. Open-source knowledge from the frontlines.
+              Niaz Digital Journal. Open-source knowledge from the frontlines.
             </h2>
             <p className="text-base text-slate-500 dark:text-slate-400 leading-relaxed font-medium">
               We actively write detailed audits explaining high-efficiency React bundler speeds, psychological copy guidelines, and automated HubSpot data routings. Read our latest findings below.
@@ -103,7 +103,10 @@ export default function Blog() {
               >
                 
                 {/* Image header */}
-                <div className="relative aspect-[16/10] overflow-hidden bg-slate-100 dark:bg-slate-950">
+                <a 
+                  href={`https://blog.niazdigital.com/${article.slug}/`}
+                  className="relative aspect-[16/10] overflow-hidden bg-slate-100 dark:bg-slate-950 block"
+                >
                   <img 
                     src={article.image} 
                     alt={article.title} 
@@ -114,7 +117,7 @@ export default function Blog() {
                   <span className="absolute top-4 left-4 bg-slate-900/80 backdrop-blur-sm text-white text-[9px] font-black uppercase tracking-wider px-3 py-1 rounded-full">
                     {article.category}
                   </span>
-                </div>
+                </a>
 
                 {/* Body */}
                 <div className="p-6 flex flex-col flex-grow justify-between">
@@ -124,11 +127,11 @@ export default function Blog() {
                       <span className="flex items-center gap-1"><Clock className="w-3.5 h-3.5 text-blue-500/80" /> {article.readingTime}</span>
                     </div>
 
-                    <Link to={`/blog/${article.slug}`}>
+                    <a href={`https://blog.niazdigital.com/${article.slug}/`}>
                       <h3 className="font-display font-extrabold text-base md:text-lg text-slate-900 dark:text-white leading-snug group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors mb-3 line-clamp-2">
                         {article.title}
                       </h3>
-                    </Link>
+                    </a>
 
                     <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed line-clamp-3 mb-6 font-medium">
                       {article.excerpt}
@@ -148,12 +151,12 @@ export default function Blog() {
                       </span>
                     </div>
 
-                    <Link
-                      to={`/blog/${article.slug}`}
+                    <a
+                      href={`https://blog.niazdigital.com/${article.slug}/`}
                       className="text-xs font-bold text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1 cursor-pointer w-fit"
                     >
                       Read Article <ChevronRight className="w-4 h-4" />
-                    </Link>
+                    </a>
                   </div>
                 </div>
 

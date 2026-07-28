@@ -11,7 +11,7 @@ export default function NotFoundPage() {
     updateMetaTags({
       title: "404 - System Displaced | Niaz Digital",
       description: "The requested digital endpoint is not located in Niaz Digital systems.",
-      canonicalUrl: window.location.href,
+      canonicalUrl: "https://niazdigital.com/404",
       ogImage: logoImg
     });
   }, []);

@@ -12,7 +12,7 @@ export default function TermsPage() {
     updateMetaTags({
       title: "Terms & Conditions | Niaz Digital",
       description: "Read the professional service agreements, delivery terms, and support maintainer clauses of Niaz Digital.",
-      canonicalUrl: window.location.href,
+      canonicalUrl: "https://niazdigital.com/terms",
       ogImage: logoImg
     });
   }, []);

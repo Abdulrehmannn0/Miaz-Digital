@@ -22,7 +22,7 @@ export default function ClientPortalPage() {
     updateMetaTags({
       title: "Secure Client Portal | Niaz Digital",
       description: "Access your project deliverables, track current development milestones, share branding files, and view operational knowledge bases on Niaz Digital's client console.",
-      canonicalUrl: window.location.href,
+      canonicalUrl: "https://niazdigital.com/client-portal",
       ogImage: logoImg
     });
   }, []);
